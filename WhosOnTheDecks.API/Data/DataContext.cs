@@ -9,5 +9,8 @@ namespace WhosOnTheDecks.API.Data
         public DataContext(DbContextOptions<DataContext> options) : base(options){}
 
         public DbSet<Value> Values { get; set; }
+
+        //User DBSet adds user table to Database
+        public DbSet<User> Users { get; set; }
     }
 }
