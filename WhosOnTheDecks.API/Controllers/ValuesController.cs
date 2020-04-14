@@ -9,7 +9,7 @@ using WhosOnTheDecks.API.Data;
 
 namespace WhosOnTheDecks.API.Controllers
 {
-    [Authorize]
+    
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
@@ -28,6 +28,7 @@ namespace WhosOnTheDecks.API.Controllers
         // GET api/values
         //Using IActionResult so we get an ok response via URL is the get request succeeds
         // Method is asyncronous so it remains open whilst in use
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> GetValues()
         {
