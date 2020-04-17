@@ -8,9 +8,20 @@ namespace WhosOnTheDecks.API.Data
         // Constructor that takes in DBContextOptions and options from the base class DbContext
         public DataContext(DbContextOptions<DataContext> options) : base(options){}
 
-        public DbSet<Value> Values { get; set; }
 
         //User DBSet adds user table to Database
         public DbSet<User> Users { get; set; }
+
+        public DbSet<Dj> Djs { get; set; }
+
+        public DbSet<Promoter> Promoters { get; set; }
+
+        public DbSet<Staff> Staff { get; set; }
+
+        public DbSet<Event> Events { get; set; }
+
+        public DbSet<Booking> Bookings { get; set; }
+
+        public DbSet<Payment> Payments { get; set; }
     }
 }

@@ -20,12 +20,12 @@ namespace WhosOnTheDecks.API.Data
         //The methos will compare the details with the details stored in the databse
         //As the password is stored as a hash and salt within the database
         //the method will turn the string password into a hash and salt to compare to the stored data
-        public async Task<User> Login(string username, string password)
+        public async Task<User> Login(string email, string password)
         {
             //Create user property from the database
             //First or default will return null if the user does not exist
             //This will help by stopping an exceptionfrom being thrown
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.Username == username);
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
 
             //This call is to check if the user does not exist by returning a null
             //This when seen by the front end application will show a 401 unauthorised
@@ -122,11 +122,11 @@ namespace WhosOnTheDecks.API.Data
 
         //User Exitis method takes in the string of username and 
         //compares it with any usernamesint he database that match
-        public async Task<bool> UserExists(string username)
+        public async Task<bool> UserExists(string email)
         {
             //Checks entered username with all usernames in database
             //If the username exists it returns true
-            if (await _context.Users.AnyAsync(x => x.Username == username))
+            if (await _context.Users.AnyAsync(x => x.Email == email))
             {
                 return true;
             }

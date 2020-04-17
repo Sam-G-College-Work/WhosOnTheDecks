@@ -42,11 +42,11 @@ namespace WhosOnTheDecks.API.Controllers
         public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
         {
              //Turns entered username to lowercase for easier verfications
-            userForRegisterDto.Username = userForRegisterDto.Username.ToLower();
+            userForRegisterDto.Email = userForRegisterDto.Email.ToLower();
 
-            //Call to user exists method with passed in username
+            //Call to user exists method with passed in email
             //If returned true a bad request will be sent to the user
-            if (await _repo.UserExists(userForRegisterDto.Username))
+            if (await _repo.UserExists(userForRegisterDto.Email))
             {
                 return BadRequest("Username already exists");
             }
@@ -54,7 +54,7 @@ namespace WhosOnTheDecks.API.Controllers
             //Start building a user object with the username
             var userToCreate = new User
             {
-                Username = userForRegisterDto.Username
+                Email = userForRegisterDto.Email
             };
 
             //Complete the user object by adding the password 
@@ -71,7 +71,7 @@ namespace WhosOnTheDecks.API.Controllers
         public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
         {
             //Property is inialised with the stored information associated with the entered information
-            var userFromRepo = await _repo.Login(userForLoginDto.Username.ToLower(), userForLoginDto.Password);
+            var userFromRepo = await _repo.Login(userForLoginDto.Email.ToLower(), userForLoginDto.Password);
 
             //Check is made to see if the user exists
             //If null is returned the user does not exist
@@ -81,14 +81,14 @@ namespace WhosOnTheDecks.API.Controllers
                 return Unauthorized();
             }  
 
-            //A token will be constructed with the users ID adn username
+            //A token will be constructed with the users ID and email
             //This is stored in the array claims
             var claims = new[]
             {
                 //Claim type name identifier is used to store the ID
                 new Claim(ClaimTypes.NameIdentifier, userFromRepo.Id.ToString()),
                 //Claim type name is used to store the usename
-                new Claim(ClaimTypes.Name, userFromRepo.Username)
+                new Claim(ClaimTypes.Name, userFromRepo.Email)
             };
 
             //Key is created and hashed so it is not readable 

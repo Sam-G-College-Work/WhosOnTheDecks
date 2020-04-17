@@ -8,12 +8,15 @@ namespace WhosOnTheDecks.API.Dtos
     public class UserForRegisterDto
     {
         [Required]
-        [EmailAddress]
-        public string Username { get; set; }
+        [EmailAddress(
+            ErrorMessage = "You must enter a valid email address"
+        )]
+        public string Email { get; set; }
 
         [Required]
         [StringLength(8, MinimumLength =4, 
-            ErrorMessage ="You must create a password between 4 and 8 characters long")]
+            ErrorMessage ="You must create a password between 4 and 8 characters long"
+            )]
         public string Password { get; set; }
     }
 }
