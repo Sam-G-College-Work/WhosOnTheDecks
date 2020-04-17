@@ -8,7 +8,7 @@ namespace WhosOnTheDecks.API.Models
     //The DJ is a user of the site but also the stock on the site
     //Name, Hourly rate, Equipment and genre define the DJ
     //A list of bookigns links DJ to Bookings
-    //As DJ inherits from user all user attributes will make up the DJ object too
+    //As DJ inherits from User all user attributes will make up the DJ object too
     public class Dj : User
     {
         //string Name for DJ Name

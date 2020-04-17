@@ -8,7 +8,7 @@ namespace WhosOnTheDecks.API.Models
     //The Promoter is a user of the site and will be the customer of the site
     //CompanyName defines the Promtoer object
     //A list of events links Promoter to Event
-    //As Promoter inherits from user all user attributes will make up the Promoter object too
+    //As Promoter inherits from User all user attributes will make up the Promoter object too
     public class Promoter : User
     {
         //String CompanyName is used to store the Company the Promoter is a part of

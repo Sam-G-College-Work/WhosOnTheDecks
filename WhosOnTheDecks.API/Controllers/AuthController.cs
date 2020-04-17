@@ -35,32 +35,127 @@ namespace WhosOnTheDecks.API.Controllers
 
         }
 
-        //Register Method takes in a UserForRegisterDto contaiing the entered information from the data transfer object
-        //The data transfer object is used to creat a simpler version of the user object 
+        //StaffRegister Method takes in a StaffForRegisterDto contaiing the entered information from the data transfer object
+        //The data transfer object is used to create a simpler version of the staff object 
         //This is so the data can be compared and displayed without having to pull and create the full user object 
-        [HttpPost("register")]
-        public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
+        [HttpPost("staffregister")]
+        public async Task<IActionResult> StaffRegister(StaffForRegisterDto staffForRegisterDto)
         {
              //Turns entered username to lowercase for easier verfications
-            userForRegisterDto.Email = userForRegisterDto.Email.ToLower();
+            staffForRegisterDto.Email = staffForRegisterDto.Email.ToLower();
 
             //Call to user exists method with passed in email
             //If returned true a bad request will be sent to the user
-            if (await _repo.UserExists(userForRegisterDto.Email))
+            if (await _repo.UserExists(staffForRegisterDto.Email))
             {
-                return BadRequest("Username already exists");
+                return BadRequest("Email already exists");
             }
 
             //Start building a user object with the username
-            var userToCreate = new User
+            var staffToCreate = new Staff
             {
-                Email = userForRegisterDto.Email
+                Email = staffForRegisterDto.Email,
+                FirstName = staffForRegisterDto.FirstName,
+                LastName = staffForRegisterDto.LastName,
+                LockAccount = false,
+                HouseNumber = staffForRegisterDto.HouseNumber,
+                StreetName = staffForRegisterDto.StreetName,
+                Postcode = staffForRegisterDto.Postcode,
+                PhoneNumber = staffForRegisterDto.PhoneNumber,
+                Role = Role.Admin,
+                DateOfBirth = staffForRegisterDto.DateOfBirth
             };
 
+            
             //Complete the user object by adding the password 
             //submited and hashed through the register method 
             //of the IAuth Repository
-            var createdUser = await _repo.Register(userToCreate, userForRegisterDto.Password);
+            var createdStaff = await _repo.Register(staffToCreate, staffForRegisterDto.Password);
+
+            //Status code 201 "OK" sent back after completed request
+            return StatusCode(201);
+        }
+
+        //PromoterRegister Method takes in a PromoterForRegisterDto contaiing the entered information from the data transfer object
+        //The data transfer object is used to create a simpler version of the promoter object 
+        //This is so the data can be compared and displayed without having to pull and create the full user object 
+        [HttpPost("promoterregister")]
+        public async Task<IActionResult> PromoterRegister(PromoterForRegisterDto promoterForRegisterDto)
+        {
+             //Turns entered username to lowercase for easier verfications
+            promoterForRegisterDto.Email = promoterForRegisterDto.Email.ToLower();
+
+            //Call to user exists method with passed in email
+            //If returned true a bad request will be sent to the user
+            if (await _repo.UserExists(promoterForRegisterDto.Email))
+            {
+                return BadRequest("Email already exists");
+            }
+
+            //Start building a user object with the username
+            var promoterToCreate = new Promoter
+            {
+                Email = promoterForRegisterDto.Email,
+                FirstName = promoterForRegisterDto.FirstName,
+                LastName = promoterForRegisterDto.LastName,
+                LockAccount = false,
+                HouseNumber = promoterForRegisterDto.HouseNumber,
+                StreetName = promoterForRegisterDto.StreetName,
+                Postcode = promoterForRegisterDto.Postcode,
+                PhoneNumber = promoterForRegisterDto.PhoneNumber,
+                Role = Role.Promoter,
+                CompanyName = promoterForRegisterDto.CompanyName
+            };
+
+            
+            //Complete the user object by adding the password 
+            //submited and hashed through the register method 
+            //of the IAuth Repository
+            var createdPromoter = await _repo.Register(promoterToCreate, promoterForRegisterDto.Password);
+
+            //Status code 201 "OK" sent back after completed request
+            return StatusCode(201);
+        }
+
+        //DjRegister Method takes in a DjForRegisterDto contaiing the entered information from the data transfer object
+        //The data transfer object is used to create a simpler version of the Dj object 
+        //This is so the data can be compared and displayed without having to pull and create the full user object 
+        [HttpPost("djregister")]
+        public async Task<IActionResult> DjRegister(DjForRegisterDto djForRegisterDto)
+        {
+             //Turns entered username to lowercase for easier verfications
+            djForRegisterDto.Email = djForRegisterDto.Email.ToLower();
+
+            //Call to user exists method with passed in email
+            //If returned true a bad request will be sent to the user
+            if (await _repo.UserExists(djForRegisterDto.Email))
+            {
+                return BadRequest("Email already exists");
+            }
+
+            //Start building a user object with the username
+            var djToCreate = new Dj
+            {
+                Email = djForRegisterDto.Email,
+                FirstName = djForRegisterDto.FirstName,
+                LastName = djForRegisterDto.LastName,
+                LockAccount = true,
+                HouseNumber = djForRegisterDto.HouseNumber,
+                StreetName = djForRegisterDto.StreetName,
+                Postcode = djForRegisterDto.Postcode,
+                PhoneNumber = djForRegisterDto.PhoneNumber,
+                Role = Role.Dj,
+                DjName = djForRegisterDto.DjName,
+                HourlyRate = djForRegisterDto.HourlyRate,
+                Equipment = djForRegisterDto.Equipment,
+                Genre = djForRegisterDto.Genre
+            };
+
+            
+            //Complete the user object by adding the password 
+            //submited and hashed through the register method 
+            //of the IAuth Repository
+            var createdDj = await _repo.Register(djToCreate, djForRegisterDto.Password);
 
             //Status code 201 "OK" sent back after completed request
             return StatusCode(201);

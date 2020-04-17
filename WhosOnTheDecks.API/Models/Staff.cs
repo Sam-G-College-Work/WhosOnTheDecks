@@ -7,7 +7,7 @@ namespace WhosOnTheDecks.API.Models
     //The Staff is a user of the site and will complete administritive duties for the site
     //A staff has 2 roles Staff and Admin, Admin is a superuser that will have complete control
     //Date of birth defines the Staff object
-    //As Staff inherits from user all user attributes will make up the Staff object too
+    //As Staff inherits from User all user attributes will make up the Staff object too
     public class Staff : User
     {
         //DateTime DateOfBirth used to store the Staff members date of birth

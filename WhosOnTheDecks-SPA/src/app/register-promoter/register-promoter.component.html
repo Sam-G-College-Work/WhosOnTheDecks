@@ -1,0 +1,46 @@
+<form #registerForm="ngForm" (ngSubmit)="register()">
+  <h2 class="text-center text-primary">Register as a Promoter</h2>
+  <hr>
+
+  <div class="form-group">
+    <input type="text" class="form-control" required name="email" [(ngModel)]="model.email" placeholder="Email">
+  </div>
+
+  <div class="form-group">
+    <input type="password" class="form-control" required name="password" [(ngModel)]="model.password" placeholder="Password">
+  </div>
+
+  <div class="form-group">
+    <input type="text" class="form-control" required name="firstName" [(ngModel)]="model.firstName" placeholder="First Name">
+  </div>
+
+  <div class="form-group">
+    <input type="text" class="form-control" required name="lastName" [(ngModel)]="model.lastName" placeholder="Last Name">
+  </div>
+
+  <div class="form-group">
+    <input type="number" class="form-control" required name="houseNumber" [(ngModel)]="model.houseNumber" placeholder="House Number">
+  </div>
+
+  <div class="form-group">
+    <input type="text" class="form-control" required name="streetName" [(ngModel)]="model.streetName" placeholder="Street Name">
+  </div>
+
+  <div class="form-group">
+    <input type="text" class="form-control" required name="postcode" [(ngModel)]="model.postcode" placeholder="Postcode">
+  </div>
+
+  <div class="form-group">
+    <input type="number" class="form-control" required name="phoneNumber" [(ngModel)]="model.phoneNumber" placeholder="Phone Number">
+  </div>
+
+  <div class="form-group">
+    <input type="text" class="form-control" required name="companyName" [(ngModel)]="model.companyName" placeholder="Company Name">
+  </div>
+
+  <div class="form-group text-center">
+    <button class="btn btn-success" type="submit">Register</button>
+    <button class="btn btn-default" type="button" (click)="cancel()">Cancel</button>
+  </div>
+
+</form>
