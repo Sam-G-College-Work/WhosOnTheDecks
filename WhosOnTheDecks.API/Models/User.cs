@@ -30,7 +30,6 @@ namespace WhosOnTheDecks.API.Models
         public byte[] PasswordSalt {get; set;}
 
         //Boolean LockAccount used to indicate weither user can access their account
-        [Required]
         [Display(Name = "Account Locked")]
         public bool LockAccount { get; set; }
 
@@ -65,7 +64,6 @@ namespace WhosOnTheDecks.API.Models
         public int PhoneNumber  { get; set; }
 
         //Enum Role used to store the users role
-        [Required]
         [Display(Name = "Role")]
         [EnumDataType(typeof(Role))]
         public Role Role { get; set; }
