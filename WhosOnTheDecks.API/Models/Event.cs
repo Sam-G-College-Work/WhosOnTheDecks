@@ -68,7 +68,7 @@ namespace WhosOnTheDecks.API.Models
         //Navigational Property
         //Links Event to a list of bookings
         //An event is made of one to many bookings
-        [ForeignKey("Booking")]
+        [ForeignKey("Bookings")]
         public List<Booking> Bookings { get; set; }
 
         //Navigational Property

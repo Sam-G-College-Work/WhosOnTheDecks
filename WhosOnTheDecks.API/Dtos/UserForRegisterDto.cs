@@ -15,8 +15,8 @@ namespace WhosOnTheDecks.API.Dtos
         public string Email { get; set; }
 
         [Required]
-        [StringLength(8, MinimumLength =4, 
-            ErrorMessage ="You must create a password between 4 and 8 characters long"
+        [StringLength(8, MinimumLength = 4,
+            ErrorMessage = "You must create a password between 4 and 8 characters long"
             )]
         public string Password { get; set; }
 
@@ -25,7 +25,7 @@ namespace WhosOnTheDecks.API.Dtos
 
         //String FirstName used to store the users first name
         [Required]
-        [Display(Name =" First Name")]
+        [Display(Name = " First Name")]
         public string FirstName { get; set; }
 
         //String LastName used to store the users last name
@@ -50,8 +50,10 @@ namespace WhosOnTheDecks.API.Dtos
 
         //Integer PhoneNumber used to store the users phone number 
         [Required]
+        [DataType(DataType.PhoneNumber,
+            ErrorMessage = "You must enter a valid phone number")]
         [Display(Name = "Phone Number")]
-        public int PhoneNumber  { get; set; }
+        public string PhoneNumber { get; set; }
 
         //Enum Role used to store the users role
         [Display(Name = "Role")]

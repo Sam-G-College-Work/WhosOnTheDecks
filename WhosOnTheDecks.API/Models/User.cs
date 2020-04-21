@@ -20,14 +20,14 @@ namespace WhosOnTheDecks.API.Models
         [Display(Name = "Email")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-    
+
         //Byte Array PasswordHash used to store a hash of the users password
         [Required]
         public byte[] PasswordHash { get; set; }
 
         //Byte Array PasswordSalt is used to store a salt and key reference for the above hash
         [Required]
-        public byte[] PasswordSalt {get; set;}
+        public byte[] PasswordSalt { get; set; }
 
         //Boolean LockAccount used to indicate weither user can access their account
         [Display(Name = "Account Locked")]
@@ -35,7 +35,7 @@ namespace WhosOnTheDecks.API.Models
 
         //String FirstName used to store the users first name
         [Required]
-        [Display(Name =" First Name")]
+        [Display(Name = " First Name")]
         public string FirstName { get; set; }
 
         //String LastName used to store the users last name
@@ -61,7 +61,7 @@ namespace WhosOnTheDecks.API.Models
         //Integer PhoneNumber used to store the users phone number 
         [Required]
         [Display(Name = "Phone Number")]
-        public int PhoneNumber  { get; set; }
+        public string PhoneNumber { get; set; }
 
         //Enum Role used to store the users role
         [Display(Name = "Role")]
@@ -70,7 +70,7 @@ namespace WhosOnTheDecks.API.Models
     }
 
     //Role enum to indicate the type of users and to allows certain privileges
-    public enum Role 
+    public enum Role
     {
         Staff,
         Admin,

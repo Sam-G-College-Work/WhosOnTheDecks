@@ -30,14 +30,14 @@ namespace WhosOnTheDecks.API
             //Allows use of Sqlite database by providing the connection string
             services.AddDbContext<DataContext>(x => x.UseSqlite
             (Configuration.GetConnectionString("DefaultConnection")));
-            
-            //Allows us to use Controllers
-             services.AddControllers(); 
 
-             // Allows the use of Cors as a service which relates to our Angular front end
-             services.AddCors();
+            //Allows us to use Controllers and JSON token deserialization
+            services.AddControllers().AddNewtonsoftJson();
 
-            
+            // Allows the use of Cors as a service which relates to our Angular front end
+            services.AddCors();
+
+
             //Allows Auth interface and repository to be used
             //It will use the same reference within the same http requests 
             //but will generate another if the a new http request is made 
@@ -48,17 +48,18 @@ namespace WhosOnTheDecks.API
             //First it validates the authentication scheme applied
             //Then the options are applied to the Jwtbearer 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options => {
+                .AddJwtBearer(options =>
+                {
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         //Validates the key found in appsettings.json
                         ValidateIssuerSigningKey = true,
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII
                             .GetBytes(Configuration.GetSection("AppSettings:Token").Value)),
-                            //Issuer is localhost so no validation needed atm
-                            ValidateIssuer = false,
-                            //Audience is localhost so no validation is needed atm
-                            ValidateAudience = false
+                        //Issuer is localhost so no validation needed atm
+                        ValidateIssuer = false,
+                        //Audience is localhost so no validation is needed atm
+                        ValidateAudience = false
                     };
                 });
 
@@ -73,8 +74,10 @@ namespace WhosOnTheDecks.API
             }
             else
             {
-                app.UseExceptionHandler(builder => {
-                    builder.Run(async context => {
+                app.UseExceptionHandler(builder =>
+                {
+                    builder.Run(async context =>
+                    {
                         context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
                         var error = context.Features.Get<IExceptionHandlerFeature>();
