@@ -17,7 +17,6 @@ namespace WhosOnTheDecks.API.Models
 
         //Navigational Property
         //Links a payment to a single event
-        [ForeignKey("Event")]
         public List<Event> Events { get; set; }
 
     }

@@ -36,7 +36,6 @@ namespace WhosOnTheDecks.API.Models
 
         //Navigational Property
         //Used to store a list of bookings a DJ has
-        [ForeignKey("Booking")]
         public List<Booking> Bookings { get; set; }
     }
 
