@@ -1,21 +1,21 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
   <a class="navbar-brand" [routerLink]="['/home']">Who's on the Decks!</a>
   <ul class="navbar-nav mr-auto">
-    <li class="nav-item">
+    <li class="nav-item" routerLinkActive="active">
       <a class="nav-link" [routerLink]="['/view-all-djs']">View All DJs</a>
     </li>
 
-    <li class="nav-item">
+    <li class="nav-item" routerLinkActive="active">
       <a class="nav-link" [routerLink]="['/create-an-event']">
         Create an Event
       </a>
     </li>
 
-    <li class="nav-item">
+    <li class="nav-item" routerLinkActive="active">
       <a class="nav-link" [routerLink]="['/view-events']">View Events</a>
     </li>
 
-    <li class="nav-item">
+    <li class="nav-item" routerLinkActive="active">
       <a class="nav-link" [routerLink]="['/view-bookings']">View Bookings</a>
     </li>
   </ul>
@@ -24,7 +24,7 @@
     <mat-form-field>
       <mat-label>Welcome {{ authService.decodedToken.unique_name }}</mat-label>
       <mat-select>
-        <mat-option [routerLink]="['/edit-profile']">
+        <mat-option [routerLink]="['/edit-profile']" routerLinkActive="active">
           <i class="fa fa-user"></i>
           Edit Profile
         </mat-option>
