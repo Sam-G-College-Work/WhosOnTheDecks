@@ -18,16 +18,9 @@
     <li class="nav-item">
       <a class="nav-link" [routerLink]="['/view-bookings']">View Bookings</a>
     </li>
-
-    <li class="nav-item">
-      <a class="nav-link" (click)="logout()">Logout</a>
-    </li>
   </ul>
 
   <div *ngIf="loggedIn()" class="dropdown">
-    <!-- <a class="dropdown-toggle text-light">
-      Welcome {{ authService.decodedToken.unique_name }}
-    </a> -->
     <mat-form-field>
       <mat-label>Welcome {{ authService.decodedToken.unique_name }}</mat-label>
       <mat-select>
@@ -35,16 +28,13 @@
           <i class="fa fa-user"></i>
           Edit Profile
         </mat-option>
+        <div class="dropdown-divider"></div>
+        <mat-option class="nav-link" (click)="logout()">
+          <i class="fa fa-user"></i>
+          Logout
+        </mat-option>
       </mat-select>
     </mat-form-field>
-    <!-- <div class="dropdown-menu" dropdown>
-      <a class="dropdown-item" href="#" dropdownToggle>
-        <i class="fa fa-user"></i>
-        Edit Profile
-      </a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#"><i class="fa fa-user"></i>Logout</a>
-    </div> -->
   </div>
 
   <form

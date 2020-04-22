@@ -2,7 +2,6 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
-// import { BsDropdownModule } from "ngx-bootstrap/dropdown";
 
 import { AppComponent } from "./app.component";
 import { NavComponent } from "./nav/nav.component";
@@ -47,7 +46,6 @@ import {
     MatSelectModule,
     MatFormFieldModule,
     MatInputModule,
-    // BsDropdownModule.forRoot(),
   ],
   providers: [ErrorInterceptorProvider, AuthService],
   bootstrap: [AppComponent],
