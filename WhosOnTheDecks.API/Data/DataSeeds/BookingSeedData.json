@@ -1,317 +1,317 @@
 [
   {
     "StartTime": "21:00",
-    "Endtime": "22:00",
+    "EndTime": "22:00",
     "BookingStatus": true,
-    "Dj": 35,
-    "Event": 1
+    "DjId": 35,
+    "EventId": 1
   },
   {
     "StartTime": "21:00",
-    "Endtime": "22:00",
+    "EndTime": "22:00",
     "BookingStatus": true,
-    "Dj": 19,
-    "Event": 2
+    "DjId": 19,
+    "EventId": 2
   },
   {
     "StartTime": "21:00",
-    "Endtime": "22:00",
+    "EndTime": "22:00",
     "BookingStatus": true,
-    "Dj": 11,
-    "Event": 3
+    "DjId": 11,
+    "EventId": 3
   },
   {
     "StartTime": "21:00",
-    "Endtime": "22:00",
+    "EndTime": "22:00",
     "BookingStatus": true,
-    "Dj": 11,
-    "Event": 4
+    "DjId": 11,
+    "EventId": 4
   },
   {
     "StartTime": "21:00",
-    "Endtime": "22:00",
+    "EndTime": "22:00",
     "BookingStatus": true,
-    "Dj": 17,
-    "Event": 5
+    "DjId": 17,
+    "EventId": 5
   },
   {
     "StartTime": "21:00",
-    "Endtime": "22:00",
+    "EndTime": "22:00",
     "BookingStatus": true,
-    "Dj": 7,
-    "Event": 6
+    "DjId": 7,
+    "EventId": 6
   },
   {
     "StartTime": "21:00",
-    "Endtime": "22:00",
+    "EndTime": "22:00",
     "BookingStatus": true,
-    "Dj": 23,
-    "Event": 7
+    "DjId": 23,
+    "EventId": 7
   },
   {
     "StartTime": "21:00",
-    "Endtime": "22:00",
+    "EndTime": "22:00",
     "BookingStatus": true,
-    "Dj": 37,
-    "Event": 8
+    "DjId": 37,
+    "EventId": 8
   },
   {
     "StartTime": "21:00",
-    "Endtime": "22:00",
+    "EndTime": "22:00",
     "BookingStatus": true,
-    "Dj": 16,
-    "Event": 9
+    "DjId": 16,
+    "EventId": 9
   },
   {
     "StartTime": "21:00",
-    "Endtime": "22:00",
+    "EndTime": "22:00",
     "BookingStatus": true,
-    "Dj": 5,
-    "Event": 10
+    "DjId": 5,
+    "EventId": 10
   },
   {
     "StartTime": "21:00",
-    "Endtime": "22:00",
+    "EndTime": "22:00",
     "BookingStatus": true,
-    "Dj": 39,
-    "Event": 11
+    "DjId": 39,
+    "EventId": 11
   },
   {
     "StartTime": "21:00",
-    "Endtime": "22:00",
+    "EndTime": "22:00",
     "BookingStatus": true,
-    "Dj": 20,
-    "Event": 12
+    "DjId": 20,
+    "EventId": 12
   },
   {
     "StartTime": "21:00",
-    "Endtime": "22:00",
+    "EndTime": "22:00",
     "BookingStatus": true,
-    "Dj": 28,
-    "Event": 13
+    "DjId": 28,
+    "EventId": 13
   },
   {
     "StartTime": "21:00",
-    "Endtime": "22:00",
+    "EndTime": "22:00",
     "BookingStatus": true,
-    "Dj": 20,
-    "Event": 14
+    "DjId": 20,
+    "EventId": 14
   },
   {
     "StartTime": "21:00",
-    "Endtime": "22:00",
+    "EndTime": "22:00",
     "BookingStatus": true,
-    "Dj": 20,
-    "Event": 15
+    "DjId": 20,
+    "EventId": 15
   },
   {
     "StartTime": "22:00",
-    "Endtime": "23:00",
+    "EndTime": "23:00",
     "BookingStatus": true,
-    "Dj": 28,
-    "Event": 1
+    "DjId": 28,
+    "EventId": 1
   },
   {
     "StartTime": "22:00",
-    "Endtime": "23:00",
+    "EndTime": "23:00",
     "BookingStatus": true,
-    "Dj": 4,
-    "Event": 2
+    "DjId": 4,
+    "EventId": 2
   },
   {
     "StartTime": "22:00",
-    "Endtime": "23:00",
+    "EndTime": "23:00",
     "BookingStatus": true,
-    "Dj": 33,
-    "Event": 3
+    "DjId": 33,
+    "EventId": 3
   },
   {
     "StartTime": "22:00",
-    "Endtime": "23:00",
+    "EndTime": "23:00",
     "BookingStatus": true,
-    "Dj": 19,
-    "Event": 4
+    "DjId": 19,
+    "EventId": 4
   },
   {
     "StartTime": "22:00",
-    "Endtime": "23:00",
+    "EndTime": "23:00",
     "BookingStatus": true,
-    "Dj": 21,
-    "Event": 5
+    "DjId": 21,
+    "EventId": 5
   },
   {
     "StartTime": "22:00",
-    "Endtime": "23:00",
+    "EndTime": "23:00",
     "BookingStatus": true,
-    "Dj": 35,
-    "Event": 6
+    "DjId": 35,
+    "EventId": 6
   },
   {
     "StartTime": "22:00",
-    "Endtime": "23:00",
+    "EndTime": "23:00",
     "BookingStatus": true,
-    "Dj": 38,
-    "Event": 7
+    "DjId": 38,
+    "EventId": 7
   },
   {
     "StartTime": "22:00",
-    "Endtime": "23:00",
+    "EndTime": "23:00",
     "BookingStatus": true,
-    "Dj": 32,
-    "Event": 8
+    "DjId": 32,
+    "EventId": 8
   },
   {
     "StartTime": "22:00",
-    "Endtime": "23:00",
+    "EndTime": "23:00",
     "BookingStatus": true,
-    "Dj": 7,
-    "Event": 9
+    "DjId": 7,
+    "EventId": 9
   },
   {
     "StartTime": "22:00",
-    "Endtime": "23:00",
+    "EndTime": "23:00",
     "BookingStatus": true,
-    "Dj": 25,
-    "Event": 10
+    "DjId": 25,
+    "EventId": 10
   },
   {
     "StartTime": "22:00",
-    "Endtime": "23:00",
+    "EndTime": "23:00",
     "BookingStatus": true,
-    "Dj": 18,
-    "Event": 11
+    "DjId": 18,
+    "EventId": 11
   },
   {
     "StartTime": "22:00",
-    "Endtime": "23:00",
+    "EndTime": "23:00",
     "BookingStatus": true,
-    "Dj": 18,
-    "Event": 12
+    "DjId": 18,
+    "EventId": 12
   },
   {
     "StartTime": "22:00",
-    "Endtime": "23:00",
+    "EndTime": "23:00",
     "BookingStatus": true,
-    "Dj": 8,
-    "Event": 13
+    "DjId": 8,
+    "EventId": 13
   },
   {
     "StartTime": "22:00",
-    "Endtime": "23:00",
+    "EndTime": "23:00",
     "BookingStatus": true,
-    "Dj": 3,
-    "Event": 14
+    "DjId": 3,
+    "EventId": 14
   },
   {
     "StartTime": "22:00",
-    "Endtime": "23:00",
+    "EndTime": "23:00",
     "BookingStatus": true,
-    "Dj": 36,
-    "Event": 15
+    "DjId": 36,
+    "EventId": 15
   },
   {
     "StartTime": "23:00",
-    "Endtime": "00:00",
+    "EndTime": "00:00",
     "BookingStatus": true,
-    "Dj": 17,
-    "Event": 1
+    "DjId": 17,
+    "EventId": 1
   },
   {
     "StartTime": "23:00",
-    "Endtime": "00:00",
+    "EndTime": "00:00",
     "BookingStatus": true,
-    "Dj": 10,
-    "Event": 2
+    "DjId": 10,
+    "EventId": 2
   },
   {
     "StartTime": "23:00",
-    "Endtime": "00:00",
+    "EndTime": "00:00",
     "BookingStatus": true,
-    "Dj": 37,
-    "Event": 3
+    "DjId": 37,
+    "EventId": 3
   },
   {
     "StartTime": "23:00",
-    "Endtime": "00:00",
+    "EndTime": "00:00",
     "BookingStatus": true,
-    "Dj": 32,
-    "Event": 4
+    "DjId": 32,
+    "EventId": 4
   },
   {
     "StartTime": "23:00",
-    "Endtime": "00:00",
+    "EndTime": "00:00",
     "BookingStatus": true,
-    "Dj": 11,
-    "Event": 5
+    "DjId": 11,
+    "EventId": 5
   },
   {
     "StartTime": "23:00",
-    "Endtime": "00:00",
+    "EndTime": "00:00",
     "BookingStatus": true,
-    "Dj": 10,
-    "Event": 6
+    "DjId": 10,
+    "EventId": 6
   },
   {
     "StartTime": "23:00",
-    "Endtime": "00:00",
+    "EndTime": "00:00",
     "BookingStatus": true,
-    "Dj": 4,
-    "Event": 7
+    "DjId": 4,
+    "EventId": 7
   },
   {
     "StartTime": "23:00",
-    "Endtime": "00:00",
+    "EndTime": "00:00",
     "BookingStatus": true,
-    "Dj": 7,
-    "Event": 8
+    "DjId": 7,
+    "EventId": 8
   },
   {
     "StartTime": "23:00",
-    "Endtime": "00:00",
+    "EndTime": "00:00",
     "BookingStatus": true,
-    "Dj": 23,
-    "Event": 9
+    "DjId": 23,
+    "EventId": 9
   },
   {
     "StartTime": "23:00",
-    "Endtime": "00:00",
+    "EndTime": "00:00",
     "BookingStatus": true,
-    "Dj": 2,
-    "Event": 10
+    "DjId": 2,
+    "EventId": 10
   },
   {
     "StartTime": "23:00",
-    "Endtime": "00:00",
+    "EndTime": "00:00",
     "BookingStatus": true,
-    "Dj": 16,
-    "Event": 11
+    "DjId": 16,
+    "EventId": 11
   },
   {
     "StartTime": "23:00",
-    "Endtime": "00:00",
+    "EndTime": "00:00",
     "BookingStatus": true,
-    "Dj": 2,
-    "Event": 12
+    "DjId": 2,
+    "EventId": 12
   },
   {
     "StartTime": "23:00",
-    "Endtime": "00:00",
+    "EndTime": "00:00",
     "BookingStatus": true,
-    "Dj": 35,
-    "Event": 13
+    "DjId": 35,
+    "EventId": 13
   },
   {
     "StartTime": "23:00",
-    "Endtime": "00:00",
+    "EndTime": "00:00",
     "BookingStatus": true,
-    "Dj": 30,
-    "Event": 14
+    "DjId": 30,
+    "EventId": 14
   },
   {
     "StartTime": "23:00",
-    "Endtime": "00:00",
+    "EndTime": "00:00",
     "BookingStatus": true,
-    "Dj": 34,
-    "Event": 15
+    "DjId": 34,
+    "EventId": 15
   }
 ]

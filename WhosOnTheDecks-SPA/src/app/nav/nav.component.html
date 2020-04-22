@@ -1,29 +1,50 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Who's on the Decks!</a>
+  <a class="navbar-brand" [routerLink]="['/home']">Who's on the Decks!</a>
   <ul class="navbar-nav mr-auto">
     <li class="nav-item">
-      <a class="nav-link" href="#">View All DJs</a>
+      <a class="nav-link" [routerLink]="['/view-all-djs']">View All DJs</a>
     </li>
+
     <li class="nav-item">
-      <a class="nav-link" href="#">Create an Event</a>
+      <a class="nav-link" [routerLink]="['/create-an-event']">
+        Create an Event
+      </a>
     </li>
+
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="['/view-events']">View Events</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="['/view-bookings']">View Bookings</a>
+    </li>
+
     <li class="nav-item">
       <a class="nav-link" (click)="logout()">Logout</a>
     </li>
   </ul>
 
   <div *ngIf="loggedIn()" class="dropdown">
-    <a class="dropdown-toggle text-light">
+    <!-- <a class="dropdown-toggle text-light">
       Welcome {{ authService.decodedToken.unique_name }}
-    </a>
-
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="#"
-        ><i class="fa fa-user"></i>Edit Profile</a
-      >
+    </a> -->
+    <mat-form-field>
+      <mat-label>Welcome {{ authService.decodedToken.unique_name }}</mat-label>
+      <mat-select>
+        <mat-option [routerLink]="['/edit-profile']">
+          <i class="fa fa-user"></i>
+          Edit Profile
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <!-- <div class="dropdown-menu" dropdown>
+      <a class="dropdown-item" href="#" dropdownToggle>
+        <i class="fa fa-user"></i>
+        Edit Profile
+      </a>
       <div class="dropdown-divider"></div>
       <a class="dropdown-item" href="#"><i class="fa fa-user"></i>Logout</a>
-    </div>
+    </div> -->
   </div>
 
   <form

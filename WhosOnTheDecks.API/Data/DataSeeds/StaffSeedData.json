@@ -1,0 +1,42 @@
+[
+  {
+    "Email": "staff1@staff.com",
+    "Password": "password",
+    "LockAccount": false,
+    "FirstName": "Pope",
+    "LastName": "Klein",
+    "HouseNumber": 813,
+    "StreetName": "Turner Place",
+    "Postcode": "G95GG5",
+    "PhoneNumber": "+44 (998) 578-3350",
+    "Role": "Staff",
+    "DateOfBirth": "1997-03-22"
+  },
+  {
+    "Email": "staff2@staff.com",
+    "Password": "password",
+    "LockAccount": false,
+    "FirstName": "Pacheco",
+    "LastName": "Hayes",
+    "HouseNumber": 943,
+    "StreetName": "Court Street",
+    "Postcode": "G14GG5",
+    "PhoneNumber": "+44 (884) 404-3815",
+    "Role": "Staff",
+    "DateOfBirth": "1991-02-04"
+  },
+
+  {
+    "Email": "admin1@admin.com",
+    "Password": "password",
+    "LockAccount": false,
+    "FirstName": "Celeste",
+    "LastName": "Winters",
+    "HouseNumber": 968,
+    "StreetName": "Narrows Avenue",
+    "Postcode": "G36GG2",
+    "PhoneNumber": "+44 (846) 491-2998",
+    "Role": "Admin",
+    "DateOfBirth": "1985-06-12"
+  }
+]

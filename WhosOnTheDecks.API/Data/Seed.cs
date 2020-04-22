@@ -11,17 +11,17 @@ namespace WhosOnTheDecks.API.Data
         //SeedData will take all data stored in DataSeeds/ and create the correct object for each
         public static void SeedData(DataContext context)
         {
-            //A check to see if any users are in database already
-            if (!context.Users.Any())
+            //A check to see if any promoters are in database already
+            if (!context.Promoters.Any())
             {
-                //User data location is stored as a string for reference
-                var userData = System.IO.File.ReadAllText("Data/DataSeeds/UserSeedData.json");
+                //Promoter data location is stored as a string for reference
+                var promoterData = System.IO.File.ReadAllText("Data/DataSeeds/PromoterSeedData.json");
 
-                //List of user objects created from deserialized user data 
-                var users = JsonConvert.DeserializeObject<List<User>>(userData);
+                //List of promtoer objects created from deserialized promoter data 
+                var promoters = JsonConvert.DeserializeObject<List<Promoter>>(promoterData);
 
-                //A For loop is performed to iterate through each user in the list of user objects
-                foreach (var user in users)
+                //A For loop is performed to iterate through each promoter in the list of promoter objects
+                foreach (var promoter in promoters)
                 {
                     //a byte array is declared for the passwordhash and salt
                     byte[] passwordhash, passwordsalt;
@@ -30,19 +30,89 @@ namespace WhosOnTheDecks.API.Data
                     CreatePasswordHash("password", out passwordhash, out passwordsalt);
 
                     //Hash is stored as hash
-                    user.PasswordHash = passwordhash;
+                    promoter.PasswordHash = passwordhash;
 
                     //Salt is stored as salt
-                    user.PasswordSalt = passwordsalt;
+                    promoter.PasswordSalt = passwordsalt;
 
                     //Email is then converted to lower
-                    user.Email = user.Email.ToLower();
+                    promoter.Email = promoter.Email.ToLower();
 
-                    //User object is then written to the database
-                    context.Users.Add(user);
+                    //promoter object is then written to the database
+                    context.Promoters.Add(promoter);
                 }
 
-                //Databse is then saved
+                //Database is then saved
+                context.SaveChanges();
+            }
+
+            //A check to see if any djs are in database already
+            if (!context.Djs.Any())
+            {
+                //Dj data location is stored as a string for reference
+                var djData = System.IO.File.ReadAllText("Data/DataSeeds/DjSeedData.json");
+
+                //List of dj objects created from deserialized dj data 
+                var djs = JsonConvert.DeserializeObject<List<Dj>>(djData);
+
+                //A For loop is performed to iterate through each dj in the list of dj objects
+                foreach (var dj in djs)
+                {
+                    //a byte array is declared for the passwordhash and salt
+                    byte[] passwordhash, passwordsalt;
+
+                    //Create password hash method is called which is below
+                    CreatePasswordHash("password", out passwordhash, out passwordsalt);
+
+                    //Hash is stored as hash
+                    dj.PasswordHash = passwordhash;
+
+                    //Salt is stored as salt
+                    dj.PasswordSalt = passwordsalt;
+
+                    //Email is then converted to lower
+                    dj.Email = dj.Email.ToLower();
+
+                    //Dj object is then written to the database
+                    context.Djs.Add(dj);
+                }
+
+                //Database is then saved
+                context.SaveChanges();
+            }
+
+            //A check to see if any staff are in database already
+            if (!context.Staff.Any())
+            {
+                //Staff data location is stored as a string for reference
+                var staffData = System.IO.File.ReadAllText("Data/DataSeeds/StaffSeedData.json");
+
+                //List of staff objects created from deserialized staff data 
+                var staffs = JsonConvert.DeserializeObject<List<Staff>>(staffData);
+
+                //A For loop is performed to iterate through each staff in the list of staff objects
+                foreach (var staff in staffs)
+                {
+                    //a byte array is declared for the passwordhash and salt
+                    byte[] passwordhash, passwordsalt;
+
+                    //Create password hash method is called which is below
+                    CreatePasswordHash("password", out passwordhash, out passwordsalt);
+
+                    //Hash is stored as hash
+                    staff.PasswordHash = passwordhash;
+
+                    //Salt is stored as salt
+                    staff.PasswordSalt = passwordsalt;
+
+                    //Email is then converted to lower
+                    staff.Email = staff.Email.ToLower();
+
+                    //Staff object is then written to the database
+                    context.Staff.Add(staff);
+                }
+
+                //Database is then saved
                 context.SaveChanges();
             }
 

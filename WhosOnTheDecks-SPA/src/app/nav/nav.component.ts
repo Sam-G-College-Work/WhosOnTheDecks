@@ -1,27 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../_service/auth.service';
-import { AlertifyService } from '../_service/alertly.service';
+import { Component, OnInit } from "@angular/core";
+import { AuthService } from "../_service/auth.service";
+import { AlertifyService } from "../_service/alertly.service";
 
 @Component({
-  selector: 'app-nav',
-  templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css']
+  selector: "app-nav",
+  templateUrl: "./nav.component.html",
+  styleUrls: ["./nav.component.css"],
 })
 export class NavComponent implements OnInit {
-
   model: any = {};
 
-  constructor(public authService: AuthService, private alertify: AlertifyService) { }
+  constructor(
+    public authService: AuthService,
+    private alertify: AlertifyService
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   login() {
-    this.authService.login(this.model).subscribe(next => {
-      this.alertify.success('Logged in Successfully');
-    }, error =>{
-      this.alertify.error(error);
-    });
+    this.authService.login(this.model).subscribe(
+      (next) => {
+        this.alertify.success("Logged in Successfully");
+      },
+      (error) => {
+        this.alertify.error(error);
+      }
+    );
   }
 
   // loggedIn() {
@@ -34,8 +38,7 @@ export class NavComponent implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem('token');
-    this.alertify.message('Logged Out');
+    localStorage.removeItem("token");
+    this.alertify.message("Logged Out");
   }
-
 }
