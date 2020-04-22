@@ -77,12 +77,6 @@ namespace WhosOnTheDecks.API.Models
         public int PromoterId { get; set; }
         public Promoter Promoter { get; set; }
 
-        //Navigational Property
-        //Links Event to a single payment
-        //Every event will have a total cost calculated from the bookings and the DJ's rate
-        [ForeignKey("Payment")]
-        public int PaymentId { get; set; }
-        public Payment Payment { get; set; }
 
     }
 }
