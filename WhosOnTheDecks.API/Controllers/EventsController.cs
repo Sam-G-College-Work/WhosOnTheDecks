@@ -10,10 +10,10 @@ namespace WhosOnTheDecks.API.Controllers
     [ApiController]
     public class EventsController : ControllerBase
     {
-        private readonly IEventCrudRepository _repo;
+        private readonly IEventRepository _repo;
 
 
-        public EventsController(IEventCrudRepository repo)
+        public EventsController(IEventRepository repo)
         {
             _repo = repo;
         }

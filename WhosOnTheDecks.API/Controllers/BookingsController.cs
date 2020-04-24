@@ -12,10 +12,10 @@ namespace WhosOnTheDecks.API.Controllers
     public class BookingsController : ControllerBase
     {
 
-        private readonly IEventCrudRepository _repo;
+        private readonly IEventRepository _repo;
 
 
-        public BookingsController(IEventCrudRepository repo)
+        public BookingsController(IEventRepository repo)
         {
             _repo = repo;
         }

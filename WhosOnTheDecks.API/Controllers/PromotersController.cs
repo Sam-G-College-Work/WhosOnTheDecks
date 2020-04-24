@@ -11,10 +11,10 @@ namespace WhosOnTheDecks.API.Controllers
     [ApiController]
     public class PromotersController : ControllerBase
     {
-        private readonly IUserCrudRepository _repo;
+        private readonly IUserRepository _repo;
 
 
-        public PromotersController(IUserCrudRepository repo)
+        public PromotersController(IUserRepository repo)
         {
             _repo = repo;
         }

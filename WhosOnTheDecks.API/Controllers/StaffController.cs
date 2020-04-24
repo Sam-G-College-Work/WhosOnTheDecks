@@ -12,10 +12,10 @@ namespace WhosOnTheDecks.API.Controllers
     public class StaffController : ControllerBase
     {
 
-        private readonly IUserCrudRepository _repo;
+        private readonly IUserRepository _repo;
 
 
-        public StaffController(IUserCrudRepository repo)
+        public StaffController(IUserRepository repo)
         {
             _repo = repo;
         }

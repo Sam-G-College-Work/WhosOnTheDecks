@@ -10,10 +10,10 @@ namespace WhosOnTheDecks.API.Controllers
     [ApiController]
     public class DjsController : ControllerBase
     {
-        private readonly IUserCrudRepository _repo;
+        private readonly IUserRepository _repo;
 
 
-        public DjsController(IUserCrudRepository repo)
+        public DjsController(IUserRepository repo)
         {
             _repo = repo;
         }
