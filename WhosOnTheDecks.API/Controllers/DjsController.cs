@@ -30,8 +30,6 @@ namespace WhosOnTheDecks.API.Controllers
 
             var djdto = new DjForListDto();
 
-            List<DjForListDto> djdtos;
-
             foreach (Dj dj in djs)
             {
                 djdto.DjName = dj.DjName;
@@ -39,9 +37,9 @@ namespace WhosOnTheDecks.API.Controllers
                 djdto.HourlyRate = dj.HourlyRate;
                 djdto.Genre = dj.Genre;
 
-                djdtos.Add(djdto);
+                this.DjDtos.Add(djdto);
             }
-            return Ok(djdtos);
+            return Ok(this.DjDtos);
         }
 
         [HttpGet("{id}")]
