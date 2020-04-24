@@ -9,8 +9,8 @@ using WhosOnTheDecks.API.Data;
 namespace WhosOnTheDecks.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200424160654_initialCreate")]
-    partial class initialCreate
+    [Migration("20200424161350_ChangeToTables1")]
+    partial class ChangeToTables1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

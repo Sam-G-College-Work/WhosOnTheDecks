@@ -53,6 +53,11 @@ namespace WhosOnTheDecks.API
             //but will generate another if the a new http request is made 
             services.AddScoped<IEventRepository, EventContext>();
 
+            //Allows payment crud interface and payment context to be used in the application
+            //Add scoped will use the same reference within the same http requests 
+            //but will generate another if the a new http request is made 
+            services.AddScoped<IPaymentRepository, PaymentContext>();
+
             //Adding authentication as a service
             //It will validate the key associated with tokens when a user is logging in
             //First it validates the authentication scheme applied

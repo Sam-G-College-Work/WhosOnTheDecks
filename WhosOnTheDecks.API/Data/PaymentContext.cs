@@ -6,7 +6,7 @@ using WhosOnTheDecks.API.Models;
 namespace WhosOnTheDecks.API.Data
 {
     //Payment Context will provide all Database methods to create, update, retrieve and delete payments
-    public class PaymentContext
+    public class PaymentContext : IPaymentRepository
     {
         //Property created to access databse
         private readonly DataContext _context;

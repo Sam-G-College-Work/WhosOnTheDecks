@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WhosOnTheDecks.API.Migrations
 {
-    public partial class initialCreate : Migration
+    public partial class ChangeToTables1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
