@@ -4,9 +4,9 @@ using WhosOnTheDecks.API.Models;
 
 namespace WhosOnTheDecks.API.Data
 {
-    //IUserCrudRepository will outline 
+    //IUserRepository will outline 
     //the methods used to add edit retrieve and delete user data
-    public interface IUserCrudRepository
+    public interface IUserRepository
     {
         //Add takes in any T of entity where it matches to a class
         void Add<T>(T entity) where T : class;

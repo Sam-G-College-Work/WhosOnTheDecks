@@ -4,9 +4,9 @@ using WhosOnTheDecks.API.Models;
 
 namespace WhosOnTheDecks.API.Data
 {
-    //IEventCrudRepository will outline 
+    //IEventRepository will outline 
     //the methods used to add edit retrieve and delete event/booking data
-    public interface IEventCrudRepository
+    public interface IEventRepository
     {
         //Add takes in any T of entity where it matches to a class
         void Add<T>(T entity) where T : class;

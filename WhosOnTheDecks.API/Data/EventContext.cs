@@ -6,7 +6,7 @@ using WhosOnTheDecks.API.Models;
 namespace WhosOnTheDecks.API.Data
 {
     //Event Context will provide all Database methods to create, update, retrieve and cancel events/bookings
-    public class EventContext : IEventCrudRepository
+    public class EventContext : IEventRepository
     {
         //Property created to access databse
         private readonly DataContext _context;
@@ -34,6 +34,7 @@ namespace WhosOnTheDecks.API.Data
             return booking;
         }
 
+        //GetBookings will retunr a list of booking objects
         public async Task<IEnumerable<Booking>> GetBookings()
         {
             var bookings = await _context.Bookings.ToListAsync();
@@ -41,13 +42,17 @@ namespace WhosOnTheDecks.API.Data
             return bookings;
         }
 
+        //GetEvent will take in an integer of id and return a matching event
+        //with the same id
         public async Task<Event> GetEvent(int id)
         {
-            var event = await _context.Events.FirstOrDefaultAsync(e => e.EventId == id);
+            //had to use ev as variable name as event is a keyword
+            var ev = await _context.Events.FirstOrDefaultAsync(e => e.EventId == id);
 
-            return event;
+            return ev;
         }
 
+        //GetEvents returns a list of event objects
         public async Task<IEnumerable<Event>> GetEvents()
         {
             var events = await _context.Events.ToListAsync();

@@ -6,7 +6,7 @@ using WhosOnTheDecks.API.Models;
 namespace WhosOnTheDecks.API.Data
 {
     //User Context will provide all Database methods to create, update, retrieve and delete users
-    public class UserContext : IUserCrudRepository
+    public class UserContext : IUserRepository
     {
         //Property created to access databse
         private readonly DataContext _context;

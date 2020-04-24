@@ -46,7 +46,12 @@ namespace WhosOnTheDecks.API
             //Allows user crud interface and user context to be used in the application
             //Add scoped will use the same reference within the same http requests 
             //but will generate another if the a new http request is made 
-            services.AddScoped<IUserCrudRepository, UserContext>();
+            services.AddScoped<IUserRepository, UserContext>();
+
+            //Allows event crud interface and event context to be used in the application
+            //Add scoped will use the same reference within the same http requests 
+            //but will generate another if the a new http request is made 
+            services.AddScoped<IEventRepository, EventContext>();
 
             //Adding authentication as a service
             //It will validate the key associated with tokens when a user is logging in

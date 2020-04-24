@@ -77,6 +77,9 @@ namespace WhosOnTheDecks.API.Models
         public int PromoterId { get; set; }
         public Promoter Promoter { get; set; }
 
-
+        //Navigational Property
+        //Links payments and evetns
+        //Stores a list of payment attached to this event
+        public List<Payment> Payments { get; set; }
     }
 }
