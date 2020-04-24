@@ -1,7 +1,10 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WhosOnTheDecks.API.Data;
+using WhosOnTheDecks.API.Dtos;
+using WhosOnTheDecks.API.Models;
 
 namespace WhosOnTheDecks.API.Controllers
 {
@@ -11,6 +14,8 @@ namespace WhosOnTheDecks.API.Controllers
     public class DjsController : ControllerBase
     {
         private readonly IUserRepository _repo;
+
+        private readonly List<DjForListDto> DjDtos;
 
 
         public DjsController(IUserRepository repo)
@@ -23,7 +28,20 @@ namespace WhosOnTheDecks.API.Controllers
         {
             var djs = await _repo.GetDjs();
 
-            return Ok(djs);
+            var djdto = new DjForListDto();
+
+            List<DjForListDto> djdtos;
+
+            foreach (Dj dj in djs)
+            {
+                djdto.DjName = dj.DjName;
+                djdto.Equipment = dj.Equipment;
+                djdto.HourlyRate = dj.HourlyRate;
+                djdto.Genre = dj.Genre;
+
+                djdtos.Add(djdto);
+            }
+            return Ok(djdtos);
         }
 
         [HttpGet("{id}")]
