@@ -39,9 +39,14 @@ namespace WhosOnTheDecks.API
 
 
             //Allows Auth interface and repository to be used
-            //It will use the same reference within the same http requests 
+            //Add scoped will use the same reference within the same http requests 
             //but will generate another if the a new http request is made 
             services.AddScoped<IAuthRepository, AuthRepository>();
+
+            //Allows user crud interface and user context to be used in the application
+            //Add scoped will use the same reference within the same http requests 
+            //but will generate another if the a new http request is made 
+            services.AddScoped<IUserCrudRepository, UserContext>();
 
             //Adding authentication as a service
             //It will validate the key associated with tokens when a user is logging in
