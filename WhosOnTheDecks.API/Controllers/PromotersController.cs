@@ -19,14 +19,6 @@ namespace WhosOnTheDecks.API.Controllers
             _repo = repo;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetPromoters()
-        {
-            var promoters = await _repo.GetPromoters();
-
-            return Ok(promoters);
-        }
-
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPromoter(int id)
         {

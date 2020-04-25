@@ -25,6 +25,29 @@ namespace WhosOnTheDecks.API.Data
             _context.Add(entity);
         }
 
+        public async Task<bool> BookingExists(int DjId, int EvId)
+        {
+            var bookings = await _context.Bookings.ToListAsync();
+
+            foreach (Booking booking in bookings)
+            {
+                if (DjId.Equals(booking.DjId))
+                {
+                    var eventToCheck = await _context.Events.
+                    FirstOrDefaultAsync(e => e.EventId == booking.EventId);
+
+                    var eventBeingMade = await _context.Events.
+                    FirstOrDefaultAsync(e => e.EventId == EvId);
+
+                    if (eventBeingMade.DateOfEvent.Equals(eventToCheck.DateOfEvent))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
         //GetBooking will take in an integer of id and returnt he matching booking
         //from the database
         public async Task<Booking> GetBooking(int id)

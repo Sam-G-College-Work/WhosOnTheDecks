@@ -1,7 +1,10 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WhosOnTheDecks.API.Data;
+using WhosOnTheDecks.API.Dtos;
+using WhosOnTheDecks.API.Models;
 
 namespace WhosOnTheDecks.API.Controllers
 {
@@ -32,6 +35,27 @@ namespace WhosOnTheDecks.API.Controllers
             var ev = await _repo.GetEvent(id);
 
             return Ok(ev);
+        }
+
+        [HttpPost("create")]
+        public async Task<IActionResult> CreateEvent(EventToCreateDto eventDto, int promoterId)
+        {
+            Event eventToCreate = new Event();
+
+            eventToCreate.DateCreated = DateTime.Now;
+            eventToCreate.DateOfEvent = eventDto.DateOfEvent;
+            eventToCreate.EventStartTime = eventDto.EventStartTime;
+            eventToCreate.EventEndTime = eventDto.EventEndTime;
+            eventToCreate.EventAddress = eventDto.EventAddress;
+            eventToCreate.Postcode = eventDto.Postcode;
+            eventToCreate.EventStatus = true;
+            eventToCreate.PromoterId = promoterId;
+
+            _repo.Add(eventToCreate);
+
+            bool complete = await _repo.SaveAll();
+
+            return Ok(complete);
         }
 
     }

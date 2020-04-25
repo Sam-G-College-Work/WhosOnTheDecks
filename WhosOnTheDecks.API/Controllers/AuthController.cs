@@ -35,54 +35,13 @@ namespace WhosOnTheDecks.API.Controllers
 
         }
 
-        //StaffRegister Method takes in a StaffForRegisterDto contaiing the entered information from the data transfer object
-        //The data transfer object is used to create a simpler version of the staff object 
-        //This is so the data can be compared and displayed without having to pull and create the full user object 
-        [HttpPost("staffregister")]
-        public async Task<IActionResult> StaffRegister(StaffForRegisterDto staffForRegisterDto)
-        {
-             //Turns entered username to lowercase for easier verfications
-            staffForRegisterDto.Email = staffForRegisterDto.Email.ToLower();
-
-            //Call to user exists method with passed in email
-            //If returned true a bad request will be sent to the user
-            if (await _repo.UserExists(staffForRegisterDto.Email))
-            {
-                return BadRequest("Email already exists");
-            }
-
-            //Start building a user object with the username
-            var staffToCreate = new Staff
-            {
-                Email = staffForRegisterDto.Email,
-                FirstName = staffForRegisterDto.FirstName,
-                LastName = staffForRegisterDto.LastName,
-                LockAccount = false,
-                HouseNumber = staffForRegisterDto.HouseNumber,
-                StreetName = staffForRegisterDto.StreetName,
-                Postcode = staffForRegisterDto.Postcode,
-                PhoneNumber = staffForRegisterDto.PhoneNumber,
-                Role = Role.Admin,
-                DateOfBirth = staffForRegisterDto.DateOfBirth
-            };
-
-            
-            //Complete the user object by adding the password 
-            //submited and hashed through the register method 
-            //of the IAuth Repository
-            var createdStaff = await _repo.Register(staffToCreate, staffForRegisterDto.Password);
-
-            //Status code 201 "OK" sent back after completed request
-            return StatusCode(201);
-        }
-
         //PromoterRegister Method takes in a PromoterForRegisterDto contaiing the entered information from the data transfer object
         //The data transfer object is used to create a simpler version of the promoter object 
         //This is so the data can be compared and displayed without having to pull and create the full user object 
         [HttpPost("promoterregister")]
         public async Task<IActionResult> PromoterRegister(PromoterForRegisterDto promoterForRegisterDto)
         {
-             //Turns entered username to lowercase for easier verfications
+            //Turns entered username to lowercase for easier verfications
             promoterForRegisterDto.Email = promoterForRegisterDto.Email.ToLower();
 
             //Call to user exists method with passed in email
@@ -107,7 +66,7 @@ namespace WhosOnTheDecks.API.Controllers
                 CompanyName = promoterForRegisterDto.CompanyName
             };
 
-            
+
             //Complete the user object by adding the password 
             //submited and hashed through the register method 
             //of the IAuth Repository
@@ -123,7 +82,7 @@ namespace WhosOnTheDecks.API.Controllers
         [HttpPost("djregister")]
         public async Task<IActionResult> DjRegister(DjForRegisterDto djForRegisterDto)
         {
-             //Turns entered username to lowercase for easier verfications
+            //Turns entered username to lowercase for easier verfications
             djForRegisterDto.Email = djForRegisterDto.Email.ToLower();
 
             //Call to user exists method with passed in email
@@ -151,7 +110,7 @@ namespace WhosOnTheDecks.API.Controllers
                 Genre = djForRegisterDto.Genre
             };
 
-            
+
             //Complete the user object by adding the password 
             //submited and hashed through the register method 
             //of the IAuth Repository
@@ -174,7 +133,7 @@ namespace WhosOnTheDecks.API.Controllers
             if (userFromRepo == null)
             {
                 return Unauthorized();
-            }  
+            }
 
             //A token will be constructed with the users ID and email
             //This is stored in the array claims
@@ -183,7 +142,9 @@ namespace WhosOnTheDecks.API.Controllers
                 //Claim type name identifier is used to store the ID
                 new Claim(ClaimTypes.NameIdentifier, userFromRepo.Id.ToString()),
                 //Claim type name is used to store the usename
-                new Claim(ClaimTypes.Name, userFromRepo.Email)
+                new Claim(ClaimTypes.Email, userFromRepo.Email),
+                //Claim type role is used to store users role in Jason web token
+                new Claim(ClaimTypes.Role, userFromRepo.Role.ToString())
             };
 
             //Key is created and hashed so it is not readable 
@@ -216,7 +177,8 @@ namespace WhosOnTheDecks.API.Controllers
 
             //A return of ok is given once all checks are passed
             //The token is also returned in the form of the token handler
-            return Ok(new {
+            return Ok(new
+            {
                 token = tokenHandler.WriteToken(token)
             });
 

@@ -5,13 +5,13 @@ using WhosOnTheDecks.API.Models;
 
 namespace WhosOnTheDecks.API.Data
 {
-    public class AuthRepository : IAuthRepository
+    public class AuthContext : IAuthRepository
     {
         //Adds datacontext which give acess to the database
         private readonly DataContext _context;
 
         //Constructor created to initialise the data being inject with the Datacontext property
-        public AuthRepository(DataContext context)
+        public AuthContext(DataContext context)
         {
             _context = context;
         }
@@ -29,18 +29,18 @@ namespace WhosOnTheDecks.API.Data
 
             //This call is to check if the user does not exist by returning a null
             //This when seen by the front end application will show a 401 unauthorised
-            if(user==null)
+            if (user == null)
             {
                 return null;
             }
-                
+
             //This call is to check is the password matches or does not
             //Verify Password Hash method is called and passed the user object plus hash and salt
-            if(!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+            if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
             {
                 return null;
             }
-            
+
             //if both previous check have been passed the user is verified and the user
             //object is returned
             return user;
@@ -60,11 +60,11 @@ namespace WhosOnTheDecks.API.Data
 
                 //The for loop is used to check each component of the byte array for the hash
                 //With the stored hash byte array
-                for(int i = 0; i < computedHash.Length; i++)
+                for (int i = 0; i < computedHash.Length; i++)
                 {
                     //Check used to return false if the passwords do not match
-                    if(computedHash[i] != passwordHash[i])
-                    { 
+                    if (computedHash[i] != passwordHash[i])
+                    {
                         return false;
                     }
                 }
@@ -111,7 +111,7 @@ namespace WhosOnTheDecks.API.Data
             //connected to is used at the end of the method call 
             using (var hmac = new System.Security.Cryptography.HMACSHA512())
             {
-                
+
                 passwordSalt = hmac.Key;
 
                 //Compute hash method within hmac takes a byte array 
@@ -130,10 +130,10 @@ namespace WhosOnTheDecks.API.Data
             {
                 return true;
             }
-            
+
             //If the above check has been passed the 
             //method call will return false and the user does not exist
-            return false;        
+            return false;
         }
     }
 }

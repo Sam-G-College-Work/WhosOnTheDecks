@@ -37,10 +37,10 @@ namespace WhosOnTheDecks.API
             // Allows the use of Cors as a service which relates to our Angular front end
             services.AddCors();
 
-            //Allows Auth interface and repository to be used
+            //Allows Auth interface and context to be used
             //Add scoped will use the same reference within the same http requests 
             //but will generate another if the a new http request is made 
-            services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IAuthRepository, AuthContext>();
 
             //Allows user crud interface and user context to be used in the application
             //Add scoped will use the same reference within the same http requests 

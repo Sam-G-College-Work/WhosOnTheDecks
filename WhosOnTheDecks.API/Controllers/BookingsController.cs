@@ -36,5 +36,13 @@ namespace WhosOnTheDecks.API.Controllers
             return Ok(booking);
         }
 
+        [HttpGet("bookingexists")]
+        public async Task<IActionResult> BookingExists(int DjId, int EventId)
+        {
+            bool bookingExists = await _repo.BookingExists(DjId, EventId);
+
+            return Ok(bookingExists);
+        }
+
     }
 }

@@ -20,19 +20,11 @@ namespace WhosOnTheDecks.API.Data
         //Get Djs will retrive all Djs in database
         Task<IEnumerable<Dj>> GetDjs();
 
-        //Get Promoters will retrive all promoters in database
-        Task<IEnumerable<Promoter>> GetPromoters();
-
-        //Get Staffs will retrive all staff in database
-        Task<IEnumerable<Staff>> GetStaffs();
-
         //Get Dj will retrive a single Dj
         Task<Dj> GetDj(int id);
 
         //Get Promoter will retrive a single promoter
         Task<Promoter> GetPromoter(int id);
 
-        //Get Staff will retrive a single staff
-        Task<Staff> GetStaff(int id);
     }
 }

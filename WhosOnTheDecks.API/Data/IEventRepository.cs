@@ -25,5 +25,9 @@ namespace WhosOnTheDecks.API.Data
 
         //Get Booking will retrive a single booking
         Task<Booking> GetBooking(int id);
+
+        //BookingExists will take in DjId and EventID
+        //This will be used to verify if a Dj is already booked for an event that day
+        Task<bool> BookingExists(int DjId, int EventId);
     }
 }

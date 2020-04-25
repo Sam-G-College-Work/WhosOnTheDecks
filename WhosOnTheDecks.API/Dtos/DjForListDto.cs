@@ -3,8 +3,15 @@ using WhosOnTheDecks.API.Models;
 
 namespace WhosOnTheDecks.API.Dtos
 {
+    //DjForListDto act as a layer of abstraction from Dj model
+    //This Dto is used to display Dj data and therefore does not need data annotations
+    //This allows the back end to formulate the desired Dj object to display
+    //Maintaining security over the Dj users account
     public class DjForListDto
     {
+        //integer for Id
+        public int DjId { get; set; }
+
         //string Name for DJ Name
         public string DjName { get; set; }
 
