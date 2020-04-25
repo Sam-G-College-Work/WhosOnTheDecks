@@ -27,9 +27,9 @@ namespace WhosOnTheDecks.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetDjs()
         {
-            var djs = await _repo.GetDjs();
+            var djsList = await _repo.GetDjs();
 
-            foreach (Dj dj in djs)
+            foreach (Dj dj in djsList)
             {
                 djdto.DjId = dj.Id;
                 djdto.DjName = dj.DjName;
