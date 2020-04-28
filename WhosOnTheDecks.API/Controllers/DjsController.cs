@@ -15,9 +15,7 @@ namespace WhosOnTheDecks.API.Controllers
     {
         private readonly IUserRepository _repo;
 
-        private readonly List<DjForListDto> DjDtos = new List<DjForListDto>();
-
-        private DjForListDto djdto = new DjForListDto();
+        private List<DjForListDto> DjDtos = new List<DjForListDto>();
 
         public DjsController(IUserRepository repo)
         {
@@ -31,15 +29,18 @@ namespace WhosOnTheDecks.API.Controllers
 
             foreach (Dj dj in djsList)
             {
+                DjForListDto djdto = new DjForListDto();
+
                 djdto.DjId = dj.Id;
                 djdto.DjName = dj.DjName;
                 djdto.Equipment = dj.Equipment;
                 djdto.HourlyRate = dj.HourlyRate;
-                djdto.Genre = dj.Genre;
+                djdto.Genre = dj.Genre.ToString();
 
                 this.DjDtos.Add(djdto);
             }
-            return Ok(this.DjDtos);
+
+            return Ok(DjDtos);
         }
 
         [HttpGet("{id}")]
@@ -47,11 +48,13 @@ namespace WhosOnTheDecks.API.Controllers
         {
             var dj = await _repo.GetDj(id);
 
+            DjForListDto djdto = new DjForListDto();
+
             djdto.DjId = dj.Id;
             djdto.DjName = dj.DjName;
             djdto.Equipment = dj.Equipment;
             djdto.HourlyRate = dj.HourlyRate;
-            djdto.Genre = dj.Genre;
+            djdto.Genre = dj.Genre.ToString();
 
             return Ok(djdto);
         }

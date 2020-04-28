@@ -1,7 +1,7 @@
 export interface Dj {
-  id: number;
-  DjName: string;
-  HourlyRate: number;
-  Equipment?: string;
-  Genre: string;
+  djId: number;
+  djName: string;
+  hourlyRate: number;
+  equipment?: string;
+  genre: string;
 }

@@ -1,33 +1,25 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
   <a class="navbar-brand" [routerLink]="['/home']">Who's on the Decks!</a>
   <ul class="navbar-nav mr-auto">
-    <li class="nav-item" routerLinkActive="active">
-      <a class="nav-link" [routerLink]="['/view-all-djs']">View All DJs</a>
-    </li>
-
-    <li class="nav-item" routerLinkActive="active">
+    <li *ngIf="isPromoter" class="nav-item" routerLinkActive="active">
       <a class="nav-link" [routerLink]="['/create-an-event']">
         Create an Event
       </a>
     </li>
 
-    <li class="nav-item" routerLinkActive="active">
+    <li *ngIf="isPromoter" class="nav-item" routerLinkActive="active">
       <a class="nav-link" [routerLink]="['/view-events']">View Events</a>
     </li>
 
-    <li class="nav-item" routerLinkActive="active">
+    <li *ngIf="isDj" class="nav-item" routerLinkActive="active">
       <a class="nav-link" [routerLink]="['/view-bookings']">View Bookings</a>
     </li>
   </ul>
 
   <div *ngIf="loggedIn()" class="dropdown">
     <mat-form-field>
-      <mat-label>Welcome {{ authService.decodedToken.unique_name }}</mat-label>
+      <mat-label>Welcome {{ authService.decodedToken.email }}</mat-label>
       <mat-select>
-        <mat-option [routerLink]="['/edit-profile']" routerLinkActive="active">
-          <i class="fa fa-user"></i>
-          Edit Profile
-        </mat-option>
         <mat-option class="nav-link" (click)="logout()">
           <i class="fa fa-user"></i>
           Logout

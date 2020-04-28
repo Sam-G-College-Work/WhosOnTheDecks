@@ -4,12 +4,6 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Dj } from "../_models/dj";
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    Authorization: "Bearer " + localStorage.getItem("token"),
-  }),
-};
-
 @Injectable({
   providedIn: "root",
 })
@@ -19,10 +13,10 @@ export class DjService {
   constructor(private http: HttpClient) {}
 
   getDjs(): Observable<Dj[]> {
-    return this.http.get<Dj[]>(this.baseUrl + "djs/getdjs", httpOptions);
+    return this.http.get<Dj[]>(this.baseUrl + "djs");
   }
 
   getDj(id): Observable<Dj> {
-    return this.http.get<Dj>(this.baseUrl + "djs/" + id, httpOptions);
+    return this.http.get<Dj>(this.baseUrl + "djs/" + id);
   }
 }

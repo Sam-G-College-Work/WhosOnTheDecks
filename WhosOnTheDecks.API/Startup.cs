@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using WhosOnTheDecks.API.Data;
 using WhosOnTheDecks.API.Helpers;
+using AutoMapper;
 
 namespace WhosOnTheDecks.API
 {
@@ -36,6 +37,10 @@ namespace WhosOnTheDecks.API
 
             // Allows the use of Cors as a service which relates to our Angular front end
             services.AddCors();
+
+            //Allows use of Automapper which will translate models into
+            //Dtos to help abstract data and only sedn what is required to the front end
+            services.AddAutoMapper(typeof(UserContext).Assembly);
 
             //Allows Auth interface and context to be used
             //Add scoped will use the same reference within the same http requests 

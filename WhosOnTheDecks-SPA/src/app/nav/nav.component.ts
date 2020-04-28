@@ -10,6 +10,8 @@ import { Router } from "@angular/router";
 })
 export class NavComponent implements OnInit {
   model: any = {};
+  isPromoter = false;
+  isDj = false;
 
   constructor(
     public authService: AuthService,
@@ -17,12 +19,17 @@ export class NavComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.isPromoterCheck();
+    this.isDjCheck();
+  }
 
   login() {
     this.authService.login(this.model).subscribe(
       (next) => {
         this.alertify.success("Logged in Successfully");
+        this.isPromoterCheck();
+        this.isDjCheck();
       },
       (error) => {
         this.alertify.error(error);
@@ -38,8 +45,22 @@ export class NavComponent implements OnInit {
   }
 
   logout() {
+    this.isPromoter = false;
+    this.isDj = false;
     localStorage.removeItem("token");
     this.alertify.message("Logged Out");
     this.router.navigate(["/home"]);
+  }
+
+  isPromoterCheck() {
+    if (this.authService.decodedToken.role === "Promoter") {
+      this.isPromoter = true;
+    }
+  }
+
+  isDjCheck() {
+    if (this.authService.decodedToken.role === "Dj") {
+      this.isDj = true;
+    }
   }
 }

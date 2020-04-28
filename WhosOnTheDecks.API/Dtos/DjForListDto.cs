@@ -22,6 +22,6 @@ namespace WhosOnTheDecks.API.Dtos
         public string Equipment { get; set; }
 
         //Enum Genre is used to confirmt he genre of music the DJ plays
-        public Genre Genre { get; set; }
+        public string Genre { get; set; }
     }
 }

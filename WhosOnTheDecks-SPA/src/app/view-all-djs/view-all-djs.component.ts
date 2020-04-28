@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { Dj } from "../_models/dj";
 import { DjService } from "../_service/dj.service";
 import { AlertifyService } from "../_service/alertly.service";
+import { MatCardModule } from "@angular/material/card";
+import { MatGridListModule } from "@angular/material/grid-list";
 
 @Component({
   selector: "app-view-all-djs",
@@ -9,11 +11,12 @@ import { AlertifyService } from "../_service/alertly.service";
   styleUrls: ["./view-all-djs.component.css"],
 })
 export class ViewAllDjsComponent implements OnInit {
-  listOfDj: Dj[];
+  djs: Dj[];
 
   constructor(
     private djService: DjService,
-    private alertify: AlertifyService
+    private alertify: AlertifyService,
+    matCardModule: MatCardModule
   ) {}
 
   ngOnInit() {
@@ -23,7 +26,7 @@ export class ViewAllDjsComponent implements OnInit {
   loadDjs() {
     this.djService.getDjs().subscribe(
       (djs: Dj[]) => {
-        this.listOfDj = djs;
+        this.djs = djs;
       },
       (error) => {
         this.alertify.error(error);

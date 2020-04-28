@@ -2,6 +2,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
+import { JwtModule } from "@auth0/angular-jwt";
 
 import { AppComponent } from "./app.component";
 import { NavComponent } from "./nav/nav.component";
@@ -13,8 +14,6 @@ import { ErrorInterceptorProvider } from "./_service/error.interceptor";
 import { RegisterPromoterComponent } from "./register-promoter/register-promoter.component";
 import { ViewAllDjsComponent } from "./view-all-djs/view-all-djs.component";
 import { CreateAnEventComponent } from "./create-an-event/create-an-event.component";
-import { EditProfileComponent } from "./edit-profile/edit-profile.component";
-import { MakeABookingComponent } from "./make-a-booking/make-a-booking.component";
 import { ViewBookingsComponent } from "./view-bookings/view-bookings.component";
 import { ViewEventsComponent } from "./view-events/view-events.component";
 import { appRoutes } from "./routes";
@@ -23,7 +22,13 @@ import {
   MatSelectModule,
   MatFormFieldModule,
   MatInputModule,
+  MatCardModule,
+  MatGridListModule,
 } from "@angular/material";
+
+export function tokenGetter() {
+  return localStorage.getItem("token");
+}
 
 @NgModule({
   declarations: [
@@ -33,8 +38,6 @@ import {
     RegisterPromoterComponent,
     ViewAllDjsComponent,
     CreateAnEventComponent,
-    EditProfileComponent,
-    MakeABookingComponent,
     ViewBookingsComponent,
     ViewEventsComponent,
   ],
@@ -47,6 +50,15 @@ import {
     MatSelectModule,
     MatFormFieldModule,
     MatInputModule,
+    MatCardModule,
+    MatGridListModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ["localhost:5000"],
+        blacklistedRoutes: ["localhost:5000/api/auth"],
+      },
+    }),
   ],
   providers: [ErrorInterceptorProvider, AuthService, DjService],
   bootstrap: [AppComponent],

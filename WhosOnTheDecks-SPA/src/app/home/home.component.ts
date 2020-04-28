@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { AuthService } from "../_service/auth.service";
 
 export interface Food {
   value: string;
@@ -12,14 +13,9 @@ export interface Food {
   styleUrls: ["./home.component.css"],
 })
 export class HomeComponent implements OnInit {
-  foods: Food[] = [
-    { value: "steak-0", viewValue: "Steak" },
-    { value: "pizza-1", viewValue: "Pizza" },
-    { value: "tacos-2", viewValue: "Tacos" },
-  ];
   registerMode = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   ngOnInit() {}
 
@@ -29,5 +25,9 @@ export class HomeComponent implements OnInit {
 
   cancelRegisterMode(registerMode: boolean) {
     this.registerMode = registerMode;
+  }
+
+  loggedIn() {
+    return this.authService.loggedIn();
   }
 }
