@@ -3,7 +3,6 @@ import { Dj } from "../_models/dj";
 import { DjService } from "../_service/dj.service";
 import { AlertifyService } from "../_service/alertly.service";
 import { MatCardModule } from "@angular/material/card";
-import { MatGridListModule } from "@angular/material/grid-list";
 
 @Component({
   selector: "app-view-all-djs",

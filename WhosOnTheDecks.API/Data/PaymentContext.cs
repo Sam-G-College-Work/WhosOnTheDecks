@@ -29,17 +29,9 @@ namespace WhosOnTheDecks.API.Data
         //from the database
         public async Task<Payment> GetPayment(int id)
         {
-            var payment = await _context.Payments.FirstOrDefaultAsync(p => p.PaymentId == id);
+            var payment = await _context.Payments.FirstOrDefaultAsync(p => p.EventId == id);
 
             return payment;
-        }
-
-        //GetPayments will retunr a list of Payments
-        public async Task<IEnumerable<Payment>> GetPayments()
-        {
-            var payments = await _context.Payments.ToListAsync();
-
-            return payments;
         }
 
         //SaveAll will save any changes to context resulting in the number

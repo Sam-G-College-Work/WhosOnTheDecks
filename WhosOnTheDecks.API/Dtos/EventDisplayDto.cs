@@ -34,5 +34,8 @@ namespace WhosOnTheDecks.API.Dtos
 
         //String Postcode is used to store the postcode of the event 
         public string Postcode { get; set; }
+
+        //interger to show the total cost of the event
+        public decimal TotalCost { get; set; }
     }
 }

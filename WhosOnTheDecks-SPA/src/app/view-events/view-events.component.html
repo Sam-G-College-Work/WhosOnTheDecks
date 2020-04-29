@@ -1,1 +1,28 @@
-<p>view-events works!</p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="card-container">
+      <mat-card *ngFor="let party of parties">
+        <mat-card-header>
+          <mat-card-title>{{ party.eventId }}</mat-card-title>
+          <mat-card-subtitle>{{ party.dateOfEvent }}</mat-card-subtitle>
+        </mat-card-header>
+        <img
+          mat-card-mat-card-sm-image
+          src="assets/_images/33080315618_9ed10331c6_q.jpg"
+          alt="Who's On The Decks!!"
+        />
+        <mat-card-content>
+          <p>Address: {{ party.eventAddress }} {{ party.postcode }}</p>
+          <p>Cost of Event: £{{ party.entryCost }}</p>
+          <p>Date Created: {{ party.dateCreated }}</p>
+          <p>Total Cost: £{{ party.totalCost }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button [routerLink]="['/view-event-bookings']">
+            View Bookings
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

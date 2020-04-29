@@ -14,9 +14,6 @@ namespace WhosOnTheDecks.API.Data
         //Save all return a true or false depending on outcome
         Task<bool> SaveAll();
 
-        //Get Payments will retrive all payments in database
-        Task<IEnumerable<Payment>> GetPayments();
-
         //Get Payment will retrive a single payment
         Task<Payment> GetPayment(int id);
 

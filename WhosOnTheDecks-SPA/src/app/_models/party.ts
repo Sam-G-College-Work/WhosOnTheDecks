@@ -1,6 +1,4 @@
-import { CurrencyPipe } from "@angular/common";
-
-export interface Event {
+export interface Party {
   eventId: number;
   dateCreated: Date;
   dateOfEvent: Date;

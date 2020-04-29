@@ -15,7 +15,6 @@
       <a class="nav-link" [routerLink]="['/view-bookings']">View Bookings</a>
     </li>
   </ul>
-
   <div *ngIf="loggedIn()" class="dropdown">
     <mat-form-field>
       <mat-label>Welcome {{ authService.decodedToken.email }}</mat-label>

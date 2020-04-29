@@ -14,25 +14,29 @@ namespace WhosOnTheDecks.API.Controllers
     [ApiController]
     public class EventsController : ControllerBase
     {
-        private readonly IEventRepository _repo;
+        private readonly IEventRepository _eventRepo;
+
+        private readonly IPaymentRepository _paymentRepo;
 
         private List<EventDisplayDto> promoterEvents = new List<EventDisplayDto>();
 
-
-        public EventsController(IEventRepository repo)
+        public EventsController(IEventRepository erepo, IPaymentRepository prepo)
         {
-            _repo = repo;
+            _paymentRepo = prepo;
+            _eventRepo = erepo;
         }
 
         [HttpGet("getevents/{id?}")]
         public async Task<IActionResult> GetEvents(int id)
         {
-            var events = await _repo.GetEvents();
+            var events = await _eventRepo.GetEvents();
 
             foreach (Event ev in events)
             {
                 if (ev.PromoterId == id)
                 {
+                    var payment = await _paymentRepo.GetPayment(ev.EventId);
+
                     EventDisplayDto edto = new EventDisplayDto();
                     edto.EventId = ev.EventId;
                     edto.DateCreated = ev.DateCreated;
@@ -42,6 +46,7 @@ namespace WhosOnTheDecks.API.Controllers
                     edto.CostOfEvent = ev.CostOfEvent;
                     edto.EventAddress = ev.EventAddress;
                     edto.Postcode = ev.Postcode;
+                    edto.TotalCost = payment.PaymentAmount;
 
                     promoterEvents.Add(edto);
                 }
@@ -54,7 +59,9 @@ namespace WhosOnTheDecks.API.Controllers
         [HttpGet("getevent/{id}")]
         public async Task<IActionResult> GetEvent(int id)
         {
-            var ev = await _repo.GetEvent(id);
+            var ev = await _eventRepo.GetEvent(id);
+
+            var payment = await _paymentRepo.GetPayment(ev.EventId);
 
             EventDisplayDto edto = new EventDisplayDto();
             edto.EventId = ev.EventId;
@@ -65,6 +72,7 @@ namespace WhosOnTheDecks.API.Controllers
             edto.CostOfEvent = ev.CostOfEvent;
             edto.EventAddress = ev.EventAddress;
             edto.Postcode = ev.Postcode;
+            edto.TotalCost = payment.PaymentAmount;
 
             return Ok(edto);
         }
@@ -83,9 +91,9 @@ namespace WhosOnTheDecks.API.Controllers
             eventToCreate.EventStatus = true;
             eventToCreate.PromoterId = promoterId;
 
-            _repo.Add(eventToCreate);
+            _eventRepo.Add(eventToCreate);
 
-            bool complete = await _repo.SaveAll();
+            bool complete = await _eventRepo.SaveAll();
 
             return Ok(complete);
         }
