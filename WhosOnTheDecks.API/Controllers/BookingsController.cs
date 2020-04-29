@@ -1,7 +1,9 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WhosOnTheDecks.API.Data;
+using WhosOnTheDecks.API.Models;
 
 namespace WhosOnTheDecks.API.Controllers
 
@@ -20,12 +22,40 @@ namespace WhosOnTheDecks.API.Controllers
             _repo = repo;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetBookings()
+        [HttpGet("geteventbookings/{id}")]
+        public async Task<IActionResult> GetEventBookings(int Id)
         {
             var bookings = await _repo.GetBookings();
 
-            return Ok(bookings);
+            List<Booking> eventbookings = new List<Booking>();
+
+            foreach (Booking booking in bookings)
+            {
+                if (booking.EventId == Id)
+                {
+                    eventbookings.Add(booking);
+                }
+            }
+
+            return Ok(eventbookings);
+        }
+
+        [HttpGet("getdjbookings/{id}")]
+        public async Task<IActionResult> GetDjBookings(int Id)
+        {
+            var bookings = await _repo.GetBookings();
+
+            List<Booking> djbookings = new List<Booking>();
+
+            foreach (Booking booking in bookings)
+            {
+                if (booking.DjId == Id)
+                {
+                    djbookings.Add(booking);
+                }
+            }
+
+            return Ok(djbookings);
         }
 
         [HttpGet("{id}")]

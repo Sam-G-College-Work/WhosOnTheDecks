@@ -66,16 +66,16 @@ namespace WhosOnTheDecks.API.Models
         public string Postcode { get; set; }
 
         //Navigational Property
-        //Links Event to a list of bookings
-        //An event is made of one to one...many bookings
-        public List<Booking> Bookings { get; set; }
-
-        //Navigational Property
         //Links Event to a single promoter
         //An event is created by one promoter
         [ForeignKey("Promoter")]
         public int PromoterId { get; set; }
         public Promoter Promoter { get; set; }
+
+        //Navigational Property
+        //Links Event to a list of bookings
+        //An event is made of one to one...many bookings
+        public List<Booking> Bookings { get; set; }
 
         //Navigational Property
         //Links Event to a list of payments
