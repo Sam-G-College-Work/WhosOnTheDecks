@@ -7,7 +7,7 @@ namespace WhosOnTheDecks.API.Dtos
     //This Dto is used to display Dj data and therefore does not need data annotations
     //This allows the back end to formulate the desired Dj object to display
     //Maintaining security over the Dj users account
-    public class DjForListDto
+    public class DjDisplayDto
     {
         //integer for Id
         public int DjId { get; set; }

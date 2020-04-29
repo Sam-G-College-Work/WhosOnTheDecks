@@ -1,3 +1,17 @@
+.card-container {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  column-gap: 300px;
+  row-gap: initial;
+}
+
+.mat-card {
+  flex: 1 1 33%;
+  max-width: 300px; /*  <--- adjust this width to suit */
+}
+
 .mat-card:hover img {
   transform: scale(1.2, 1.2);
   transition-duration: 500ms;

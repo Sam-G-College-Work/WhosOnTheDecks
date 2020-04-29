@@ -67,7 +67,7 @@ namespace WhosOnTheDecks.API.Models
 
         //Navigational Property
         //Links Event to a list of bookings
-        //An event is made of one to many bookings
+        //An event is made of one to one...many bookings
         public List<Booking> Bookings { get; set; }
 
         //Navigational Property
@@ -78,8 +78,8 @@ namespace WhosOnTheDecks.API.Models
         public Promoter Promoter { get; set; }
 
         //Navigational Property
-        //Links payments and evetns
-        //Stores a list of payment attached to this event
+        //Links Event to a list of payments
+        //An  event is made of one to one...many payments
         public List<Payment> Payments { get; set; }
     }
 }
