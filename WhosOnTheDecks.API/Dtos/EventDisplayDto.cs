@@ -14,17 +14,14 @@ namespace WhosOnTheDecks.API.Dtos
         //DateTime DateCreated used to store the Date the event was made
         public DateTime DateCreated { get; set; }
 
-        //Datetime DateOfEvent is used to store the Date of the Event
-        public DateTime DateOfEvent { get; set; }
+        //Datetime DateTimeOfEvent is used to store the Date and Time of the Event
+        public DateTime DateTimeOfEvent { get; set; }
 
-        //DateTime EventStartTime used to record the start time of the event
-        public DateTime EventStartTime { get; set; }
+        //int LengthOfEvent indicates how long the event will take place
+        public int LengthOfEvent { get; set; }
 
-        //DateTime EventEndTime used to record the end time of the event
-        public DateTime EventEndTime { get; set; }
-
-        //Decimal CostOfEvent used to store the entry cost of the event
-        public decimal CostOfEvent { get; set; }
+        //decimal to show the total cost of the event
+        public decimal TotalCost { get; set; }
 
         //Boolean EventStatus used to show if Event is Active or Cancelled
         public bool EventStatus { get; set; }
@@ -34,8 +31,5 @@ namespace WhosOnTheDecks.API.Dtos
 
         //String Postcode is used to store the postcode of the event 
         public string Postcode { get; set; }
-
-        //interger to show the total cost of the event
-        public decimal TotalCost { get; set; }
     }
 }

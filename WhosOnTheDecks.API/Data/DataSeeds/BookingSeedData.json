@@ -1,317 +1,77 @@
 [
   {
-    "StartTime": "21:00",
-    "EndTime": "22:00",
     "BookingStatus": true,
     "DjId": 35,
     "EventId": 1
   },
   {
-    "StartTime": "21:00",
-    "EndTime": "22:00",
     "BookingStatus": true,
     "DjId": 19,
     "EventId": 2
   },
   {
-    "StartTime": "21:00",
-    "EndTime": "22:00",
     "BookingStatus": true,
     "DjId": 11,
     "EventId": 3
   },
   {
-    "StartTime": "21:00",
-    "EndTime": "22:00",
     "BookingStatus": true,
     "DjId": 11,
     "EventId": 4
   },
   {
-    "StartTime": "21:00",
-    "EndTime": "22:00",
     "BookingStatus": true,
     "DjId": 17,
     "EventId": 5
   },
   {
-    "StartTime": "21:00",
-    "EndTime": "22:00",
     "BookingStatus": true,
     "DjId": 25,
     "EventId": 6
   },
   {
-    "StartTime": "21:00",
-    "EndTime": "22:00",
     "BookingStatus": true,
     "DjId": 23,
     "EventId": 7
   },
   {
-    "StartTime": "21:00",
-    "EndTime": "22:00",
     "BookingStatus": true,
     "DjId": 37,
     "EventId": 8
   },
   {
-    "StartTime": "21:00",
-    "EndTime": "22:00",
     "BookingStatus": true,
     "DjId": 16,
     "EventId": 9
   },
   {
-    "StartTime": "21:00",
-    "EndTime": "22:00",
     "BookingStatus": true,
     "DjId": 38,
     "EventId": 10
   },
   {
-    "StartTime": "21:00",
-    "EndTime": "22:00",
     "BookingStatus": true,
     "DjId": 39,
     "EventId": 11
   },
   {
-    "StartTime": "21:00",
-    "EndTime": "22:00",
     "BookingStatus": true,
     "DjId": 20,
     "EventId": 12
   },
   {
-    "StartTime": "21:00",
-    "EndTime": "22:00",
     "BookingStatus": true,
     "DjId": 28,
     "EventId": 13
   },
   {
-    "StartTime": "21:00",
-    "EndTime": "22:00",
     "BookingStatus": true,
     "DjId": 20,
     "EventId": 14
   },
   {
-    "StartTime": "21:00",
-    "EndTime": "22:00",
     "BookingStatus": true,
     "DjId": 20,
-    "EventId": 15
-  },
-  {
-    "StartTime": "22:00",
-    "EndTime": "23:00",
-    "BookingStatus": true,
-    "DjId": 28,
-    "EventId": 1
-  },
-  {
-    "StartTime": "22:00",
-    "EndTime": "23:00",
-    "BookingStatus": true,
-    "DjId": 43,
-    "EventId": 2
-  },
-  {
-    "StartTime": "22:00",
-    "EndTime": "23:00",
-    "BookingStatus": true,
-    "DjId": 33,
-    "EventId": 3
-  },
-  {
-    "StartTime": "22:00",
-    "EndTime": "23:00",
-    "BookingStatus": true,
-    "DjId": 19,
-    "EventId": 4
-  },
-  {
-    "StartTime": "22:00",
-    "EndTime": "23:00",
-    "BookingStatus": true,
-    "DjId": 21,
-    "EventId": 5
-  },
-  {
-    "StartTime": "22:00",
-    "EndTime": "23:00",
-    "BookingStatus": true,
-    "DjId": 45,
-    "EventId": 6
-  },
-  {
-    "StartTime": "22:00",
-    "EndTime": "23:00",
-    "BookingStatus": true,
-    "DjId": 38,
-    "EventId": 7
-  },
-  {
-    "StartTime": "22:00",
-    "EndTime": "23:00",
-    "BookingStatus": true,
-    "DjId": 32,
-    "EventId": 8
-  },
-  {
-    "StartTime": "22:00",
-    "EndTime": "23:00",
-    "BookingStatus": true,
-    "DjId": 47,
-    "EventId": 9
-  },
-  {
-    "StartTime": "22:00",
-    "EndTime": "23:00",
-    "BookingStatus": true,
-    "DjId": 25,
-    "EventId": 10
-  },
-  {
-    "StartTime": "22:00",
-    "EndTime": "23:00",
-    "BookingStatus": true,
-    "DjId": 18,
-    "EventId": 11
-  },
-  {
-    "StartTime": "22:00",
-    "EndTime": "23:00",
-    "BookingStatus": true,
-    "DjId": 18,
-    "EventId": 12
-  },
-  {
-    "StartTime": "22:00",
-    "EndTime": "23:00",
-    "BookingStatus": true,
-    "DjId": 48,
-    "EventId": 13
-  },
-  {
-    "StartTime": "22:00",
-    "EndTime": "23:00",
-    "BookingStatus": true,
-    "DjId": 43,
-    "EventId": 14
-  },
-  {
-    "StartTime": "22:00",
-    "EndTime": "23:00",
-    "BookingStatus": true,
-    "DjId": 36,
-    "EventId": 15
-  },
-  {
-    "StartTime": "23:00",
-    "EndTime": "00:00",
-    "BookingStatus": true,
-    "DjId": 17,
-    "EventId": 1
-  },
-  {
-    "StartTime": "23:00",
-    "EndTime": "00:00",
-    "BookingStatus": true,
-    "DjId": 41,
-    "EventId": 2
-  },
-  {
-    "StartTime": "23:00",
-    "EndTime": "00:00",
-    "BookingStatus": true,
-    "DjId": 37,
-    "EventId": 3
-  },
-  {
-    "StartTime": "23:00",
-    "EndTime": "00:00",
-    "BookingStatus": true,
-    "DjId": 32,
-    "EventId": 4
-  },
-  {
-    "StartTime": "23:00",
-    "EndTime": "00:00",
-    "BookingStatus": true,
-    "DjId": 11,
-    "EventId": 5
-  },
-  {
-    "StartTime": "23:00",
-    "EndTime": "00:00",
-    "BookingStatus": true,
-    "DjId": 50,
-    "EventId": 6
-  },
-  {
-    "StartTime": "23:00",
-    "EndTime": "00:00",
-    "BookingStatus": true,
-    "DjId": 44,
-    "EventId": 7
-  },
-  {
-    "StartTime": "23:00",
-    "EndTime": "00:00",
-    "BookingStatus": true,
-    "DjId": 47,
-    "EventId": 8
-  },
-  {
-    "StartTime": "23:00",
-    "EndTime": "00:00",
-    "BookingStatus": true,
-    "DjId": 23,
-    "EventId": 9
-  },
-  {
-    "StartTime": "23:00",
-    "EndTime": "00:00",
-    "BookingStatus": true,
-    "DjId": 42,
-    "EventId": 10
-  },
-  {
-    "StartTime": "23:00",
-    "EndTime": "00:00",
-    "BookingStatus": true,
-    "DjId": 16,
-    "EventId": 11
-  },
-  {
-    "StartTime": "23:00",
-    "EndTime": "00:00",
-    "BookingStatus": true,
-    "DjId": 32,
-    "EventId": 12
-  },
-  {
-    "StartTime": "23:00",
-    "EndTime": "00:00",
-    "BookingStatus": true,
-    "DjId": 35,
-    "EventId": 13
-  },
-  {
-    "StartTime": "23:00",
-    "EndTime": "00:00",
-    "BookingStatus": true,
-    "DjId": 30,
-    "EventId": 14
-  },
-  {
-    "StartTime": "23:00",
-    "EndTime": "00:00",
-    "BookingStatus": true,
-    "DjId": 34,
     "EventId": 15
   }
 ]

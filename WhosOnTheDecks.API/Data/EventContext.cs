@@ -39,7 +39,7 @@ namespace WhosOnTheDecks.API.Data
                     var eventBeingMade = await _context.Events.
                     FirstOrDefaultAsync(e => e.EventId == EvId);
 
-                    if (eventBeingMade.DateOfEvent.Equals(eventToCheck.DateOfEvent))
+                    if (eventBeingMade.DateTimeOfEvent.Equals(eventToCheck.DateTimeOfEvent))
                     {
                         return true;
                     }

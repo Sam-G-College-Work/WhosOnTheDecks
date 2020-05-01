@@ -40,13 +40,12 @@ namespace WhosOnTheDecks.API.Controllers
                     EventDisplayDto edto = new EventDisplayDto();
                     edto.EventId = ev.EventId;
                     edto.DateCreated = ev.DateCreated;
-                    edto.DateOfEvent = ev.DateOfEvent;
-                    edto.EventStartTime = ev.EventStartTime;
-                    edto.EventEndTime = ev.EventEndTime;
-                    edto.CostOfEvent = ev.CostOfEvent;
+                    edto.DateTimeOfEvent = ev.DateTimeOfEvent;
+                    edto.LengthOfEvent = ev.LengthOfEvent;
+                    edto.TotalCost = ev.TotalCost;
+                    edto.EventStatus = ev.EventStatus;
                     edto.EventAddress = ev.EventAddress;
                     edto.Postcode = ev.Postcode;
-                    edto.TotalCost = payment.PaymentAmount;
 
                     promoterEvents.Add(edto);
                 }
@@ -66,36 +65,14 @@ namespace WhosOnTheDecks.API.Controllers
             EventDisplayDto edto = new EventDisplayDto();
             edto.EventId = ev.EventId;
             edto.DateCreated = ev.DateCreated;
-            edto.DateOfEvent = ev.DateOfEvent;
-            edto.EventStartTime = ev.EventStartTime;
-            edto.EventEndTime = ev.EventEndTime;
-            edto.CostOfEvent = ev.CostOfEvent;
+            edto.DateTimeOfEvent = ev.DateTimeOfEvent;
+            edto.LengthOfEvent = ev.LengthOfEvent;
+            edto.TotalCost = ev.TotalCost;
+            edto.EventStatus = ev.EventStatus;
             edto.EventAddress = ev.EventAddress;
             edto.Postcode = ev.Postcode;
-            edto.TotalCost = payment.PaymentAmount;
 
             return Ok(edto);
-        }
-
-        [HttpPost("create")]
-        public async Task<IActionResult> CreateEvent(EventToCreateDto eventDto, int promoterId)
-        {
-            Event eventToCreate = new Event();
-
-            eventToCreate.DateCreated = DateTime.Now;
-            eventToCreate.DateOfEvent = eventDto.DateOfEvent;
-            eventToCreate.EventStartTime = eventDto.EventStartTime;
-            eventToCreate.EventEndTime = eventDto.EventEndTime;
-            eventToCreate.EventAddress = eventDto.EventAddress;
-            eventToCreate.Postcode = eventDto.Postcode;
-            eventToCreate.EventStatus = true;
-            eventToCreate.PromoterId = promoterId;
-
-            _eventRepo.Add(eventToCreate);
-
-            bool complete = await _eventRepo.SaveAll();
-
-            return Ok(complete);
         }
 
     }

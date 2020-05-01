@@ -23,30 +23,22 @@ namespace WhosOnTheDecks.API.Models
 
         //Datetime DateOfEvent is used to store the Date of the Event
         [Required]
-        [Display(Name = "Date of Event")]
+        [Display(Name = "Date and Time of Event")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:d}")]
-        public DateTime DateOfEvent { get; set; }
+        public DateTime DateTimeOfEvent { get; set; }
 
         //DateTime EventStartTime used to record the start time of the event
         [Required]
-        [Display(Name = "Event Start Time")]
-        [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:HH:mm}")]
-        public DateTime EventStartTime { get; set; }
-
-        //DateTime EventEndTime used to record the end time of the event
-        [Required]
-        [Display(Name = "Event End Time")]
-        [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:HH:mm}")]
-        public DateTime EventEndTime { get; set; }
+        [Display(Name = "Length of Event")]
+        [DataType(DataType.Duration)]
+        public int LengthOfEvent { get; set; }
 
         //Decimal CostOfEvent used to store the entry cost of the event
         [Required]
-        [Display(Name = "Entry Cost")]
+        [Display(Name = "Total Cost")]
         [DataType(DataType.Currency)]
-        public decimal CostOfEvent { get; set; }
+        public decimal TotalCost { get; set; }
 
         //Boolean EventStatus used to show if Event is Active or Cancelled
         [Required]
@@ -72,14 +64,5 @@ namespace WhosOnTheDecks.API.Models
         public int PromoterId { get; set; }
         public Promoter Promoter { get; set; }
 
-        //Navigational Property
-        //Links Event to a list of bookings
-        //An event is made of one to one...many bookings
-        public List<Booking> Bookings { get; set; }
-
-        //Navigational Property
-        //Links Event to a list of payments
-        //An  event is made of one to one...many payments
-        public List<Payment> Payments { get; set; }
     }
 }

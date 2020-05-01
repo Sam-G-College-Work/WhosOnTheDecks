@@ -14,20 +14,6 @@ namespace WhosOnTheDecks.API.Models
         [Key]
         public int BookingId { get; set; }
 
-        //Date time Start time to indicate the start if the DJs performance
-        [Required]
-        [Display(Name = "Start Time")]
-        [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:HH:mm}")]
-        public DateTime StartTime { get; set; }
-
-        //Date time End time to indicate the end fo the DJ's performance
-        [Required]
-        [Display(Name = "End Time")]
-        [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:HH:mm}")]
-        public DateTime EndTime { get; set; }
-
         //Boolean Bookingstatus to indicate weither the booking is Active or Cancelled
         [Required]
         [Display(Name = "Booking Status")]
