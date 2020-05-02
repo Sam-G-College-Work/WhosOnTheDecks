@@ -25,6 +25,8 @@ import {
   MatCardModule,
   MatGridListModule,
 } from "@angular/material";
+import { ViewEventBookingComponent } from "./view-event-booking/view-event-booking.component";
+import { tap } from "rxjs/operators";
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -40,6 +42,7 @@ export function tokenGetter() {
     CreateAnEventComponent,
     ViewBookingsComponent,
     ViewEventsComponent,
+    ViewEventBookingComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,25 +1,30 @@
 <div class="container mt-5">
   <div class="row">
     <div class="card-container">
-      <mat-card *ngFor="let party of parties">
+      <mat-card *ngFor="let eventDisplay of eventDisplays">
         <mat-card-header>
-          <mat-card-title>{{ party.eventId }}</mat-card-title>
-          <mat-card-subtitle>{{ party.dateOfEvent }}</mat-card-subtitle>
+          <mat-card-title>{{ eventDisplay.eventId }}</mat-card-title>
+          <mat-card-subtitle>{{
+            eventDisplay.dateTimeOfEvent | date: "short"
+          }}</mat-card-subtitle>
         </mat-card-header>
-        <img
-          mat-card-mat-card-sm-image
-          src="assets/_images/33080315618_9ed10331c6_q.jpg"
-          alt="Who's On The Decks!!"
-        />
         <mat-card-content>
-          <p>Address: {{ party.eventAddress }} {{ party.postcode }}</p>
-          <p>Cost of Event: £{{ party.entryCost }}</p>
-          <p>Date Created: {{ party.dateCreated }}</p>
-          <p>Total Cost: £{{ party.totalCost }}</p>
+          <p>
+            Address: {{ eventDisplay.eventAddress }} {{ eventDisplay.postcode }}
+          </p>
+          <p>Length of Event: {{ eventDisplay.lengthOfEvent }} hours</p>
+          <p>Event Live: {{ eventDisplay.eventStatus }}</p>
+          <p>
+            Date Created: {{ eventDisplay.dateCreated | date: "shortDate" }}
+          </p>
+          <p>Total Cost: £{{ eventDisplay.totalCost }}</p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button [routerLink]="['/view-event-bookings']">
-            View Bookings
+          <button
+            mat-button
+            [routerLink]="['/view-event-booking', 'eventDisplay.eventId']"
+          >
+            View Booking
           </button>
         </mat-card-actions>
       </mat-card>

@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { Party } from "../_models/party";
+import { EventDisplay } from "../_models/event-display";
 
 @Injectable({
   providedIn: "root",
@@ -12,15 +12,13 @@ export class EventService {
 
   constructor(private http: HttpClient) {}
 
-  getEvents(id): Observable<Party[]> {
-    return this.http.get<Party[]>(this.baseUrl + "events/getevents/" + id);
+  getEvents(id): Observable<EventDisplay[]> {
+    return this.http.get<EventDisplay[]>(
+      this.baseUrl + "events/getevents/" + id
+    );
   }
 
-  getEvent(id): Observable<Party> {
-    return this.http.get<Party>(this.baseUrl + "events/getevent/" + id);
-  }
-
-  createEvent(model: any, id): Observable<Party> {
-    return this.http.get<Party>(this.baseUrl + "events/create/" + model + id);
+  getEvent(id): Observable<EventDisplay> {
+    return this.http.get<EventDisplay>(this.baseUrl + "events/getevent/" + id);
   }
 }

@@ -27,17 +27,17 @@ namespace WhosOnTheDecks.API.Controllers
         {
             var bookings = await _repo.GetBookings();
 
-            List<Booking> eventbookings = new List<Booking>();
+            Booking eventBooking = new Booking();
 
             foreach (Booking booking in bookings)
             {
                 if (booking.EventId == Id)
                 {
-                    eventbookings.Add(booking);
+                    eventBooking.Equals(booking);
                 }
             }
 
-            return Ok(eventbookings);
+            return Ok(eventBooking);
         }
 
         [HttpGet("getdjbookings/{id}")]

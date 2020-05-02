@@ -1,1 +1,21 @@
-<p>view-bookings works!</p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="card-container">
+      <mat-card *ngFor="let booking of bookings">
+        <mat-card-header>
+          <mat-card-title>Booking ID: {{ booking.bookingId }}</mat-card-title>
+          <mat-card-subtitle>Event ID: {{ booking.eventId }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content> </mat-card-content>
+        <mat-card-actions>
+          <button
+            mat-button
+            [routerLink]="['/view-event-booking', 'eventDisplay.eventId']"
+          >
+            View Event Details
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

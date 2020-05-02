@@ -3,6 +3,7 @@ import { Dj } from "../_models/dj";
 import { DjService } from "../_service/dj.service";
 import { AlertifyService } from "../_service/alertly.service";
 import { MatCardModule } from "@angular/material/card";
+import { AuthService } from "../_service/auth.service";
 
 @Component({
   selector: "app-view-all-djs",
@@ -11,14 +12,17 @@ import { MatCardModule } from "@angular/material/card";
 })
 export class ViewAllDjsComponent implements OnInit {
   djs: Dj[];
+  isdj = false;
 
   constructor(
     private djService: DjService,
     private alertify: AlertifyService,
+    private authService: AuthService,
     matCardModule: MatCardModule
   ) {}
 
   ngOnInit() {
+    this.isDj();
     this.loadDjs();
   }
 
@@ -31,5 +35,11 @@ export class ViewAllDjsComponent implements OnInit {
         this.alertify.error(error);
       }
     );
+  }
+
+  isDj() {
+    if (this.authService.decodedToken.role === "Dj") {
+      this.isdj = true;
+    }
   }
 }

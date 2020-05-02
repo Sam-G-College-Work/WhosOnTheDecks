@@ -3,7 +3,7 @@ import { EventService } from "../_service/event.service";
 import { AlertifyService } from "../_service/alertly.service";
 import { MatCardModule } from "@angular/material";
 import { AuthService } from "../_service/auth.service";
-import { Party } from "../_models/party";
+import { EventDisplay } from "../_models/event-display";
 
 @Component({
   selector: "app-view-events",
@@ -11,7 +11,7 @@ import { Party } from "../_models/party";
   styleUrls: ["./view-events.component.css"],
 })
 export class ViewEventsComponent implements OnInit {
-  parties: Party[];
+  eventDisplays: EventDisplay[];
 
   constructor(
     private eventService: EventService,
@@ -26,8 +26,8 @@ export class ViewEventsComponent implements OnInit {
 
   loadEvents() {
     this.eventService.getEvents(this.authService.decodedToken.nameid).subscribe(
-      (parties: Party[]) => {
-        this.parties = parties;
+      (eventDisplays: EventDisplay[]) => {
+        this.eventDisplays = eventDisplays;
       },
       (error) => {
         this.alertify.error(error);
