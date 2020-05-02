@@ -24,33 +24,33 @@ export class ViewEventBookingComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.loadBooking();
+    // this.loadBooking();
   }
 
-  loadBooking() {
-    this.bookingService
-      .getEventBooking(Number(this.activatedRoute.snapshot.params["id"]))
-      .subscribe(
-        (booking: Booking) => {
-          tap((booking) => console.log(booking));
-          this.booking = booking;
-        },
-        (error) => {
-          this.alertify.error(error);
-        }
-      );
+  // loadBooking() {
+  //   this.bookingService
+  //     .getEventBooking(Number(this.activatedRoute.snapshot.params["id"]))
+  //     .subscribe(
+  //       (booking: Booking) => {
+  //         tap((booking) => console.log(booking));
+  //         this.booking = booking;
+  //       },
+  //       (error) => {
+  //         this.alertify.error(error);
+  //       }
+  //     );
 
-    this.loadDj(this.booking.djId);
-  }
+  //   this.loadDj(this.booking.djId);
+  // }
 
-  loadDj(id) {
-    this.djService.getDj(id).subscribe(
-      (dj: Dj) => {
-        this.dj = dj;
-      },
-      (error) => {
-        this.alertify.error(error);
-      }
-    );
-  }
+  // loadDj(id) {
+  //   this.djService.getDj(id).subscribe(
+  //     (dj: Dj) => {
+  //       this.dj = dj;
+  //     },
+  //     (error) => {
+  //       this.alertify.error(error);
+  //     }
+  //   );
+  // }
 }

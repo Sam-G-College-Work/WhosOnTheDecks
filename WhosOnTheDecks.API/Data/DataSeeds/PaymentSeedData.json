@@ -1,91 +1,76 @@
 [
   {
     "PaymentAmount": 300,
-    "DateMade": "2020-04-21",
     "PaymentStatus": true,
     "EventId": 1
   },
   {
     "PaymentAmount": 300,
-    "DateMade": "2020-02-23",
     "PaymentStatus": true,
     "EventId": 2
   },
   {
     "PaymentAmount": 300,
-    "DateMade": "2020-03-30",
     "PaymentStatus": true,
     "EventId": 3
   },
   {
     "PaymentAmount": 300,
-    "DateMade": "2020-02-03",
     "PaymentStatus": true,
     "EventId": 4
   },
   {
     "PaymentAmount": 300,
-    "DateMade": "2020-03-20",
     "PaymentStatus": true,
     "EventId": 5
   },
   {
     "PaymentAmount": 300,
-    "DateMade": "2020-02-04",
     "PaymentStatus": true,
     "EventId": 6
   },
   {
     "PaymentAmount": 300,
-    "DateMade": "2020-02-10",
     "PaymentStatus": true,
     "EventId": 7
   },
   {
     "PaymentAmount": 300,
-    "DateMade": "2020-03-30",
     "PaymentStatus": true,
     "EventId": 8
   },
   {
     "PaymentAmount": 300,
-    "DateMade": "2020-02-21",
     "PaymentStatus": true,
     "EventId": 9
   },
   {
     "PaymentAmount": 300,
-    "DateMade": "2020-02-12",
     "PaymentStatus": true,
     "EventId": 10
   },
   {
     "PaymentAmount": 300,
-    "DateMade": "2020-04-10",
     "PaymentStatus": true,
     "EventId": 11
   },
   {
     "PaymentAmount": 300,
-    "DateMade": "2020-02-01",
     "PaymentStatus": true,
     "EventId": 12
   },
   {
     "PaymentAmount": 300,
-    "DateMade": "2020-04-17",
     "PaymentStatus": true,
     "EventId": 13
   },
   {
     "PaymentAmount": 300,
-    "DateMade": "2020-01-04",
     "PaymentStatus": true,
     "EventId": 14
   },
   {
     "PaymentAmount": 300,
-    "DateMade": "2020-02-04",
     "PaymentStatus": true,
     "EventId": 15
   }

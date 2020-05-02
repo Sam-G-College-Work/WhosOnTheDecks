@@ -16,13 +16,10 @@ namespace WhosOnTheDecks.API.Controllers
     {
         private readonly IEventRepository _eventRepo;
 
-        private readonly IPaymentRepository _paymentRepo;
+        private List<Event> promoterEvents = new List<Event>();
 
-        private List<EventDisplayDto> promoterEvents = new List<EventDisplayDto>();
-
-        public EventsController(IEventRepository erepo, IPaymentRepository prepo)
+        public EventsController(IEventRepository erepo)
         {
-            _paymentRepo = prepo;
             _eventRepo = erepo;
         }
 
@@ -35,19 +32,7 @@ namespace WhosOnTheDecks.API.Controllers
             {
                 if (ev.PromoterId == id)
                 {
-                    var payment = await _paymentRepo.GetPayment(ev.EventId);
-
-                    EventDisplayDto edto = new EventDisplayDto();
-                    edto.EventId = ev.EventId;
-                    edto.DateCreated = ev.DateCreated;
-                    edto.DateTimeOfEvent = ev.DateTimeOfEvent;
-                    edto.LengthOfEvent = ev.LengthOfEvent;
-                    edto.TotalCost = ev.TotalCost;
-                    edto.EventStatus = ev.EventStatus;
-                    edto.EventAddress = ev.EventAddress;
-                    edto.Postcode = ev.Postcode;
-
-                    promoterEvents.Add(edto);
+                    promoterEvents.Add(ev);
                 }
             }
 
@@ -60,19 +45,7 @@ namespace WhosOnTheDecks.API.Controllers
         {
             var ev = await _eventRepo.GetEvent(id);
 
-            var payment = await _paymentRepo.GetPayment(ev.EventId);
-
-            EventDisplayDto edto = new EventDisplayDto();
-            edto.EventId = ev.EventId;
-            edto.DateCreated = ev.DateCreated;
-            edto.DateTimeOfEvent = ev.DateTimeOfEvent;
-            edto.LengthOfEvent = ev.LengthOfEvent;
-            edto.TotalCost = ev.TotalCost;
-            edto.EventStatus = ev.EventStatus;
-            edto.EventAddress = ev.EventAddress;
-            edto.Postcode = ev.Postcode;
-
-            return Ok(edto);
+            return Ok(ev);
         }
 
     }

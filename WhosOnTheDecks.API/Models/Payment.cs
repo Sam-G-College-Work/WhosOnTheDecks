@@ -21,13 +21,6 @@ namespace WhosOnTheDecks.API.Models
         [DataType(DataType.Currency)]
         public decimal PaymentAmount { get; set; }
 
-        //DateTime DateMade records the date the payment was made
-        [Required]
-        [Display(Name = "Date Made")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = " {0:d} ")]
-        public DateTime DateMade { get; set; }
-
         //Boolean PaymentStatus shows weither the payment succeded or failed
         [Required]
         [Display(Name = "Payment Status")]
