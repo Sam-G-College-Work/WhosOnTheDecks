@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { Dj } from "../_models/dj";
+import { Booking } from "../_models/booking";
 
 @Injectable({
   providedIn: "root",
@@ -12,11 +12,11 @@ export class DjService {
 
   constructor(private http: HttpClient) {}
 
-  getDjs(): Observable<Dj[]> {
-    return this.http.get<Dj[]>(this.baseUrl + "djs");
+  getDjEvents(id): Observable<Event[]> {
+    return this.http.get<Event[]>(this.baseUrl + "djs/getdjevents/" + id);
   }
 
-  getDj(id): Observable<Dj> {
-    return this.http.get<Dj>(this.baseUrl + "djs/" + id);
+  getDjBookings(id): Observable<Booking[]> {
+    return this.http.get<Booking[]>(this.baseUrl + "djs/getdjbookings/" + id);
   }
 }

@@ -8,7 +8,6 @@ import { AppComponent } from "./app.component";
 import { NavComponent } from "./nav/nav.component";
 import { FormsModule } from "@angular/forms";
 import { AuthService } from "./_service/auth.service";
-import { DjService } from "./_service/dj.service";
 import { HomeComponent } from "./home/home.component";
 import { ErrorInterceptorProvider } from "./_service/error.interceptor";
 import { RegisterPromoterComponent } from "./register-promoter/register-promoter.component";
@@ -25,8 +24,9 @@ import {
   MatCardModule,
   MatGridListModule,
 } from "@angular/material";
-import { ViewEventBookingComponent } from "./view-event-booking/view-event-booking.component";
 import { tap } from "rxjs/operators";
+import { HomeService } from "./_service/home.service";
+import { PromoterService } from "./_service/promoter.service";
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -42,7 +42,6 @@ export function tokenGetter() {
     CreateAnEventComponent,
     ViewBookingsComponent,
     ViewEventsComponent,
-    ViewEventBookingComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,7 +62,12 @@ export function tokenGetter() {
       },
     }),
   ],
-  providers: [ErrorInterceptorProvider, AuthService, DjService],
+  providers: [
+    ErrorInterceptorProvider,
+    AuthService,
+    HomeService,
+    PromoterService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -14,50 +14,48 @@ namespace WhosOnTheDecks.API.Controllers
     [ApiController]
     public class DjsController : ControllerBase
     {
-        private readonly IUserRepository _repo;
+        private readonly IEventRepository _erepo;
 
-        private List<DjDisplayDto> DjDtos = new List<DjDisplayDto>();
-
-        public DjsController(IUserRepository repo)
+        public DjsController(IEventRepository erepo)
         {
-            _repo = repo;
+            _erepo = erepo;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetDjs()
+        [HttpGet("getdjbookings/{id}")]
+        public async Task<IActionResult> GetDjBookings(int Id)
         {
-            var djsList = await _repo.GetDjs();
+            var bookings = await _erepo.GetBookings();
 
-            foreach (Dj dj in djsList)
+            List<Booking> djBookings = new List<Booking>();
+
+            foreach (Booking booking in bookings)
             {
-                DjDisplayDto djdto = new DjDisplayDto();
-
-                djdto.DjId = dj.Id;
-                djdto.DjName = dj.DjName;
-                djdto.Equipment = dj.Equipment;
-                djdto.HourlyRate = dj.HourlyRate;
-                djdto.Genre = dj.Genre.ToString();
-
-                this.DjDtos.Add(djdto);
+                if (booking.DjId == Id)
+                {
+                    djBookings.Add(booking);
+                }
             }
-
-            return Ok(DjDtos);
+            return Ok(djBookings);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetDj(int id)
+        [HttpGet("getdjevents/{id?}")]
+        public async Task<IActionResult> GetDjEvents(int id)
         {
-            var dj = await _repo.GetDj(id);
+            var bookings = await _erepo.GetBookings();
 
-            DjDisplayDto djdto = new DjDisplayDto();
+            List<Event> djEvents = new List<Event>();
 
-            djdto.DjId = dj.Id;
-            djdto.DjName = dj.DjName;
-            djdto.Equipment = dj.Equipment;
-            djdto.HourlyRate = dj.HourlyRate;
-            djdto.Genre = dj.Genre.ToString();
+            foreach (Booking booking in bookings)
+            {
+                if (booking.DjId == id)
+                {
+                    var ev = await _erepo.GetEvent(booking.EventId);
 
-            return Ok(djdto);
+                    djEvents.Add(ev);
+                }
+            }
+            return Ok(djEvents);
         }
+
     }
 }

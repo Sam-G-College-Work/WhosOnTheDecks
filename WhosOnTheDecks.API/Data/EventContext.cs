@@ -48,11 +48,12 @@ namespace WhosOnTheDecks.API.Data
             return false;
         }
 
-        //GetBooking will take in an integer of id and returnt he matching booking
+        //GetBooking will take in an integer of id for the eventId and return 
+        //the matching booking
         //from the database
         public async Task<Booking> GetBooking(int id)
         {
-            var booking = await _context.Bookings.FirstOrDefaultAsync(b => b.BookingId == id);
+            var booking = await _context.Bookings.FirstOrDefaultAsync(b => b.EventId == id);
 
             return booking;
         }

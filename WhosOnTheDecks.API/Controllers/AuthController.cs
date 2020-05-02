@@ -18,20 +18,20 @@ namespace WhosOnTheDecks.API.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        //Property _repo to initialise the IAuthRepository so Authorisations methods can be used
-        private readonly IAuthRepository _repo;
+        //Property _arepo to initialise the IAuthRepository so Authorisations methods can be used
+        private readonly IAuthRepository _arepo;
 
         //Property _config to initialise the IConfiguration methods avaliable through IConfiguration
         private readonly IConfiguration _config;
 
         //Auth Constuctor 
-        //Inistialising both _config and _repo by transferring in 2 arguments for repo and config
+        //Inistialising both _config and _arepo by transferring in 2 arguments for repo and config
         //Access to the database and verification methods will now be avaliable to verify registering and login
         public AuthController(IAuthRepository repo, IConfiguration config)
         {
             _config = config;
 
-            _repo = repo;
+            _arepo = repo;
 
         }
 
@@ -46,7 +46,7 @@ namespace WhosOnTheDecks.API.Controllers
 
             //Call to user exists method with passed in email
             //If returned true a bad request will be sent to the user
-            if (await _repo.UserExists(promoterForRegisterDto.Email))
+            if (await _arepo.UserExists(promoterForRegisterDto.Email))
             {
                 return BadRequest("Email already exists");
             }
@@ -70,7 +70,7 @@ namespace WhosOnTheDecks.API.Controllers
             //Complete the user object by adding the password 
             //submited and hashed through the register method 
             //of the IAuth Repository
-            var createdPromoter = await _repo.Register(promoterToCreate, promoterForRegisterDto.Password);
+            var createdPromoter = await _arepo.Register(promoterToCreate, promoterForRegisterDto.Password);
 
             //Status code 201 "OK" sent back after completed request
             return StatusCode(201);
@@ -87,7 +87,7 @@ namespace WhosOnTheDecks.API.Controllers
 
             //Call to user exists method with passed in email
             //If returned true a bad request will be sent to the user
-            if (await _repo.UserExists(djForRegisterDto.Email))
+            if (await _arepo.UserExists(djForRegisterDto.Email))
             {
                 return BadRequest("Email already exists");
             }
@@ -114,7 +114,7 @@ namespace WhosOnTheDecks.API.Controllers
             //Complete the user object by adding the password 
             //submited and hashed through the register method 
             //of the IAuth Repository
-            var createdDj = await _repo.Register(djToCreate, djForRegisterDto.Password);
+            var createdDj = await _arepo.Register(djToCreate, djForRegisterDto.Password);
 
             //Status code 201 "OK" sent back after completed request
             return StatusCode(201);
@@ -125,7 +125,7 @@ namespace WhosOnTheDecks.API.Controllers
         public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
         {
             //Property is inialised with the stored information associated with the entered information
-            var userFromRepo = await _repo.Login(userForLoginDto.Email.ToLower(), userForLoginDto.Password);
+            var userFromRepo = await _arepo.Login(userForLoginDto.Email.ToLower(), userForLoginDto.Password);
 
             //Check is made to see if the user exists
             //If null is returned the user does not exist

@@ -1,30 +1,64 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WhosOnTheDecks.API.Data;
+using WhosOnTheDecks.API.Dtos;
+using WhosOnTheDecks.API.Models;
 
 namespace WhosOnTheDecks.API.Controllers
 {
-
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PromotersController : ControllerBase
     {
-        private readonly IUserRepository _repo;
+        private readonly IEventRepository _erepo;
+        private readonly IUserRepository _urepo;
 
-
-        public PromotersController(IUserRepository repo)
+        public PromotersController(IEventRepository erepo,
+        IUserRepository urepo)
         {
-            _repo = repo;
+            _urepo = urepo;
+            _erepo = erepo;
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetPromoter(int id)
+        [HttpGet("events/{id}")]
+        public async Task<IActionResult> GetPromoterEvents(int id)
         {
-            var promoter = await _repo.GetPromoter(id);
+            var events = await _erepo.GetEvents();
 
-            return Ok(promoter);
+            List<Event> promoterEvents = new List<Event>();
+
+            foreach (Event ev in events)
+            {
+                if (ev.PromoterId == id)
+                {
+                    promoterEvents.Add(ev);
+                }
+            }
+            return Ok(promoterEvents);
         }
+
+        [HttpGet("booking/{id}")]
+        public async Task<IActionResult> GetBookedDj(int eventId)
+        {
+            var booking = await _erepo.GetBooking(eventId);
+
+            var djId = booking.DjId;
+
+            var dj = await _urepo.GetDj(djId);
+
+            DjDisplayDto djdto = new DjDisplayDto();
+
+            djdto.DjId = dj.Id;
+            djdto.DjName = dj.DjName;
+            djdto.Equipment = dj.Equipment;
+            djdto.HourlyRate = dj.HourlyRate;
+            djdto.Genre = dj.Genre.ToString();
+
+            return Ok(djdto);
+        }
+
     }
 }

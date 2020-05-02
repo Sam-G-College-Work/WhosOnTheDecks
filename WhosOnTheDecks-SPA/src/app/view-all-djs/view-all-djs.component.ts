@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { Dj } from "../_models/dj";
-import { DjService } from "../_service/dj.service";
 import { AlertifyService } from "../_service/alertly.service";
 import { MatCardModule } from "@angular/material/card";
 import { AuthService } from "../_service/auth.service";
+import { HomeService } from "../_service/home.service";
 
 @Component({
   selector: "app-view-all-djs",
@@ -15,7 +15,7 @@ export class ViewAllDjsComponent implements OnInit {
   isdj = false;
 
   constructor(
-    private djService: DjService,
+    private homeService: HomeService,
     private alertify: AlertifyService,
     private authService: AuthService,
     matCardModule: MatCardModule
@@ -27,7 +27,7 @@ export class ViewAllDjsComponent implements OnInit {
   }
 
   loadDjs() {
-    this.djService.getDjs().subscribe(
+    this.homeService.getDjs().subscribe(
       (djs: Dj[]) => {
         this.djs = djs;
       },

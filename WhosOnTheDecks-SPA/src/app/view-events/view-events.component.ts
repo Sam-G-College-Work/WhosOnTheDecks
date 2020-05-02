@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { EventService } from "../_service/event.service";
 import { AlertifyService } from "../_service/alertly.service";
 import { MatCardModule } from "@angular/material";
 import { AuthService } from "../_service/auth.service";
-import { EventDisplay } from "../_models/event-display";
+import { Event } from "../_models/event";
+import { PromoterService } from "../_service/promoter.service";
 
 @Component({
   selector: "app-view-events",
@@ -11,10 +11,10 @@ import { EventDisplay } from "../_models/event-display";
   styleUrls: ["./view-events.component.css"],
 })
 export class ViewEventsComponent implements OnInit {
-  eventDisplays: EventDisplay[];
+  eventDisplays: Event[];
 
   constructor(
-    private eventService: EventService,
+    private promoterService: PromoterService,
     private alertify: AlertifyService,
     private authService: AuthService,
     matCardModule: MatCardModule
@@ -25,13 +25,15 @@ export class ViewEventsComponent implements OnInit {
   }
 
   loadEvents() {
-    this.eventService.getEvents(this.authService.decodedToken.nameid).subscribe(
-      (eventDisplays: EventDisplay[]) => {
-        this.eventDisplays = eventDisplays;
-      },
-      (error) => {
-        this.alertify.error(error);
-      }
-    );
+    this.promoterService
+      .getPromoterEvents(this.authService.decodedToken.nameid)
+      .subscribe(
+        (eventDisplays: Event[]) => {
+          this.eventDisplays = eventDisplays;
+        },
+        (error) => {
+          this.alertify.error(error);
+        }
+      );
   }
 }
