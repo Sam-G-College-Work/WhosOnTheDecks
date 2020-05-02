@@ -14,12 +14,10 @@ namespace WhosOnTheDecks.API.Controllers
     {
         private readonly IEventRepository _erepo;
         private readonly IUserRepository _urepo;
-        private readonly IPaymentRepository _prepo;
 
         public CreateEventsController(IEventRepository erepo,
-        IUserRepository urepo, IPaymentRepository prepo)
+        IUserRepository urepo)
         {
-            _prepo = prepo;
             _urepo = urepo;
             _erepo = erepo;
         }
