@@ -153,25 +153,6 @@ namespace WhosOnTheDecks.API.Data
                 //Databse is then saved
                 context.SaveChanges();
             }
-
-            //A check to see if any payments are in database already
-            if (!context.Payments.Any())
-            {
-                //Payment data location is stored as a string for reference
-                var paymentData = System.IO.File.ReadAllText("Data/DataSeeds/PaymentSeedData.json");
-
-                //List of payment objects created from deserialized payment data 
-                var payments = JsonConvert.DeserializeObject<List<Payment>>(paymentData);
-
-                //A For loop is performed to iterate through each payment in the list of payment objects
-                foreach (var payment in payments)
-                {
-                    //Payment object is then written to the database
-                    context.Payments.Add(payment);
-                }
-                //Databse is then saved
-                context.SaveChanges();
-            }
         }
 
         //Create password hash is called within SeedUsers method
