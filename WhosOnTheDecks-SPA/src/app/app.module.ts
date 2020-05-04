@@ -29,9 +29,8 @@ import { HomeService } from "./_service/home.service";
 import { PromoterService } from "./_service/promoter.service";
 import { ViewBookedDjComponent } from "./view-events/view-booked-dj/view-booked-dj.component";
 import { SelectADjComponent } from "./create-an-event/select-a-dj/select-a-dj.component";
-import { BookingStatusPipe } from "./booking-status.pipe";
 import { EventStatusPipe } from "./event-status.pipe";
-import { BookingResponseComponent } from './view-bookings/booking-response/booking-response.component';
+import { BookingResponseComponent } from "./view-bookings/booking-response/booking-response.component";
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -49,7 +48,6 @@ export function tokenGetter() {
     ViewEventsComponent,
     ViewBookedDjComponent,
     SelectADjComponent,
-    BookingStatusPipe,
     EventStatusPipe,
     BookingResponseComponent,
   ],

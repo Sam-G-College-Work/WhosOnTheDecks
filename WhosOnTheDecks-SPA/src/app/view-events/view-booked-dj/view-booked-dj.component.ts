@@ -5,6 +5,7 @@ import { AuthService } from "src/app/_service/auth.service";
 import { MatCardModule } from "@angular/material";
 import { ActivatedRoute } from "@angular/router";
 import { Dj } from "src/app/_models/dj";
+import { Booking } from "src/app/_models/booking";
 
 @Component({
   selector: "app-view-booked-dj",
@@ -13,6 +14,7 @@ import { Dj } from "src/app/_models/dj";
 })
 export class ViewBookedDjComponent implements OnInit {
   dj: Dj;
+  booking: Booking;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,6 +26,7 @@ export class ViewBookedDjComponent implements OnInit {
 
   ngOnInit() {
     this.loadDj();
+    this.loadBooking();
   }
 
   loadDj() {
@@ -35,5 +38,18 @@ export class ViewBookedDjComponent implements OnInit {
         this.alertify.error(error);
       }
     );
+  }
+
+  loadBooking() {
+    this.promoterService
+      .getBooking(+this.route.snapshot.params["id"])
+      .subscribe(
+        (booking: Booking) => {
+          this.booking = booking;
+        },
+        (error) => {
+          this.alertify.error(error);
+        }
+      );
   }
 }

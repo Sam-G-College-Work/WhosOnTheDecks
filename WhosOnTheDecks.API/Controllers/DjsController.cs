@@ -45,7 +45,14 @@ namespace WhosOnTheDecks.API.Controllers
         {
             var booking = await _erepo.GetBooking(id);
 
-            return Ok(booking);
+            BookingDisplayDto bdto = new BookingDisplayDto();
+
+            bdto.BookingId = booking.BookingId;
+            bdto.BookingStatus = booking.BookingStatus.ToString();
+            bdto.EventId = booking.EventId;
+            bdto.DjId = booking.DjId;
+
+            return Ok(bdto);
         }
 
     }

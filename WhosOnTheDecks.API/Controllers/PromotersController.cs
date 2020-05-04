@@ -40,7 +40,7 @@ namespace WhosOnTheDecks.API.Controllers
             return Ok(promoterEvents);
         }
 
-        [HttpGet("booking/{id}")]
+        [HttpGet("dj/{id}")]
         public async Task<IActionResult> GetBookedDj(int id)
         {
             var booking = await _erepo.GetBooking(id);
@@ -58,6 +58,21 @@ namespace WhosOnTheDecks.API.Controllers
             djdto.Genre = dj.Genre.ToString();
 
             return Ok(djdto);
+        }
+
+        [HttpGet("booking/{id}")]
+        public async Task<IActionResult> GetBooking(int id)
+        {
+            var booking = await _erepo.GetBooking(id);
+
+            BookingDisplayDto bdto = new BookingDisplayDto();
+
+            bdto.BookingId = booking.BookingId;
+            bdto.BookingStatus = booking.BookingStatus.ToString();
+            bdto.EventId = booking.EventId;
+            bdto.DjId = booking.DjId;
+
+            return Ok(bdto);
         }
 
     }

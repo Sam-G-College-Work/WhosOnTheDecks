@@ -18,6 +18,7 @@
         <mat-card-content>
           <p>Equipment Required: {{ dj ? dj.equipment : "" }}</p>
           <p>Hourly Rate: {{ dj?.hourlyRate | currency: "£" }}</p>
+          <P>Response: {{ booking?.bookingStatus }}</P>
         </mat-card-content>
         <mat-card-actions>
           <button

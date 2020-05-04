@@ -1,6 +1,6 @@
 export interface Booking {
   bookingId: number;
-  bookingStatus: boolean;
+  bookingStatus: string;
   djId: number;
   eventId: number;
 }

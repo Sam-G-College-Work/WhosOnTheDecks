@@ -11,7 +11,6 @@ import { Booking } from "src/app/_models/booking";
 })
 export class BookingResponseComponent implements OnInit {
   booking: Booking;
-  responded = false;
 
   constructor(
     private djService: DjService,
@@ -37,10 +36,10 @@ export class BookingResponseComponent implements OnInit {
 
   hasResponded() {
     if (
-      this.booking.bookingStatus === true ||
-      this.booking.bookingStatus === false
+      this.booking.bookingStatus === "Accepted" ||
+      this.booking.bookingStatus === "Declined"
     ) {
-      this.responded = true;
+      return true;
     }
   }
 

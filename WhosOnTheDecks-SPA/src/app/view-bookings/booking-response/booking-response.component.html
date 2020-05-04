@@ -10,10 +10,10 @@
     <div class="col-sm-8">
       <mat-card>
         <mat-card-content>
-          <p>Response: {{ booking.bookingStatus | bookingStatus }}</p>
+          <p>Response: {{ booking.bookingStatus }}</p>
         </mat-card-content>
         <mat-card-actions>
-          <div *ngIf="hasResponded()">
+          <div *ngIf="!hasResponded()">
             <p>
               Please respond to the booking request by selecting your choice
               below
@@ -25,7 +25,6 @@
             >
               Accept
             </button>
-
             <button
               class="btn btn-danger"
               mat-button
