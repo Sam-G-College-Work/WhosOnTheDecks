@@ -28,6 +28,7 @@ import { tap } from "rxjs/operators";
 import { HomeService } from "./_service/home.service";
 import { PromoterService } from "./_service/promoter.service";
 import { ViewBookedDjComponent } from './view-events/view-booked-dj/view-booked-dj.component';
+import { SelectADjComponent } from './create-an-event/select-a-dj/select-a-dj.component';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -44,6 +45,7 @@ export function tokenGetter() {
     ViewBookingsComponent,
     ViewEventsComponent,
     ViewBookedDjComponent,
+    SelectADjComponent,
   ],
   imports: [
     BrowserModule,
