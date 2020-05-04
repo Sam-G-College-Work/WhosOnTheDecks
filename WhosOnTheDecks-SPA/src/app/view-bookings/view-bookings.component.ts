@@ -13,6 +13,7 @@ import { EventDisplay } from "../_models/event-display";
 })
 export class ViewBookingsComponent implements OnInit {
   djEvents: EventDisplay[];
+  bookings: Booking[];
 
   constructor(
     private djService: DjService,
@@ -23,6 +24,7 @@ export class ViewBookingsComponent implements OnInit {
 
   ngOnInit() {
     this.loadDjEvents();
+    this.loadDjBookings();
   }
 
   loadDjEvents() {
@@ -34,5 +36,18 @@ export class ViewBookingsComponent implements OnInit {
         this.alertify.error(error);
       }
     );
+  }
+
+  loadDjBookings() {
+    this.djService
+      .getDjBookings(this.authService.decodedToken.nameid)
+      .subscribe(
+        (bookings: Booking[]) => {
+          this.bookings = bookings;
+        },
+        (error) => {
+          this.alertify.error(error);
+        }
+      );
   }
 }

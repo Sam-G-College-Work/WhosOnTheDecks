@@ -27,8 +27,10 @@ import {
 import { tap } from "rxjs/operators";
 import { HomeService } from "./_service/home.service";
 import { PromoterService } from "./_service/promoter.service";
-import { ViewBookedDjComponent } from './view-events/view-booked-dj/view-booked-dj.component';
-import { SelectADjComponent } from './create-an-event/select-a-dj/select-a-dj.component';
+import { ViewBookedDjComponent } from "./view-events/view-booked-dj/view-booked-dj.component";
+import { SelectADjComponent } from "./create-an-event/select-a-dj/select-a-dj.component";
+import { BookingStatusPipe } from "./booking-status.pipe";
+import { EventStatusPipe } from "./event-status.pipe";
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -46,6 +48,8 @@ export function tokenGetter() {
     ViewEventsComponent,
     ViewBookedDjComponent,
     SelectADjComponent,
+    BookingStatusPipe,
+    EventStatusPipe,
   ],
   imports: [
     BrowserModule,
