@@ -19,7 +19,7 @@ export class DjService {
     );
   }
 
-  getDjBookings(id): Observable<Booking[]> {
-    return this.http.get<Booking[]>(this.baseUrl + "djs/getdjbookings/" + id);
+  getDjBooking(id): Observable<Booking> {
+    return this.http.get<Booking>(this.baseUrl + "djs/booking/" + id);
   }
 }

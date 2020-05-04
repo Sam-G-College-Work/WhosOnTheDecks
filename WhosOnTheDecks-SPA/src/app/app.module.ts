@@ -31,6 +31,7 @@ import { ViewBookedDjComponent } from "./view-events/view-booked-dj/view-booked-
 import { SelectADjComponent } from "./create-an-event/select-a-dj/select-a-dj.component";
 import { BookingStatusPipe } from "./booking-status.pipe";
 import { EventStatusPipe } from "./event-status.pipe";
+import { BookingResponseComponent } from './view-bookings/booking-response/booking-response.component';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -50,6 +51,7 @@ export function tokenGetter() {
     SelectADjComponent,
     BookingStatusPipe,
     EventStatusPipe,
+    BookingResponseComponent,
   ],
   imports: [
     BrowserModule,

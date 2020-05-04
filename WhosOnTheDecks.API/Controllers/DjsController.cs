@@ -21,23 +21,6 @@ namespace WhosOnTheDecks.API.Controllers
             _erepo = erepo;
         }
 
-        [HttpGet("getdjbookings/{id}")]
-        public async Task<IActionResult> GetDjBookings(int Id)
-        {
-            var bookings = await _erepo.GetBookings();
-
-            List<Booking> djBookings = new List<Booking>();
-
-            foreach (Booking booking in bookings)
-            {
-                if (booking.DjId == Id)
-                {
-                    djBookings.Add(booking);
-                }
-            }
-            return Ok(djBookings);
-        }
-
         [HttpGet("getdjevents/{id?}")]
         public async Task<IActionResult> GetDjEvents(int id)
         {
@@ -55,6 +38,14 @@ namespace WhosOnTheDecks.API.Controllers
                 }
             }
             return Ok(djEvents);
+        }
+
+        [HttpGet("booking/{id}")]
+        public async Task<IActionResult> GetBooking(int id)
+        {
+            var booking = await _erepo.GetBooking(id);
+
+            return Ok(booking);
         }
 
     }

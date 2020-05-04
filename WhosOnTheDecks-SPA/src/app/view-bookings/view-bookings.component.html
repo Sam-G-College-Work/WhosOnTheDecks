@@ -20,8 +20,11 @@
           <p>Event ID: {{ djEvent.eventId }}</p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button>
-            To Be Added
+          <button
+            mat-button
+            [routerLink]="['/view-bookings/', djEvent.eventId]"
+          >
+            Response
           </button>
         </mat-card-actions>
       </mat-card>

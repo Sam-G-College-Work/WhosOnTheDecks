@@ -6,6 +6,7 @@ import { ViewBookingsComponent } from "./view-bookings/view-bookings.component";
 import { ViewEventsComponent } from "./view-events/view-events.component";
 import { AuthGuard } from "./_guards/auth.guard";
 import { ViewBookedDjComponent } from "./view-events/view-booked-dj/view-booked-dj.component";
+import { BookingResponseComponent } from "./view-bookings/booking-response/booking-response.component";
 
 export const appRoutes: Routes = [
   { path: "", component: HomeComponent },
@@ -16,6 +17,7 @@ export const appRoutes: Routes = [
     children: [
       { path: "create-an-event", component: CreateAnEventComponent },
       { path: "view-all-djs", component: ViewAllDjsComponent },
+      { path: "view-bookings/:id", component: BookingResponseComponent },
       { path: "view-bookings", component: ViewBookingsComponent },
       { path: "view-events/:id", component: ViewBookedDjComponent },
       { path: "view-events", component: ViewEventsComponent },
