@@ -1,3 +1,4 @@
+import { uniq } from "lodash";
 import { Component, OnInit } from "@angular/core";
 import { Dj } from "../_models/dj";
 import { AlertifyService } from "../_service/alertly.service";
@@ -12,6 +13,7 @@ import { HomeService } from "../_service/home.service";
 })
 export class ViewAllDjsComponent implements OnInit {
   djs: Dj[];
+  genres: string[];
   isdj = false;
 
   constructor(
@@ -30,6 +32,7 @@ export class ViewAllDjsComponent implements OnInit {
     this.homeService.getDjs().subscribe(
       (djs: Dj[]) => {
         this.djs = djs;
+        this.genres = uniq(this.djs.map((dj) => dj.genre));
       },
       (error) => {
         this.alertify.error(error);

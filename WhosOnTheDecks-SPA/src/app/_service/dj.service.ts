@@ -3,6 +3,7 @@ import { environment } from "src/environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Booking } from "../_models/booking";
+import { EventDisplay } from "../_models/event-display";
 
 @Injectable({
   providedIn: "root",
@@ -12,8 +13,10 @@ export class DjService {
 
   constructor(private http: HttpClient) {}
 
-  getDjEvents(id): Observable<Event[]> {
-    return this.http.get<Event[]>(this.baseUrl + "djs/getdjevents/" + id);
+  getDjEvents(id): Observable<EventDisplay[]> {
+    return this.http.get<EventDisplay[]>(
+      this.baseUrl + "djs/getdjevents/" + id
+    );
   }
 
   getDjBookings(id): Observable<Booking[]> {

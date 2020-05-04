@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { Event } from "../_models/event";
+import { EventDisplay } from "../_models/event-display";
 import { Dj } from "../_models/dj";
 
 @Injectable({
@@ -13,8 +13,10 @@ export class PromoterService {
 
   constructor(private http: HttpClient) {}
 
-  getPromoterEvents(id): Observable<Event[]> {
-    return this.http.get<Event[]>(this.baseUrl + "promoters/events/" + id);
+  getPromoterEvents(id): Observable<EventDisplay[]> {
+    return this.http.get<EventDisplay[]>(
+      this.baseUrl + "promoters/events/" + id
+    );
   }
 
   getDj(id): Observable<Dj> {

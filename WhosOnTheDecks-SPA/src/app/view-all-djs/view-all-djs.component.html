@@ -1,4 +1,5 @@
 <div class="container mt-5">
+  <pre>{{ genres | json }} </pre>
   <div class="row">
     <div class="card-container">
       <mat-card *ngFor="let dj of djs">
@@ -13,10 +14,15 @@
         />
         <mat-card-content>
           <p>Equipment Required: {{ dj.equipment }}</p>
-          <p>Hourly Rate: £{{ dj.hourlyRate }}</p>
+          <p>Hourly Rate: {{ dj.hourlyRate | currency: "£" }}</p>
         </mat-card-content>
         <mat-card-actions>
-          <button *ngIf="!isdj" mat-button [routerLink]="['/create-an-event']">
+          <button
+            class="btn btn-primary"
+            *ngIf="!isdj"
+            mat-button
+            [routerLink]="['/create-an-event']"
+          >
             Create an Event
           </button>
         </mat-card-actions>

@@ -5,7 +5,7 @@
         <mat-card-header>
           <mat-card-title>Date and Time</mat-card-title>
           <mat-card-subtitle>{{
-            eventDisplay.dateTimeOfEvent | date: "short"
+            eventDisplay.dateTimeOfEvent | date: "dd/MM/yyyy, HH:mm"
           }}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
@@ -15,14 +15,15 @@
           <p>Length of Event: {{ eventDisplay.lengthOfEvent }} hours</p>
           <p>Event Live: {{ eventDisplay.eventStatus }}</p>
           <p>
-            Date Created: {{ eventDisplay.dateCreated | date: "shortDate" }}
+            Date Created:
+            {{ eventDisplay.dateCreated | date: "dd/MM/yyyy" }}
           </p>
-          <p>Total Cost: £{{ eventDisplay.totalCost }}</p>
+          <p>Total Cost: {{ eventDisplay.totalCost | currency: "£" }}</p>
         </mat-card-content>
         <mat-card-actions>
           <button
             mat-button
-            [routerLink]="['/view-booked-dj/', eventDisplay.eventId]"
+            [routerLink]="['/view-events/', eventDisplay.eventId]"
           >
             View Booking
           </button>

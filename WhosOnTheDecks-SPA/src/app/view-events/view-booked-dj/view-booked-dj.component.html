@@ -1,1 +1,3 @@
-<p>{{ dj.djName }}</p>
+<p>{{ dj ? dj.djName : "" }}</p>
+<p>{{ dj ? dj.genre : "" }}</p>
+<p>{{ dj ? dj.hourlyRate : ("" | currency: "£") }}</p>

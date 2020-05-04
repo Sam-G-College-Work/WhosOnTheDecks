@@ -22,7 +22,9 @@ export class ViewBookedDjComponent implements OnInit {
     matCardModule: MatCardModule
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loadDj();
+  }
 
   loadDj() {
     this.promoterService.getDj(+this.route.snapshot.params["id"]).subscribe(

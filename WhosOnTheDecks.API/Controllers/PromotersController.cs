@@ -41,9 +41,9 @@ namespace WhosOnTheDecks.API.Controllers
         }
 
         [HttpGet("booking/{id}")]
-        public async Task<IActionResult> GetBookedDj(int eventId)
+        public async Task<IActionResult> GetBookedDj(int id)
         {
-            var booking = await _erepo.GetBooking(eventId);
+            var booking = await _erepo.GetBooking(id);
 
             var djId = booking.DjId;
 

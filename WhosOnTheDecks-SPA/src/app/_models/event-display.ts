@@ -1,4 +1,4 @@
-export interface Event {
+export interface EventDisplay {
   eventId: number;
   dateCreated: Date;
   dateTimeOfEvent: Date;

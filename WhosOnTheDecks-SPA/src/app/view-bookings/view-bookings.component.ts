@@ -4,6 +4,7 @@ import { AlertifyService } from "../_service/alertly.service";
 import { AuthService } from "../_service/auth.service";
 import { MatCardModule } from "@angular/material";
 import { DjService } from "../_service/dj.service";
+import { EventDisplay } from "../_models/event-display";
 
 @Component({
   selector: "app-view-bookings",
@@ -11,7 +12,7 @@ import { DjService } from "../_service/dj.service";
   styleUrls: ["./view-bookings.component.css"],
 })
 export class ViewBookingsComponent implements OnInit {
-  djEvents: Event[];
+  djEvents: EventDisplay[];
 
   constructor(
     private djService: DjService,
@@ -26,7 +27,7 @@ export class ViewBookingsComponent implements OnInit {
 
   loadDjEvents() {
     this.djService.getDjEvents(this.authService.decodedToken.nameid).subscribe(
-      (djEvents: Event[]) => {
+      (djEvents: EventDisplay[]) => {
         this.djEvents = djEvents;
       },
       (error) => {

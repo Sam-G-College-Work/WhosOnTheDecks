@@ -3,8 +3,13 @@
     <div class="card-container">
       <mat-card *ngFor="let djEvent of djEvents">
         <mat-card-header>
-          <mat-card-title>Booking ID: </mat-card-title>
-          <mat-card-subtitle>Event ID: </mat-card-subtitle>
+          <mat-card-title
+            >Date and Time:
+            {{ djEvent.dateTimeOfEvent | date: "dd/MM/yyyy, HH:mm" }}
+          </mat-card-title>
+          <mat-card-subtitle
+            >Total Pay: {{ djEvent.totalCost | currency: "£" }}
+          </mat-card-subtitle>
         </mat-card-header>
         <mat-card-content> </mat-card-content>
         <mat-card-actions>
