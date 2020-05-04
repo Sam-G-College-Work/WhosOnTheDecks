@@ -14,10 +14,11 @@ namespace WhosOnTheDecks.API.Models
         [Key]
         public int BookingId { get; set; }
 
-        //Boolean Bookingstatus to indicate weither the booking is Active or Cancelled
+        //Enum Bookingstatus to indicate weither the booking is Accepted, Declined or Awaiting response
         [Required]
         [Display(Name = "Booking Status")]
-        public bool BookingStatus { get; set; }
+        [EnumDataType(typeof(Genre))]
+        public BookingStatus BookingStatus { get; set; }
 
         //Navigational Property
         //Links Booking to a single DJ
@@ -30,5 +31,13 @@ namespace WhosOnTheDecks.API.Models
         [ForeignKey("Event")]
         public int EventId { get; set; }
         public Event Event { get; set; }
+    }
+
+    //Enum created to store booking status
+    public enum BookingStatus
+    {
+        Accepted,
+        Declined,
+        Awaiting
     }
 }

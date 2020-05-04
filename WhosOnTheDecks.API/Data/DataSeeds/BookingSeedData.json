@@ -1,76 +1,76 @@
 [
   {
-    "BookingStatus": true,
+    "BookingStatus": "Accepted",
     "DjId": 35,
     "EventId": 1
   },
   {
-    "BookingStatus": true,
+    "BookingStatus": "Declined",
     "DjId": 19,
     "EventId": 2
   },
   {
-    "BookingStatus": true,
+    "BookingStatus": "Awaiting",
     "DjId": 11,
     "EventId": 3
   },
   {
-    "BookingStatus": true,
+    "BookingStatus": "Accepted",
     "DjId": 11,
     "EventId": 4
   },
   {
-    "BookingStatus": true,
+    "BookingStatus": "Accepted",
     "DjId": 17,
     "EventId": 5
   },
   {
-    "BookingStatus": true,
+    "BookingStatus": "Declined",
     "DjId": 25,
     "EventId": 6
   },
   {
-    "BookingStatus": true,
+    "BookingStatus": "Awaiting",
     "DjId": 23,
     "EventId": 7
   },
   {
-    "BookingStatus": true,
+    "BookingStatus": "Accepted",
     "DjId": 37,
     "EventId": 8
   },
   {
-    "BookingStatus": true,
+    "BookingStatus": "Accepted",
     "DjId": 16,
     "EventId": 9
   },
   {
-    "BookingStatus": true,
+    "BookingStatus": "Declined",
     "DjId": 38,
     "EventId": 10
   },
   {
-    "BookingStatus": true,
+    "BookingStatus": "Awaiting",
     "DjId": 39,
     "EventId": 11
   },
   {
-    "BookingStatus": true,
+    "BookingStatus": "Declined",
     "DjId": 20,
     "EventId": 12
   },
   {
-    "BookingStatus": true,
+    "BookingStatus": "Accepted",
     "DjId": 28,
     "EventId": 13
   },
   {
-    "BookingStatus": true,
+    "BookingStatus": "Accepted",
     "DjId": 20,
     "EventId": 14
   },
   {
-    "BookingStatus": true,
+    "BookingStatus": "Awaiting",
     "DjId": 20,
     "EventId": 15
   }
