@@ -25,29 +25,6 @@ namespace WhosOnTheDecks.API.Data
             _context.Add(entity);
         }
 
-        public async Task<bool> BookingExists(int DjId, int EvId)
-        {
-            var bookings = await _context.Bookings.ToListAsync();
-
-            foreach (Booking booking in bookings)
-            {
-                if (DjId.Equals(booking.DjId))
-                {
-                    var eventToCheck = await _context.Events.
-                    FirstOrDefaultAsync(e => e.EventId == booking.EventId);
-
-                    var eventBeingMade = await _context.Events.
-                    FirstOrDefaultAsync(e => e.EventId == EvId);
-
-                    if (eventBeingMade.DateTimeOfEvent.Equals(eventToCheck.DateTimeOfEvent))
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-
         //GetBooking will take in an integer of id for the eventId and return 
         //the matching booking
         //from the database
@@ -96,6 +73,11 @@ namespace WhosOnTheDecks.API.Data
         public void Update<T>(T entity) where T : class
         {
             _context.Update(entity);
+        }
+
+        public void Remove<T>(T entity) where T : class
+        {
+            _context.Remove(entity);
         }
     }
 }
