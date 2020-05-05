@@ -15,7 +15,6 @@ namespace WhosOnTheDecks.API.Models
         public int EventId { get; set; }
 
         //DateTime DateCreated used to store the Date the event was made
-        [Required]
         [Display(Name = "Date Created")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:d}")]
@@ -35,13 +34,11 @@ namespace WhosOnTheDecks.API.Models
         public int LengthOfEvent { get; set; }
 
         //Decimal CostOfEvent used to store the entry cost of the event
-        [Required]
         [Display(Name = "Total Cost")]
         [DataType(DataType.Currency)]
         public decimal TotalCost { get; set; }
 
         //Boolean EventStatus used to show if Event is Active or Cancelled
-        [Required]
         [Display(Name = "Event Status")]
         public bool EventStatus { get; set; }
 
