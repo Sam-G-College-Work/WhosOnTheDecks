@@ -11,6 +11,8 @@ namespace WhosOnTheDecks.API.Data
         //Add takes in any T of entity where it matches to a class
         void Add<T>(T entity) where T : class;
 
+        void Update<T>(T entity) where T : class;
+
         //Save all return a true or false depending on outcome
         Task<bool> SaveAll();
 

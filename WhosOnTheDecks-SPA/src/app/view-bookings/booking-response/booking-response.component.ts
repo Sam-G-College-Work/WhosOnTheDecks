@@ -43,5 +43,17 @@ export class BookingResponseComponent implements OnInit {
     }
   }
 
-  bookingResponse(response) {}
+  // bookingResponse(response: string) {
+  //   this.booking.bookingStatus = response;
+  //   this.djService
+  //     .postResponse(+this.route.snapshot.params["id"], this.booking)
+  //     .subscribe(
+  //       (next) => {
+  //         this.alertify.success("Thank you for your response");
+  //       },
+  //       (error) => {
+  //         this.alertify.error(error);
+  //       }
+  //     );
+  // }
 }

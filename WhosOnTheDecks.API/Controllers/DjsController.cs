@@ -21,7 +21,7 @@ namespace WhosOnTheDecks.API.Controllers
             _erepo = erepo;
         }
 
-        [HttpGet("getdjevents/{id?}")]
+        [HttpGet("getdjevents/{id}")]
         public async Task<IActionResult> GetDjEvents(int id)
         {
             var bookings = await _erepo.GetBookings();
@@ -55,5 +55,29 @@ namespace WhosOnTheDecks.API.Controllers
             return Ok(bdto);
         }
 
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> PostResponse(int id, BookingDisplayDto booking)
+        {
+            var bookingToChange = await _erepo.GetBooking(id);
+
+            if (booking.BookingStatus == "Accepted")
+            {
+                bookingToChange.BookingStatus = BookingStatus.Accepted;
+            }
+            else if (booking.BookingStatus == "Declined")
+            {
+                bookingToChange.BookingStatus = BookingStatus.Declined;
+            }
+            else
+            {
+                return BadRequest("Please select Accept or Decline");
+            }
+
+            _erepo.Update(bookingToChange);
+
+            await _erepo.SaveAll();
+
+            return Ok(bookingToChange);
+        }
     }
 }

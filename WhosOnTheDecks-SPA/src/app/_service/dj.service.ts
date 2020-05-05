@@ -22,4 +22,8 @@ export class DjService {
   getDjBooking(id): Observable<Booking> {
     return this.http.get<Booking>(this.baseUrl + "djs/booking/" + id);
   }
+
+  postResponse(id: number, booking: Booking) {
+    return this.http.post(this.baseUrl + "update/" + id, booking);
+  }
 }
