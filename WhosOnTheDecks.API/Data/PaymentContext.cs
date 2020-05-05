@@ -27,9 +27,9 @@ namespace WhosOnTheDecks.API.Data
 
         //Add will take in any type of entity that matches a class
         //The entity will be added from the databse 
-        public void Remove<T>(T entity) where T : class
+        public void Remove(Payment payment)
         {
-            _context.Remove(entity);
+            _context.Remove(payment);
         }
 
         //GetPayments will retunr a list of Payments

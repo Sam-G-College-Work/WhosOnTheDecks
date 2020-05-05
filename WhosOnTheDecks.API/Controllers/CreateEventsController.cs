@@ -15,19 +15,17 @@ namespace WhosOnTheDecks.API.Controllers
     public class CreateEventsController : ControllerBase
     {
         private readonly IEventRepository _erepo;
+        private readonly IPaymentRepository _prepo;
         private readonly IUserRepository _urepo;
-
-        private Dictionary<int, Event> EventShoppingBasket = new Dictionary<int, Event>();
-
-        private Dictionary<int, Booking> BookingShoppingBasket = new Dictionary<int, Booking>();
 
         private List<Dj> AvaliableDjsToConvert = new List<Dj>();
 
         private List<DjDisplayDto> AvaliableDjsToDisplay = new List<DjDisplayDto>();
 
         public CreateEventsController(IEventRepository erepo,
-        IUserRepository urepo)
+        IUserRepository urepo, IPaymentRepository prepo)
         {
+            _prepo = prepo;
             _urepo = urepo;
             _erepo = erepo;
         }
@@ -51,37 +49,36 @@ namespace WhosOnTheDecks.API.Controllers
                 AvaliableDjsToConvert.Add(dj);
             }
 
-            if (BookingShoppingBasket.Count > 0)
+            var payments = await _prepo.GetPayments();
+
+            foreach (Payment payment in payments)
             {
-                foreach (KeyValuePair<int, Booking> kvp in BookingShoppingBasket)
+                var dj = await _urepo.GetDj(payment.DjId);
+
+                AvaliableDjsToConvert.Remove(dj);
+
+                //Loop is started to itterate through each event in allEvents List
+                foreach (Event ev in allEvents)
                 {
-                    Booking book = kvp.Value;
-
-                    var Dj = await _urepo.GetDj(book.DjId);
-
-                    AvaliableDjsToConvert.Remove(Dj);
-                }
-            }
-
-            //Loop is started to itterate through each event in allEvents List
-            foreach (Event ev in allEvents)
-            {
-                DateTime newDate = evNew.DateTimeOfEvent.Date;
-
-                DateTime compareDate = ev.DateTimeOfEvent.Date;
-
-                //A check is performed between the date and time of the new event and 
-                if (newDate == compareDate)
-                {
-
-                    var booking = await _erepo.GetBooking(ev.EventId);
-
-                    if (booking.BookingStatus == BookingStatus.Accepted
-                    || booking.BookingStatus == BookingStatus.Awaiting)
+                    if (payment.EventId != ev.EventId)
                     {
-                        var Dj = await _urepo.GetDj(booking.DjId);
+                        DateTime newDate = evNew.DateTimeOfEvent.Date;
 
-                        AvaliableDjsToConvert.Remove(Dj);
+                        DateTime compareDate = ev.DateTimeOfEvent.Date;
+
+                        //A check is performed between the date and time of the new event and 
+                        if (newDate == compareDate)
+                        {
+                            var booking = await _erepo.GetBooking(ev.EventId);
+
+                            if (booking.BookingStatus == BookingStatus.Accepted
+                            || booking.BookingStatus == BookingStatus.Awaiting)
+                            {
+                                var Dj = await _urepo.GetDj(booking.DjId);
+
+                                AvaliableDjsToConvert.Remove(Dj);
+                            }
+                        }
                     }
                 }
             }
@@ -122,29 +119,76 @@ namespace WhosOnTheDecks.API.Controllers
             eventToCreate.EventStatus = true;
             eventToCreate.PromoterId = promoterId;
 
-            EventShoppingBasket.Add(promoterId, eventToCreate);
+            _erepo.Add(eventToCreate);
 
-            bookingToCreate.BookingStatus = BookingStatus.Awaiting;
-            bookingToCreate.DjId = djId;
+            await _erepo.SaveAll();
 
-            BookingShoppingBasket.Add(promoterId, bookingToCreate);
+            Payment paymentNew = new Payment();
 
-            return Ok(EventShoppingBasket);
+            paymentNew.EventId = eventToCreate.EventId;
+
+            paymentNew.DjId = djId;
+
+            _prepo.Add(paymentNew);
+
+            await _prepo.SaveAll();
+
+            List<Event> shoppingBasket = new List<Event>();
+
+            var payments = await _prepo.GetPayments();
+
+            foreach (Payment payment in payments)
+            {
+                var eventToCheck = await _erepo.GetEvent(payment.EventId);
+
+                if (eventToCheck.PromoterId == promoterId)
+                {
+                    shoppingBasket.Add(eventToCheck);
+                }
+            }
+
+            return Ok(shoppingBasket);
         }
 
-        [HttpPost("cancel")]
-        public IActionResult Cancel()
+        [HttpPost("cancel/{promoterId}")]
+        public async Task<IActionResult> Cancel(int promoterId)
         {
-            EventShoppingBasket.Clear();
-            BookingShoppingBasket.Clear();
+            var payments = await _prepo.GetPayments();
+
+            foreach (Payment payment in payments)
+            {
+                var eventToCheck = await _erepo.GetEvent(payment.EventId);
+
+                if (eventToCheck.PromoterId == promoterId)
+                {
+                    _prepo.Remove(payment);
+                    await _prepo.SaveAll();
+                    _erepo.Remove(eventToCheck);
+                    await _erepo.SaveAll();
+                }
+            }
 
             return Ok("Your orders have been removed");
         }
 
-        [HttpGet("listevents")]
-        public IActionResult ListEvents()
+        [HttpGet("shoppingexists/{promoterId}")]
+        public async Task<bool> ShoppingExists(int promoterId)
         {
-            return Ok(EventShoppingBasket);
+            bool shoppingExists = false;
+
+            var payments = await _prepo.GetPayments();
+
+            foreach (Payment payment in payments)
+            {
+                var ev = await _erepo.GetEvent(payment.EventId);
+
+                if (ev.PromoterId == promoterId)
+                {
+                    shoppingExists = true;
+                }
+            }
+
+            return shoppingExists;
         }
     }
 }

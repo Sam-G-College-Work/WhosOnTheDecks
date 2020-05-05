@@ -75,9 +75,9 @@ namespace WhosOnTheDecks.API.Data
             _context.Update(entity);
         }
 
-        public void Remove<T>(T entity) where T : class
+        public void Remove(Event ev)
         {
-            _context.Remove(entity);
+            _context.Remove(ev);
         }
     }
 }

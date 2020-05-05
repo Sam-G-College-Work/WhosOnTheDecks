@@ -19,7 +19,7 @@ namespace WhosOnTheDecks.API.Data
 
         //Remove will remove incomplete payments if the user does not complete purchase 
         //This will also remove all payments after they are made
-        void Remove<T>(T entity) where T : class;
+        void Remove(Payment payment);
 
     }
 }

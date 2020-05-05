@@ -15,7 +15,7 @@ namespace WhosOnTheDecks.API.Data
         void Update<T>(T entity) where T : class;
 
         //Remove will remove any event or booking
-        void Remove<T>(T entity) where T : class;
+        void Remove(Event ev);
 
         //Save all return a true or false depending on outcome
         Task<bool> SaveAll();
