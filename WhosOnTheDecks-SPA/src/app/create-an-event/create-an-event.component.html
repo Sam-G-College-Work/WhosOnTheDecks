@@ -1,1 +1,53 @@
-<p>create-an-event works!</p>
+<form #registerForm="ngForm">
+  <h2 class="text-center text-primary">Create An Event</h2>
+  <hr />
+
+  <div class="form-group">
+    <input
+      type="datetime"
+      class="form-control"
+      required
+      name="dateTimeOfEvent"
+      [(ngModel)]="ev.dateTimeOfEvent"
+      placeholder="Date and Time"
+    />
+  </div>
+
+  <div class="form-group">
+    <input
+      type="number"
+      class="form-control"
+      required
+      name="lengthOfEvent"
+      [(ngModel)]="ev.lengthOfEvent"
+      placeholder="Length Of Event"
+    />
+  </div>
+
+  <div class="form-group">
+    <input
+      type="text"
+      class="form-control"
+      required
+      name="eventAddress"
+      [(ngModel)]="ev.eventAddress"
+      placeholder="Address"
+    />
+  </div>
+
+  <div class="form-group">
+    <input
+      type="text"
+      class="form-control"
+      required
+      name="postcode"
+      [(ngModel)]="ev.postcode"
+      placeholder="Postcode"
+    />
+  </div>
+
+  <div class="form-group text-center">
+    <button class="btn btn-success" type="submit">Pick a DJ</button>
+    <button class="btn btn-default" type="button">Cancel</button>
+  </div>
+</form>

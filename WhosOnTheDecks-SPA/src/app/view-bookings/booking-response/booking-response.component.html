@@ -2,26 +2,34 @@
   <div class="row">
     <div class="col-sm-4">
       <mat-card>
-        <mat-card-title>Booking ID: {{ booking.bookingId }}</mat-card-title>
-        <mat-card-subtitle>Event ID: {{ booking.eventId }}</mat-card-subtitle>
-        <mat-card-subtitle>Your ID: {{ booking.djId }}</mat-card-subtitle>
+        <mat-card-title>Booking ID: {{ booking?.bookingId }}</mat-card-title>
+        <mat-card-subtitle>Event ID: {{ booking?.eventId }}</mat-card-subtitle>
+        <mat-card-subtitle>Your ID: {{ booking?.djId }}</mat-card-subtitle>
       </mat-card>
     </div>
     <div class="col-sm-8">
       <mat-card>
         <mat-card-content>
-          <p>Response: {{ booking.bookingStatus }}</p>
+          <p>Response: {{ booking?.bookingStatus }}</p>
         </mat-card-content>
         <mat-card-actions>
-          <div *ngIf="!hasResponded()">
+          <div *ngIf="booking && !hasResponded()">
             <p>
               Please respond to the booking request by selecting your choice
               below
             </p>
-            <button class="btn btn-success" mat-button>
+            <button
+              class="btn btn-success"
+              (click)="bookingResponse('Accepted')"
+              mat-button
+            >
               Accept
             </button>
-            <button class="btn btn-danger" mat-button>
+            <button
+              class="btn btn-danger"
+              (click)="bookingResponse('Declined')"
+              mat-button
+            >
               Decline
             </button>
           </div>

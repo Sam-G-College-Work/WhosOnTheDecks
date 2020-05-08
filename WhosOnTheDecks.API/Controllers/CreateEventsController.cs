@@ -150,7 +150,7 @@ namespace WhosOnTheDecks.API.Controllers
             return Ok(shoppingBasket);
         }
 
-        [HttpPost("cancel/{promoterId}")]
+        [HttpGet("cancel/{promoterId}")]
         public async Task<IActionResult> Cancel(int promoterId)
         {
             var payments = await _prepo.GetPayments();

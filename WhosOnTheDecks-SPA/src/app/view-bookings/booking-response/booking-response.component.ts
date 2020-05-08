@@ -20,13 +20,15 @@ export class BookingResponseComponent implements OnInit {
 
   ngOnInit() {
     this.loadBooking();
-    this.hasResponded();
   }
 
   loadBooking() {
     this.djService.getDjBooking(+this.route.snapshot.params["id"]).subscribe(
       (booking: Booking) => {
-        this.booking = booking;
+        if (booking) {
+          this.booking = booking;
+          this.hasResponded();
+        }
       },
       (error) => {
         this.alertify.error(error);
@@ -43,17 +45,17 @@ export class BookingResponseComponent implements OnInit {
     }
   }
 
-  // bookingResponse(response: string) {
-  //   this.booking.bookingStatus = response;
-  //   this.djService
-  //     .postResponse(+this.route.snapshot.params["id"], this.booking)
-  //     .subscribe(
-  //       (next) => {
-  //         this.alertify.success("Thank you for your response");
-  //       },
-  //       (error) => {
-  //         this.alertify.error(error);
-  //       }
-  //     );
-  // }
+  bookingResponse(response: string) {
+    this.booking.bookingStatus = response;
+    this.djService
+      .postResponse(+this.route.snapshot.params["id"], this.booking)
+      .subscribe(
+        (next) => {
+          this.alertify.success("Thank you for your response");
+        },
+        (error) => {
+          this.alertify.error(error);
+        }
+      );
+  }
 }

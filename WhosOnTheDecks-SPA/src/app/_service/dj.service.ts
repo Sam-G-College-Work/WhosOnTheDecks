@@ -24,6 +24,6 @@ export class DjService {
   }
 
   postResponse(id: number, booking: Booking) {
-    return this.http.post(this.baseUrl + "update/" + id, booking);
+    return this.http.put(`${this.baseUrl}djs/update/${id}`, booking);
   }
 }

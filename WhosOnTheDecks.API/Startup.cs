@@ -13,6 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 using WhosOnTheDecks.API.Data;
 using WhosOnTheDecks.API.Helpers;
 using AutoMapper;
+using Stripe;
 
 namespace WhosOnTheDecks.API
 {
@@ -21,6 +22,7 @@ namespace WhosOnTheDecks.API
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            StripeConfiguration.ApiKey = Configuration["Stripe:TestSecretKey"];
         }
 
         public IConfiguration Configuration { get; }
@@ -61,6 +63,9 @@ namespace WhosOnTheDecks.API
             //Add scoped will use the same reference within the same http requests 
             //but will generate another if the a new http request is made 
             services.AddScoped<IPaymentRepository, PaymentContext>();
+
+            //Adding Stripe as a service
+            services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
 
             //Adding authentication as a service
             //It will validate the key associated with tokens when a user is logging in
