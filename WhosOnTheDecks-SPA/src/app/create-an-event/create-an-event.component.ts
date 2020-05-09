@@ -1,5 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { CreateEvent } from "../_models/create-event";
+import { Router } from "@angular/router";
+import { CreateEventService } from "../_service/create-event.service";
+import { AuthService } from "../_service/auth.service";
+import { AlertifyService } from "../_service/alertly.service";
 
 @Component({
   selector: "app-create-an-event",
@@ -12,10 +16,28 @@ export class CreateAnEventComponent implements OnInit {
   maxDate = new Date(2025, 12, 31);
   minLength = 1;
   maxLength = 8;
+  shop: boolean;
 
-  constructor() {}
+  constructor(
+    private router: Router,
+    private createEvent: CreateEventService,
+    private authService: AuthService,
+    private alertify: AlertifyService
+  ) {}
 
   ngOnInit() {}
 
-  cancel() {}
+  selectADj() {
+    this.router.navigate(["/select-a-dj/", this.evNew]);
+  }
+
+  cancel() {
+    if (this.createEvent.shoppingExists(this.authService.decodedToken.nameId)) {
+      this.router.navigate(["/confirm-events"]);
+      this.alertify.error("There's bookings in your basket");
+    } else {
+      this.createEvent.cancelOrders(this.authService.decodedToken.nameId);
+      this.router.navigate([""]);
+    }
+  }
 }

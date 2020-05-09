@@ -30,7 +30,7 @@ namespace WhosOnTheDecks.API.Controllers
             _erepo = erepo;
         }
 
-        [HttpGet("avaliabledjs")]
+        [HttpPost("avaliabledjs")]
         public async Task<IActionResult> GetAvaliableDjs(Event evNew)
         {
             //List of all events currently in databse

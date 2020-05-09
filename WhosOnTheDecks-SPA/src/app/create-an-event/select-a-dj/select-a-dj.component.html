@@ -1,1 +1,27 @@
-<p>select-a-dj works!</p>
+<div class="container mt-5">
+  <pre>{{ genres | json }} </pre>
+  <div class="row">
+    <div class="card-container">
+      <mat-card *ngFor="let dj of djs">
+        <mat-card-header>
+          <mat-card-title>{{ dj.djName }}</mat-card-title>
+          <mat-card-subtitle>{{ dj.genre }}</mat-card-subtitle>
+        </mat-card-header>
+        <img
+          mat-card-mat-card-sm-image
+          src="assets/_images/33080315618_9ed10331c6_q.jpg"
+          alt="Who's On The Decks!!"
+        />
+        <mat-card-content>
+          <p>Equipment Required: {{ dj.equipment }}</p>
+          <p>Hourly Rate: {{ dj.hourlyRate | currency: "£" }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button class="btn btn-primary" mat-button (click)="confirmEvent()">
+            Select DJ
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-export interface CreateEvent {
+export class CreateEvent {
   dateTimeOfEvent: Date;
   lengthOfEvent: number;
   eventAddress: string;
