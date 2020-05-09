@@ -1,0 +1,7 @@
+.form-group {
+  display: flex;
+  justify-content: center;
+  max-width: 300px; /*  <--- adjust this width to suit */
+  padding: 20px;
+  margin: 20px;
+}

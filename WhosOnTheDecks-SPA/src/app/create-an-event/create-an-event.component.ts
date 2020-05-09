@@ -7,8 +7,15 @@ import { CreateEvent } from "../_models/create-event";
   styleUrls: ["./create-an-event.component.css"],
 })
 export class CreateAnEventComponent implements OnInit {
-  ev: CreateEvent;
+  evNew: any = {};
+  minDate = new Date();
+  maxDate = new Date(2025, 12, 31);
+  minLength = 1;
+  maxLength = 8;
+
   constructor() {}
 
   ngOnInit() {}
+
+  cancel() {}
 }

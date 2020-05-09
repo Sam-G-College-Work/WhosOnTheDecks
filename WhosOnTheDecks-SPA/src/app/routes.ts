@@ -7,6 +7,9 @@ import { ViewEventsComponent } from "./view-events/view-events.component";
 import { AuthGuard } from "./_guards/auth.guard";
 import { ViewBookedDjComponent } from "./view-events/view-booked-dj/view-booked-dj.component";
 import { BookingResponseComponent } from "./view-bookings/booking-response/booking-response.component";
+import { SelectADjComponent } from "./create-an-event/select-a-dj/select-a-dj.component";
+import { ConfirmEventsComponent } from "./create-an-event/confirm-events/confirm-events.component";
+import { PaymentComponent } from "./create-an-event/payment/payment.component";
 
 export const appRoutes: Routes = [
   { path: "", component: HomeComponent },
@@ -16,6 +19,9 @@ export const appRoutes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: "create-an-event", component: CreateAnEventComponent },
+      { path: "select-a-dj", component: SelectADjComponent },
+      { path: "confirm-events", component: ConfirmEventsComponent },
+      { path: "payment", component: PaymentComponent },
       { path: "view-all-djs", component: ViewAllDjsComponent },
       { path: "view-bookings/:id", component: BookingResponseComponent },
       { path: "view-bookings", component: ViewBookingsComponent },

@@ -17,7 +17,7 @@ export class CreateEventService {
   //       public async Task<IActionResult> CreateEvent(int promoterId, int djId,
   //        Event ev)
 
-  createEvent(promoterId, DjId, ev: CreateEvent) {
+  createEvent(promoterId, DjId, ev: any) {
     return this.http.post(
       this.baseUrl + "createvents/create/" + promoterId + DjId,
       ev
@@ -34,7 +34,7 @@ export class CreateEventService {
   // [HttpGet("avaliabledjs")]
   // public async Task<IActionResult> GetAvaliableDjs(Event evNew)
 
-  getAvaliableDjs(evNew: CreateEvent): Observable<Dj[]> {
+  getAvaliableDjs(evNew: any): Observable<Dj[]> {
     return this.http.get<Dj[]>(
       this.baseUrl + "createevents/avaliabledjs/" + evNew
     );

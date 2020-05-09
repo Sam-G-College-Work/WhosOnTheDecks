@@ -2,7 +2,6 @@ import { uniq } from "lodash";
 import { Component, OnInit } from "@angular/core";
 import { Dj } from "../_models/dj";
 import { AlertifyService } from "../_service/alertly.service";
-import { MatCardModule } from "@angular/material/card";
 import { AuthService } from "../_service/auth.service";
 import { HomeService } from "../_service/home.service";
 
@@ -19,8 +18,7 @@ export class ViewAllDjsComponent implements OnInit {
   constructor(
     private homeService: HomeService,
     private alertify: AlertifyService,
-    private authService: AuthService,
-    matCardModule: MatCardModule
+    private authService: AuthService
   ) {}
 
   ngOnInit() {

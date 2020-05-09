@@ -3,14 +3,19 @@
   <hr />
 
   <div class="form-group">
-    <input
-      type="datetime"
-      class="form-control"
-      required
-      name="dateTimeOfEvent"
-      [(ngModel)]="ev.dateTimeOfEvent"
-      placeholder="Date and Time"
-    />
+    <mat-form-field>
+      <input
+        matInput
+        [min]="minDate"
+        [max]="maxDate"
+        type="datetime-local"
+        class="form-control"
+        required
+        name="dateTimeOfEvent"
+        [(ngModel)]="evNew.dateTimeOfEvent"
+        placeholder="Choose a date"
+      />
+    </mat-form-field>
   </div>
 
   <div class="form-group">
@@ -19,8 +24,10 @@
       class="form-control"
       required
       name="lengthOfEvent"
-      [(ngModel)]="ev.lengthOfEvent"
+      [(ngModel)]="evNew.lengthOfEvent"
       placeholder="Length Of Event"
+      [min]="minLength"
+      [max]="maxLength"
     />
   </div>
 
@@ -30,7 +37,7 @@
       class="form-control"
       required
       name="eventAddress"
-      [(ngModel)]="ev.eventAddress"
+      [(ngModel)]="evNew.eventAddress"
       placeholder="Address"
     />
   </div>
@@ -41,13 +48,21 @@
       class="form-control"
       required
       name="postcode"
-      [(ngModel)]="ev.postcode"
+      [(ngModel)]="evNew.postcode"
       placeholder="Postcode"
     />
   </div>
 
   <div class="form-group text-center">
-    <button class="btn btn-success" type="submit">Pick a DJ</button>
-    <button class="btn btn-default" type="button">Cancel</button>
+    <button
+      class="btn btn-success"
+      (click)="(['/select-a-dj/', evNew])"
+      mat-button
+    >
+      Select a DJ
+    </button>
+    <button class="btn btn-danger" (click)="cancel()" mat-button>
+      Cancel
+    </button>
   </div>
 </form>

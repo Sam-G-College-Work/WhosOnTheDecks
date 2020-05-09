@@ -23,8 +23,9 @@ import {
   MatInputModule,
   MatCardModule,
   MatGridListModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
 } from "@angular/material";
-import { tap } from "rxjs/operators";
 import { HomeService } from "./_service/home.service";
 import { PromoterService } from "./_service/promoter.service";
 import { ViewBookedDjComponent } from "./view-events/view-booked-dj/view-booked-dj.component";
@@ -33,6 +34,8 @@ import { EventStatusPipe } from "./event-status.pipe";
 import { BookingResponseComponent } from "./view-bookings/booking-response/booking-response.component";
 import { DjService } from "./_service/dj.service";
 import { CreateEventService } from "./_service/create-event.service";
+import { PaymentComponent } from "./create-an-event/payment/payment.component";
+import { ConfirmEventsComponent } from "./create-an-event/confirm-events/confirm-events.component";
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -52,6 +55,8 @@ export function tokenGetter() {
     SelectADjComponent,
     EventStatusPipe,
     BookingResponseComponent,
+    ConfirmEventsComponent,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +69,8 @@ export function tokenGetter() {
     MatInputModule,
     MatCardModule,
     MatGridListModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
