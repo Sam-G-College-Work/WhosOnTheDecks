@@ -30,7 +30,7 @@ namespace WhosOnTheDecks.API.Controllers
             _erepo = erepo;
         }
 
-        [HttpPost("avaliabledjs")]
+        [HttpGet("avaliabledjs")]
         public async Task<IActionResult> GetAvaliableDjs(Event evNew)
         {
             //List of all events currently in databse
@@ -49,36 +49,25 @@ namespace WhosOnTheDecks.API.Controllers
                 AvaliableDjsToConvert.Add(dj);
             }
 
-            var payments = await _prepo.GetPayments();
-
-            foreach (Payment payment in payments)
+            //Loop is started to itterate through each event in allEvents List
+            foreach (Event ev in allEvents)
             {
-                var dj = await _urepo.GetDj(payment.DjId);
+                DateTime newDate = evNew.DateTimeOfEvent.Date;
 
-                AvaliableDjsToConvert.Remove(dj);
+                DateTime compareDate = ev.DateTimeOfEvent.Date;
 
-                //Loop is started to itterate through each event in allEvents List
-                foreach (Event ev in allEvents)
+                //A check is performed between the date and time of the new event and 
+                if (newDate == compareDate)
                 {
-                    if (payment.EventId != ev.EventId)
+
+                    var booking = await _erepo.GetBooking(ev.EventId);
+
+                    if (booking.BookingStatus == BookingStatus.Accepted
+                    || booking.BookingStatus == BookingStatus.Awaiting)
                     {
-                        DateTime newDate = evNew.DateTimeOfEvent.Date;
+                        var Dj = await _urepo.GetDj(booking.DjId);
 
-                        DateTime compareDate = ev.DateTimeOfEvent.Date;
-
-                        //A check is performed between the date and time of the new event and 
-                        if (newDate == compareDate)
-                        {
-                            var booking = await _erepo.GetBooking(ev.EventId);
-
-                            if (booking.BookingStatus == BookingStatus.Accepted
-                            || booking.BookingStatus == BookingStatus.Awaiting)
-                            {
-                                var Dj = await _urepo.GetDj(booking.DjId);
-
-                                AvaliableDjsToConvert.Remove(Dj);
-                            }
-                        }
+                        AvaliableDjsToConvert.Remove(Dj);
                     }
                 }
             }
@@ -98,6 +87,7 @@ namespace WhosOnTheDecks.API.Controllers
 
             return Ok(AvaliableDjsToDisplay);
         }
+
 
 
         [HttpPost("create/{promoterId}/{djId}")]
