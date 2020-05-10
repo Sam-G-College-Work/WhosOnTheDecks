@@ -33,6 +33,7 @@ export class ViewAllDjsComponent implements OnInit {
         this.djs = djs;
         this.genres = uniq(this.djs.map((dj) => dj.genre));
         this.genres.push("Any");
+        this.genres.reverse();
         this.selected = "Any";
       },
       (error) => {

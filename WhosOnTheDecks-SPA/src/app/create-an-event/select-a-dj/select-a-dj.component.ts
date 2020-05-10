@@ -53,6 +53,7 @@ export class SelectADjComponent implements OnInit {
         this.djs = djs;
         this.genres = uniq(this.djs.map((dj) => dj.genre));
         this.genres.push("Any");
+        this.genres.reverse();
         this.selected = "Any";
       },
       (error) => {
@@ -61,5 +62,7 @@ export class SelectADjComponent implements OnInit {
     );
   }
 
-  confirmEvent() {}
+  confirmEvent(djId) {
+    this.router.navigate(["/confirm-events/" + djId, this.eventToCreate]);
+  }
 }

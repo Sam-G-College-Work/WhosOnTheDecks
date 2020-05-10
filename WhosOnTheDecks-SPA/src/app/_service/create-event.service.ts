@@ -17,9 +17,9 @@ export class CreateEventService {
   //       public async Task<IActionResult> CreateEvent(int promoterId, int djId,
   //        Event ev)
 
-  createEvent(promoterId, DjId, ev: CreateEvent) {
+  createEvent(promoterId, djId, ev: CreateEvent) {
     return this.http.post(
-      this.baseUrl + "createvents/create/" + promoterId + DjId,
+      this.baseUrl + "createevents/create/" + promoterId + "/" + djId,
       ev
     );
   }

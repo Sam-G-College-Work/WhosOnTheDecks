@@ -1,3 +1,34 @@
-<p>
-  confirm-events works!
-</p>
+<div class="container mt-5">
+  <mat-card>
+    <mat-card-content> </mat-card-content>
+    <mat-card-actions>
+      <button class="btn btn-danger" mat-button>
+        Cancel All
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  <div class="row">
+    <div class="card-container">
+      <mat-card *ngFor="let eventDisplay of eventDisplays">
+        <mat-card-header>
+          <mat-card-title>Date and Time</mat-card-title>
+          <mat-card-subtitle>{{
+            eventDisplay.dateTimeOfEvent | date: "dd/MM/yyyy, HH:mm"
+          }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            Address: {{ eventDisplay.eventAddress }} {{ eventDisplay.postcode }}
+          </p>
+          <p>Length of Event: {{ eventDisplay.lengthOfEvent }} hours</p>
+          <p>Event Live: {{ eventDisplay.eventStatus }}</p>
+          <p>
+            Date Created:
+            {{ eventDisplay.dateCreated | date: "dd/MM/yyyy" }}
+          </p>
+          <p>Total Cost: {{ eventDisplay.totalCost | currency: "£" }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

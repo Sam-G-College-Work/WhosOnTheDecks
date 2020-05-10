@@ -7,6 +7,15 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
+  <div>
+    <button
+      class="btn btn-danger"
+      mat-button
+      [routerLink]="['/create-an-event']"
+    >
+      Back
+    </button>
+  </div>
 
   <div class="row">
     <div class="card-container" *ngFor="let dj of djs">
@@ -25,7 +34,11 @@
           <p>Hourly Rate: {{ dj.hourlyRate | currency: "£" }}</p>
         </mat-card-content>
         <mat-card-actions>
-          <button class="btn btn-primary" mat-button (click)="confirmEvent()">
+          <button
+            class="btn btn-primary"
+            mat-button
+            (click)="confirmEvent(dj.djId)"
+          >
             Select DJ
           </button>
         </mat-card-actions>
