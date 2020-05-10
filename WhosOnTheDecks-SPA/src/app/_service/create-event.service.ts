@@ -49,4 +49,8 @@ export class CreateEventService {
       this.baseUrl + "createevents/shoppingexists/" + promoterId
     );
   }
+
+  // getTotal(id) {
+  //   return this.http.get(this.baseUrl + "createevents/gettotal/" + id);
+  // }
 }

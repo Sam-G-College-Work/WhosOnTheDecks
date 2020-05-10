@@ -13,7 +13,7 @@
             Address: {{ eventDisplay.eventAddress }} {{ eventDisplay.postcode }}
           </p>
           <p>Length of Event: {{ eventDisplay.lengthOfEvent }} hours</p>
-          <p>Event Live: {{ eventDisplay.eventStatus }}</p>
+          <p>Event Live: {{ eventDisplay.eventStatus | eventStatus }}</p>
           <p>
             Date Created:
             {{ eventDisplay.dateCreated | date: "dd/MM/yyyy" }}

@@ -221,5 +221,25 @@ namespace WhosOnTheDecks.API.Controllers
 
             return shoppingExists;
         }
+
+        [HttpGet("gettotal/{id}")]
+        public async Task<decimal> getTotal(int id)
+        {
+            decimal total = 0;
+
+            var payments = await _prepo.GetPayments();
+
+            foreach (Payment payment in payments)
+            {
+                var ev = await _erepo.GetEvent(payment.EventId);
+
+                if (ev.PromoterId == id)
+                {
+                    total += ev.TotalCost;
+                }
+            }
+
+            return total;
+        }
     }
 }

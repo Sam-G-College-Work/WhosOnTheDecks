@@ -1,8 +1,20 @@
 <div class="container mt-5">
   <mat-card>
-    <mat-card-content> </mat-card-content>
+    <mat-card-header>
+      Total: {{ paymentAmount | currency: "£" }}
+    </mat-card-header>
     <mat-card-actions>
-      <button class="btn btn-danger" mat-button>
+      <button
+        class="btn btn-primary"
+        [routerLink]="['/create-an-event']"
+        mat-button
+      >
+        Create Another Event
+      </button>
+      <button class="btn btn-success" [routerLink]="['/payment']" mat-button>
+        Pay
+      </button>
+      <button class="btn btn-danger" (click)="deleteAll()" mat-button>
         Cancel All
       </button>
     </mat-card-actions>
@@ -21,7 +33,7 @@
             Address: {{ eventDisplay.eventAddress }} {{ eventDisplay.postcode }}
           </p>
           <p>Length of Event: {{ eventDisplay.lengthOfEvent }} hours</p>
-          <p>Event Live: {{ eventDisplay.eventStatus }}</p>
+          <p>Event Live: {{ eventDisplay.eventStatus | eventStatus }}</p>
           <p>
             Date Created:
             {{ eventDisplay.dateCreated | date: "dd/MM/yyyy" }}
