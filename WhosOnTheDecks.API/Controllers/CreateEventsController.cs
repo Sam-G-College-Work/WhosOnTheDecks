@@ -18,10 +18,6 @@ namespace WhosOnTheDecks.API.Controllers
         private readonly IPaymentRepository _prepo;
         private readonly IUserRepository _urepo;
 
-        private List<Dj> AvaliableDjsToConvert = new List<Dj>();
-
-        private List<DjDisplayDto> AvaliableDjsToDisplay = new List<DjDisplayDto>();
-
         public CreateEventsController(IEventRepository erepo,
         IUserRepository urepo, IPaymentRepository prepo)
         {
@@ -30,38 +26,78 @@ namespace WhosOnTheDecks.API.Controllers
             _erepo = erepo;
         }
 
-        [HttpGet("avaliabledjs")]
+        [HttpPost("avaliabledjs")]
         public async Task<IActionResult> GetAvaliableDjs(Event evNew)
         {
             //List of all events currently in databse
             var allEvents = await _erepo.GetEvents();
 
             //List of all Djs in database
-            var avaliableDjsToList = await _urepo.GetDjs();
+            var allDjsToList = await _urepo.GetDjs();
+
+            //List of all payments currently in shopping basket
+            var payments = await _prepo.GetPayments();
 
             //List created to hold all bookings on the same date as the event to create
             List<Booking> bookingsToCheck = new List<Booking>();
 
-            //A loop is performed to take all Djs and 
-            //put them into a list of Dto display object
-            foreach (Dj dj in avaliableDjsToList)
+            //A list of type dj is created to store all dj in db to an editable list
+            List<Dj> AvaliableDjsToConvert = new List<Dj>();
+
+            //A list of type DjDisplaySto is used to convert the list of avaliabel djs
+            //into a display object we can safley share with the front end
+            List<DjDisplayDto> AvaliableDjsToDisplay = new List<DjDisplayDto>();
+
+            //A list of events is created to store the events from the database
+            //This will allow the list to be edited without effecting the database
+            List<Event> eventsToCheck = new List<Event>();
+
+            //A loop is performed to take all Djs from DB and 
+            //put them into a list of DJ object to be edited
+            foreach (Dj dj in allDjsToList)
             {
                 AvaliableDjsToConvert.Add(dj);
             }
 
-            //Loop is started to itterate through each event in allEvents List
+            //A loop is performed to take all Events from DB and 
+            //put them into a list of event object to be edited
             foreach (Event ev in allEvents)
             {
+                eventsToCheck.Add(ev);
+            }
+
+            foreach (Payment payment in payments)
+            {
+                var evToRemove = await _erepo.GetEvent(payment.EventId);
+
+                eventsToCheck.Remove(evToRemove);
+
+                var djToRemove = await _urepo.GetDj(payment.DjId);
+
+                if (evToRemove.DateTimeOfEvent.Date == evNew.DateTimeOfEvent.Date)
+                {
+                    AvaliableDjsToConvert.Remove(djToRemove);
+                }
+
+            }
+
+            //Loop is started to itterate through each event in allEvents List
+            foreach (Event ev in eventsToCheck)
+            {
+                //Datetime of new event is taken so only the date will be compared
                 DateTime newDate = evNew.DateTimeOfEvent.Date;
 
+                //Datetime of event in datatbase is taken so only the date will be compared
                 DateTime compareDate = ev.DateTimeOfEvent.Date;
 
                 //A check is performed between the date and time of the new event and 
                 if (newDate == compareDate)
                 {
-
+                    //The booking of the event on the same date is found
                     var booking = await _erepo.GetBooking(ev.EventId);
 
+                    //The booking is then checked to see if it has been accepted 
+                    //or is awaiting response either will remove the dj from avaliability
                     if (booking.BookingStatus == BookingStatus.Accepted
                     || booking.BookingStatus == BookingStatus.Awaiting)
                     {
@@ -69,9 +105,14 @@ namespace WhosOnTheDecks.API.Controllers
 
                         AvaliableDjsToConvert.Remove(Dj);
                     }
+
+
                 }
+
             }
 
+            //A final loop is performed to convert all dj objects to a dJ display object
+            //This remvoes the djs password and sensitive information from being sent to the front end
             foreach (Dj dj in AvaliableDjsToConvert)
             {
                 DjDisplayDto djdto = new DjDisplayDto();
