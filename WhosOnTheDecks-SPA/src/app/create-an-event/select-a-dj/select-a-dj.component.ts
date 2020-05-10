@@ -17,6 +17,7 @@ export class SelectADjComponent implements OnInit {
   eventToCreate: CreateEvent;
   djs: Dj[];
   genres: string[];
+  selected: string;
 
   constructor(
     private createEvent: CreateEventService,
@@ -51,6 +52,8 @@ export class SelectADjComponent implements OnInit {
       (djs: Dj[]) => {
         this.djs = djs;
         this.genres = uniq(this.djs.map((dj) => dj.genre));
+        this.genres.push("Any");
+        this.selected = "Any";
       },
       (error) => {
         this.alertify.error(error);

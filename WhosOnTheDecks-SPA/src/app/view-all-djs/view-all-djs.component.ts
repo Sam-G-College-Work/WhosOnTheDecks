@@ -14,6 +14,7 @@ export class ViewAllDjsComponent implements OnInit {
   djs: Dj[];
   genres: string[];
   isdj = false;
+  selected: string;
 
   constructor(
     private homeService: HomeService,
@@ -31,6 +32,8 @@ export class ViewAllDjsComponent implements OnInit {
       (djs: Dj[]) => {
         this.djs = djs;
         this.genres = uniq(this.djs.map((dj) => dj.genre));
+        this.genres.push("Any");
+        this.selected = "Any";
       },
       (error) => {
         this.alertify.error(error);

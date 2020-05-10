@@ -1,8 +1,16 @@
 <div class="container mt-5">
-  <pre>{{ genres | json }} </pre>
+  <mat-form-field>
+    <mat-label>Genre</mat-label>
+    <mat-select name="genre" [(value)]="selected">
+      <mat-option *ngFor="let genre of genres" [value]="genre.toString()">
+        {{ genre.valueOf() }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
   <div class="row">
-    <div class="card-container">
-      <mat-card *ngFor="let dj of djs">
+    <div class="card-container" *ngFor="let dj of djs">
+      <mat-card *ngIf="dj.genre as selected">
         <mat-card-header>
           <mat-card-title>{{ dj.djName }}</mat-card-title>
           <mat-card-subtitle>{{ dj.genre }}</mat-card-subtitle>
