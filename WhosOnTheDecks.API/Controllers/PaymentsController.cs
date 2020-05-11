@@ -28,30 +28,11 @@ namespace WhosOnTheDecks.API.Controllers
         [HttpPost("payment/{promoterId}")]
         public async Task<IActionResult> Charge(int promoterId)
         {
-            CustomerService customerServices = new CustomerService();
-
-            ChargeService chargeservice = new ChargeService();
-
             var promoter = await _urepo.GetPromoter(promoterId);
 
             var payments = await _prepo.GetPayments();
 
             decimal total = 0.00M;
-
-            var options = new TokenCreateOptions
-            {
-                Card = new CreditCardOptions
-                {
-                    Number = "4242424242424242",
-                    ExpYear = 2021,
-                    ExpMonth = 5,
-                    Cvc = "123"
-                }
-            };
-
-            var service = new TokenService();
-
-            Token stripeToken = service.Create(options);
 
             foreach (Payment payment in payments)
             {
@@ -63,19 +44,6 @@ namespace WhosOnTheDecks.API.Controllers
                 }
             }
 
-            var customer = customerServices.Create(new CustomerCreateOptions
-            {
-                Email = promoter.Email,
-                Source = stripeToken.ToString()
-            });
-
-            var charge = chargeservice.Create(new ChargeCreateOptions
-            {
-                Amount = Convert.ToInt64(Convert.ToInt32(total * 100)),
-                Description = "A test Charge",
-                Currency = "GBP",
-                Customer = customer.Id
-            });
 
             foreach (Payment payment in payments)
             {

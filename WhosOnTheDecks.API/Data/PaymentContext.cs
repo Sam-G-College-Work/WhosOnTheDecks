@@ -25,6 +25,12 @@ namespace WhosOnTheDecks.API.Data
             _context.Add(entity);
         }
 
+        //Update will update a existing payment in the db
+        public void Update<T>(T entity) where T : class
+        {
+            _context.Update(entity);
+        }
+
         //Add will take in any type of entity that matches a class
         //The entity will be added from the databse 
         public void Remove(Payment payment)

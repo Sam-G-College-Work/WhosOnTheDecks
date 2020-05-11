@@ -32,9 +32,14 @@ namespace WhosOnTheDecks.API.Controllers
 
             foreach (Event ev in events)
             {
-                if (ev.PromoterId == id)
+                var bookingCheck = await _erepo.GetBooking(ev.EventId);
+
+                if (bookingCheck != null)
                 {
-                    promoterEvents.Add(ev);
+                    if (ev.PromoterId == id)
+                    {
+                        promoterEvents.Add(ev);
+                    }
                 }
             }
             return Ok(promoterEvents);

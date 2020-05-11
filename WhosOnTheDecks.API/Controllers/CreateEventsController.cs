@@ -218,7 +218,7 @@ namespace WhosOnTheDecks.API.Controllers
                 }
             }
 
-            return Ok("Your orders have been removed");
+            return Ok();
         }
 
         [HttpGet("shoppingexists/{promoterId}")]

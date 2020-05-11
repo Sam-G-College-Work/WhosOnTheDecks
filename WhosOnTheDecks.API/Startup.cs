@@ -22,7 +22,7 @@ namespace WhosOnTheDecks.API
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            StripeConfiguration.ApiKey = Configuration["Stripe:TestSecretKey"];
+            StripeConfiguration.ApiKey = Configuration["Stripe:SecretKey"];
         }
 
         public IConfiguration Configuration { get; }

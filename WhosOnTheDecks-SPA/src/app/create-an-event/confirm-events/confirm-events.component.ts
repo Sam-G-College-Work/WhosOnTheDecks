@@ -3,9 +3,8 @@ import { EventDisplay } from "src/app/_models/event-display";
 import { CreateEventService } from "src/app/_service/create-event.service";
 import { AlertifyService } from "src/app/_service/alertly.service";
 import { AuthService } from "src/app/_service/auth.service";
-import { CreateEvent } from "src/app/_models/create-event";
-import { ActivatedRoute, Router } from "@angular/router";
-import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
+import { Router } from "@angular/router";
+import { sumBy } from "lodash";
 
 @Component({
   selector: "app-confirm-events",
@@ -14,7 +13,6 @@ import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 })
 export class ConfirmEventsComponent implements OnInit {
   eventDisplays: EventDisplay[];
-  paymentAmount = 0;
 
   constructor(
     private createEventService: CreateEventService,
@@ -43,20 +41,13 @@ export class ConfirmEventsComponent implements OnInit {
   deleteAll() {
     this.createEventService
       .cancelOrders(this.authService.decodedToken.nameid)
-      .subscribe((val) => console.log("deleted"));
-    this.router.navigate([""]);
+      .subscribe(() => {
+      this.alertify.success("All items deleted");
+      this.router.navigate([""]);
+      });
   }
 
-  // totalPayment() {
-  //   this.createEventService
-  //     .getTotal(this.authService.decodedToken.nameId)
-  //     .subscribe(
-  //       (total: number) => {
-  //         this.paymentAmount = total;
-  //       },
-  //       (error) => {
-  //         this.alertify.error(error);
-  //       }
-  //     );
-  // }
+  get totalPayment() {
+    return sumBy(this.eventDisplays, eventDisplay => eventDisplay.totalCost);
+  }
 }

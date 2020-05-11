@@ -20,7 +20,7 @@ export class CreateAnEventComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private createEvent: CreateEventService,
+    private createEventService: CreateEventService,
     private authService: AuthService,
     private alertify: AlertifyService
   ) {}
@@ -32,12 +32,15 @@ export class CreateAnEventComponent implements OnInit {
   }
 
   cancel() {
-    if (this.createEvent.shoppingExists(this.authService.decodedToken.nameId)) {
-      this.router.navigate(["/confirm-events"]);
-      this.alertify.error("There's bookings in your basket");
-    } else {
-      this.createEvent.cancelOrders(this.authService.decodedToken.nameId);
-      this.router.navigate([""]);
-    }
+    this.createEventService.shoppingExists(this.authService.decodedToken.nameid).subscribe(answer => {
+      if (answer) {
+        this.router.navigate(["/confirm-events"]);
+        this.alertify.error("There's bookings in your basket");
+      } else {
+        this.router.navigate([""]);
+      }
+    }, (error) => {
+      this.alertify.error(error);
+    });
   }
 }

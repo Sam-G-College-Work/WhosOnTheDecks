@@ -1,24 +1,21 @@
 <div class="container mt-5">
-  <mat-form-field>
-    <mat-label>Genre</mat-label>
-    <mat-select name="genre" [(value)]="selected">
-      <mat-option *ngFor="let genre of genres" [value]="genre.toString()">
-        {{ genre.valueOf() }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <div>
-    <button
-      class="btn btn-danger"
-      mat-button
-      [routerLink]="['/create-an-event']"
-    >
-      Back
-    </button>
+  <div class="genreSelect">
+    <mat-form-field>
+      <mat-label>Genre</mat-label>
+      <mat-select
+        name="genre"
+        [(value)]="selected"
+        (selectionChange)="genreChanged($event)"
+      >
+        <mat-option *ngFor="let genre of genres" [value]="genre.toString()">
+          {{ genre.valueOf() }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
 
   <div class="row">
-    <div class="card-container" *ngFor="let dj of djs">
+    <div class="card-container" *ngFor="let dj of djsToDisplay">
       <mat-card *ngIf="dj.genre as selected">
         <mat-card-header>
           <mat-card-title>{{ dj.djName }}</mat-card-title>
