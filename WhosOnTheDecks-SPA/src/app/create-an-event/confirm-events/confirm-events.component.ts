@@ -14,45 +14,22 @@ import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 })
 export class ConfirmEventsComponent implements OnInit {
   eventDisplays: EventDisplay[];
-  djId: number;
-  promoterId: number;
-  eventToCreate: CreateEvent;
   paymentAmount = 0;
 
   constructor(
     private createEventService: CreateEventService,
     private alertify: AlertifyService,
     private authService: AuthService,
-    private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
 
   ngOnInit() {
-    this.eventToCreate = new CreateEvent();
-    this.promoterId = this.authService.decodedToken.nameid;
-    this.djId = this.activatedRoute.snapshot.params["id"];
-    this.createEventObject();
-    this.addEventAndDisplay();
+    this.getEventsInBasket();
   }
 
-  createEventObject() {
-    this.eventToCreate.dateTimeOfEvent = new Date(
-      this.activatedRoute.snapshot.params["dateTimeOfEvent"]
-    );
-    this.eventToCreate.lengthOfEvent = +this.activatedRoute.snapshot.params[
-      "lengthOfEvent"
-    ];
-    this.eventToCreate.eventAddress = this.activatedRoute.snapshot.params[
-      "eventAddress"
-    ];
-    this.eventToCreate.postcode = this.activatedRoute.snapshot.params[
-      "postcode"
-    ];
-  }
-
-  addEventAndDisplay() {
+  getEventsInBasket() {
     this.createEventService
-      .createEvent(this.promoterId, this.djId, this.eventToCreate)
+      .getPromoterOrders(this.authService.decodedToken.nameid)
       .subscribe(
         (eventDisplays: EventDisplay[]) => {
           this.eventDisplays = eventDisplays;
@@ -64,8 +41,10 @@ export class ConfirmEventsComponent implements OnInit {
   }
 
   deleteAll() {
-    this.createEventService.cancelOrders(this.authService.decodedToken.nameId);
-    //this.router.navigate([""]);
+    this.createEventService
+      .cancelOrders(this.authService.decodedToken.nameid)
+      .subscribe((val) => console.log("deleted"));
+    this.router.navigate([""]);
   }
 
   // totalPayment() {

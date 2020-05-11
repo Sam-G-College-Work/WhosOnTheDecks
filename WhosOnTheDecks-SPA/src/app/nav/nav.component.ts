@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { AuthService } from "../_service/auth.service";
 import { AlertifyService } from "../_service/alertly.service";
 import { Router } from "@angular/router";
+import { get } from "lodash";
 
 @Component({
   selector: "app-nav",
@@ -53,13 +54,13 @@ export class NavComponent implements OnInit {
   }
 
   isPromoterCheck() {
-    if (this.authService.decodedToken.role === "Promoter") {
+    if (get(this.authService, "decodedToken.role", "") === "Promoter") {
       this.isPromoter = true;
     }
   }
 
   isDjCheck() {
-    if (this.authService.decodedToken.role === "Dj") {
+    if (get(this.authService, "decodedToken.role", "") === "Dj") {
       this.isDj = true;
     }
   }

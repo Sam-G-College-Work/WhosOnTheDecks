@@ -18,15 +18,18 @@ export class SelectADjComponent implements OnInit {
   djs: Dj[];
   genres: string[];
   selected: string;
+  promoterId: number;
 
   constructor(
-    private createEvent: CreateEventService,
+    private createEventService: CreateEventService,
     private alertify: AlertifyService,
+    private authService: AuthService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
 
   ngOnInit() {
+    this.promoterId = this.authService.decodedToken.nameid;
     this.eventToCreate = new CreateEvent();
     this.createEventObject();
     this.avaliableDjs();
@@ -48,7 +51,7 @@ export class SelectADjComponent implements OnInit {
   }
 
   avaliableDjs() {
-    this.createEvent.getAvaliableDjs(this.eventToCreate).subscribe(
+    this.createEventService.getAvaliableDjs(this.eventToCreate).subscribe(
       (djs: Dj[]) => {
         this.djs = djs;
         this.genres = uniq(this.djs.map((dj) => dj.genre));
@@ -62,7 +65,16 @@ export class SelectADjComponent implements OnInit {
     );
   }
 
-  confirmEvent(djId) {
-    this.router.navigate(["/confirm-events/" + djId, this.eventToCreate]);
+  addEvent(djId) {
+    this.createEventService
+      .createEvent(this.promoterId, djId, this.eventToCreate)
+      .subscribe(
+        (sucess) => {
+          this.router.navigate(["/confirm-events/"]);
+        },
+        (error) => {
+          this.alertify.error(error);
+        }
+      );
   }
 }

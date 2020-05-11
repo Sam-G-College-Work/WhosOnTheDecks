@@ -2,68 +2,70 @@
   <h2 class="text-center text-primary">Create An Event</h2>
   <hr />
 
-  <div class="form-group">
-    <mat-form-field>
+  <div class="form-container">
+    <div class="form-group">
+      <mat-form-field>
+        <input
+          matInput
+          [min]="minDate"
+          [max]="maxDate"
+          type="datetime-local"
+          class="form-control"
+          required
+          name="dateTimeOfEvent"
+          [(ngModel)]="evNew.dateTimeOfEvent"
+          placeholder="Choose a date"
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
       <input
-        matInput
-        [min]="minDate"
-        [max]="maxDate"
-        type="datetime-local"
+        type="number"
         class="form-control"
         required
-        name="dateTimeOfEvent"
-        [(ngModel)]="evNew.dateTimeOfEvent"
-        placeholder="Choose a date"
+        name="lengthOfEvent"
+        [(ngModel)]="evNew.lengthOfEvent"
+        placeholder="Length Of Event"
+        [min]="minLength"
+        [max]="maxLength"
       />
-    </mat-form-field>
-  </div>
+    </div>
 
-  <div class="form-group">
-    <input
-      type="number"
-      class="form-control"
-      required
-      name="lengthOfEvent"
-      [(ngModel)]="evNew.lengthOfEvent"
-      placeholder="Length Of Event"
-      [min]="minLength"
-      [max]="maxLength"
-    />
-  </div>
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        required
+        name="eventAddress"
+        [(ngModel)]="evNew.eventAddress"
+        placeholder="Address"
+      />
+    </div>
 
-  <div class="form-group">
-    <input
-      type="text"
-      class="form-control"
-      required
-      name="eventAddress"
-      [(ngModel)]="evNew.eventAddress"
-      placeholder="Address"
-    />
-  </div>
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        required
+        name="postcode"
+        [(ngModel)]="evNew.postcode"
+        placeholder="Postcode"
+      />
+    </div>
 
-  <div class="form-group">
-    <input
-      type="text"
-      class="form-control"
-      required
-      name="postcode"
-      [(ngModel)]="evNew.postcode"
-      placeholder="Postcode"
-    />
-  </div>
-
-  <div class="form-group text-center">
-    <button
-      [disabled]="!createEventForm.valid"
-      class="btn btn-success"
-      (click)="selectADj()"
-      mat-button
-    >
-      Select a DJ
-    </button>
-    <button class="btn btn-danger" (click)="cancel()" mat-button>
-      Cancel
-    </button>
+    <div class="form-group button-container text-center">
+      <button class="btn btn-danger" (click)="cancel()" mat-button>
+        Cancel
+      </button>
+      <button
+        [disabled]="!createEventForm.valid"
+        class="btn btn-success"
+        (click)="selectADj()"
+        mat-button
+      >
+        Select a DJ
+      </button>
+    </div>
   </div>
 </form>

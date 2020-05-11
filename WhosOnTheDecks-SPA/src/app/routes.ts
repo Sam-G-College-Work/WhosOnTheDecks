@@ -20,7 +20,7 @@ export const appRoutes: Routes = [
     children: [
       { path: "create-an-event", component: CreateAnEventComponent },
       { path: "select-a-dj", component: SelectADjComponent },
-      { path: "confirm-events/:id", component: ConfirmEventsComponent },
+      { path: "confirm-events", component: ConfirmEventsComponent },
       { path: "payment", component: PaymentComponent },
       { path: "view-all-djs", component: ViewAllDjsComponent },
       { path: "view-bookings/:id", component: BookingResponseComponent },

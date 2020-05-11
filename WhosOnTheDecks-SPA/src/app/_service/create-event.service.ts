@@ -24,11 +24,17 @@ export class CreateEventService {
     );
   }
 
+  //[HttpGet("getorders/{promoterId}")]
+
+  getPromoterOrders(promoterId) {
+    return this.http.get(this.baseUrl + "createevents/getorders/" + promoterId);
+  }
+
   // [HttpPost("cancel/{promoterId}")]
   //       public async Task<IActionResult> Cancel(int promoterId)
 
   cancelOrders(promoterId) {
-    return this.http.get(this.baseUrl + "createevents/cancel/" + promoterId);
+    return this.http.delete(this.baseUrl + "createevents/cancel/" + promoterId);
   }
 
   // [HttpGet("avaliabledjs")]

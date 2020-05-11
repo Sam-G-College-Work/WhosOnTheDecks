@@ -178,10 +178,29 @@ namespace WhosOnTheDecks.API.Controllers
                 }
             }
 
-            return Ok(shoppingBasket);
+            return Ok();
         }
 
-        [HttpGet("cancel/{promoterId}")]
+        [HttpGet("getorders/{promoterId}")]
+        public async Task<IActionResult> getOrders(int promoterId) {
+            List<Event> promotersEvents = new List<Event>();
+
+            var payments = await _prepo.GetPayments();
+             
+            foreach (Payment payment in payments)
+            {
+                var ev = await _erepo.GetEvent(payment.EventId);
+
+                if (ev.PromoterId == promoterId)
+                {
+                    promotersEvents.Add(ev);
+                }
+            }
+
+            return Ok(promotersEvents);
+        }
+
+        [HttpDelete("cancel/{promoterId}")]
         public async Task<IActionResult> Cancel(int promoterId)
         {
             var payments = await _prepo.GetPayments();
