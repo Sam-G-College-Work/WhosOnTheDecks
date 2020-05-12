@@ -6,6 +6,7 @@ using WhosOnTheDecks.API.Models;
 namespace WhosOnTheDecks.API.Data
 {
     //Event Context will provide all Database methods to create, update, retrieve and cancel events/bookings
+    //Implements the IEventRepository
     public class EventContext : IEventRepository
     {
         //Property created to access databse
@@ -70,11 +71,13 @@ namespace WhosOnTheDecks.API.Data
             return await _context.SaveChangesAsync() > 0;
         }
 
+        //Update will take in an entity and update the correct entry within event dbset
         public void Update<T>(T entity) where T : class
         {
             _context.Update(entity);
         }
 
+        //Remove will remove any matching entity from event dbset
         public void Remove(Event ev)
         {
             _context.Remove(ev);
