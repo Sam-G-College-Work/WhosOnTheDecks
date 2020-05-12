@@ -67,7 +67,7 @@ export function tokenGetter() {
     FormsModule,
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
-    MatSelectModule,
+    MatSelectModule, // from 3rd party Material Angular Io
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
@@ -75,6 +75,7 @@ export function tokenGetter() {
     MatDatepickerModule,
     MatNativeDateModule,
     JwtModule.forRoot({
+      // 3rd parth plugin to handle Json web tokens
       config: {
         tokenGetter: tokenGetter,
         whitelistedDomains: ["localhost:5000"],

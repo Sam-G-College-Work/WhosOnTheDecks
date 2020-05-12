@@ -12,6 +12,8 @@ export class HomeService {
 
   constructor(private http: HttpClient) {}
 
+  // Get Djs makes a call to the home controller
+  // a list of djs is returned
   getDjs(): Observable<Dj[]> {
     return this.http.get<Dj[]>(this.baseUrl + "home");
   }

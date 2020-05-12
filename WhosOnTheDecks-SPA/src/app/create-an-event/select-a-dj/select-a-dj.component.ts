@@ -37,6 +37,7 @@ export class SelectADjComponent implements OnInit {
     this.avaliableDjs();
   }
 
+  // create Event takes the passed parameters and assings them to an event object
   createEventObject() {
     this.eventToCreate.dateTimeOfEvent = new Date(
       this.activatedRoute.snapshot.params["dateTimeOfEvent"]
@@ -52,6 +53,10 @@ export class SelectADjComponent implements OnInit {
     ];
   }
 
+  // Avliable djs uses create event service to call the method get avaliable djs
+  // the method is passed the event to create and using its date
+  // is returned the djs avliable on that date
+  // The genres from each dj are then put into the genres array and all duplicate entries are removed
   avaliableDjs() {
     this.createEventService.getAvaliableDjs(this.eventToCreate).subscribe(
       (djs: Dj[]) => {
@@ -67,6 +72,9 @@ export class SelectADjComponent implements OnInit {
     );
   }
 
+  // AddEvent takes the singed in users id the dj they have selected and the event they have created
+  // This is passed using create event service with the method createEvent
+  // Upon the mthods success the user is then taken to the confirm events page
   addEvent(djId) {
     this.createEventService
       .createEvent(this.promoterId, djId, this.eventToCreate)
@@ -80,6 +88,8 @@ export class SelectADjComponent implements OnInit {
       );
   }
 
+  // Genre changed takes in the MatSelectChange event on the html page
+  // The selected genre then filters the djsdisplay list into a new list containing only the djs with the selected genre
   genreChanged(eventChange: MatSelectChange) {
     const newGenre = eventChange.value;
 

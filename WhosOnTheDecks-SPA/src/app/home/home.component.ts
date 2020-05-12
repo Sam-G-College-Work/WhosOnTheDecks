@@ -23,10 +23,13 @@ export class HomeComponent implements OnInit {
     this.registerMode = true;
   }
 
+  // Cancel register mode takes in a boolen from child components event emitter cancel register
+  // This then sets register mode to false
   cancelRegisterMode(registerMode: boolean) {
     this.registerMode = registerMode;
   }
 
+  // Returns the logged in users json web token
   loggedIn() {
     return this.authService.loggedIn();
   }

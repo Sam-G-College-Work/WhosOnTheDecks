@@ -12,6 +12,7 @@ import { ConfirmEventsComponent } from "./create-an-event/confirm-events/confirm
 import { PaymentComponent } from "./create-an-event/payment/payment.component";
 import { ConfirmationComponent } from "./create-an-event/confirmation/confirmation.component";
 
+// These are the routes accessible through out the site
 export const appRoutes: Routes = [
   { path: "", component: HomeComponent },
   {

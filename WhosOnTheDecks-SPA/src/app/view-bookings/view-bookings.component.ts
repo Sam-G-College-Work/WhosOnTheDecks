@@ -25,6 +25,10 @@ export class ViewBookingsComponent implements OnInit {
     this.loadDjEvents();
   }
 
+  // Load Dj Events method takes the signed in users Id and sends it tot he promoter sevice method get promoter events
+  // The method then subsribes tot he observable return that is provided from the back end method
+  // If successful all events are added to the events display array
+  // If an exception is hit an error will notify the user an error occured
   loadDjEvents() {
     this.djService.getDjEvents(this.authService.decodedToken.nameid).subscribe(
       (djEvents: EventDisplay[]) => {

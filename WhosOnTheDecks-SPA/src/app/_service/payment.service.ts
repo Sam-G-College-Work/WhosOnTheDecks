@@ -11,6 +11,7 @@ export class PaymentService {
 
   constructor(private http: HttpClient) {}
 
+  // Make Payment calls to the payment controller and supplies promoter id and carDetails
   makePayment(promoterId, cardDetails: CardDetails) {
     return this.http.post(
       this.baseUrl + "payments/payment/" + promoterId,

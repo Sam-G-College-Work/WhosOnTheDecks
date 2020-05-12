@@ -14,16 +14,21 @@ export class PromoterService {
 
   constructor(private http: HttpClient) {}
 
+  // Get promoter events calls to the promoters controller
+  // The promoters id is supplied
   getPromoterEvents(id): Observable<EventDisplay[]> {
     return this.http.get<EventDisplay[]>(
       this.baseUrl + "promoters/events/" + id
     );
   }
 
+  // Get Dj calls to the promoters controller and using a booking id
+  // gets the dj
   getDj(id): Observable<Dj> {
     return this.http.get<Dj>(this.baseUrl + "promoters/dj/" + id);
   }
 
+  // Get booking cals to the promoters controller and using an event id returns the booking associated with it
   getBooking(id): Observable<Booking> {
     return this.http.get<Booking>(this.baseUrl + "promoters/booking/" + id);
   }

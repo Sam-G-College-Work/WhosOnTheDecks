@@ -25,6 +25,9 @@ export class NavComponent implements OnInit {
     this.isDjCheck();
   }
 
+  // Login makes a call to auth service to the login method
+  // The entered email and password is sent in the model declared above
+  // If succefful a message is displayed and the is promoter check and is djcheck are called
   login() {
     this.authService.login(this.model).subscribe(
       (next) => {
@@ -41,10 +44,15 @@ export class NavComponent implements OnInit {
     );
   }
 
+  // Logged in makes a call to the authservice mthod loggedIn
+  // this will return the Json web token
   loggedIn() {
     return this.authService.loggedIn();
   }
 
+  // Logout sets isPromoter and isDj to false
+  // the token in local storage is then removed
+  // A message is diplayed and the user is directted home
   logout() {
     this.isPromoter = false;
     this.isDj = false;
@@ -53,12 +61,15 @@ export class NavComponent implements OnInit {
     this.router.navigate(["/home"]);
   }
 
+  // IsPromoter check checks the decoded token for the role
+  // If the user is a promtoer is sets isPromtoer to true
   isPromoterCheck() {
     if (get(this.authService, "decodedToken.role", "") === "Promoter") {
       this.isPromoter = true;
     }
   }
 
+  // IsDj cheks to see if the logged in user's role is a Dj and sets isDJ to true;
   isDjCheck() {
     if (get(this.authService, "decodedToken.role", "") === "Dj") {
       this.isDj = true;
