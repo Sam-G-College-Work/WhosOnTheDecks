@@ -1,10 +1,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WhosOnTheDecks.API.Data;
-using Stripe;
 using System.Threading.Tasks;
 using WhosOnTheDecks.API.Models;
-using System;
+using WhosOnTheDecks.API.Dtos;
 
 namespace WhosOnTheDecks.API.Controllers
 {
@@ -26,48 +25,39 @@ namespace WhosOnTheDecks.API.Controllers
         }
 
         [HttpPost("payment/{promoterId}")]
-        public async Task<IActionResult> Charge(int promoterId)
+        public async Task<IActionResult> Charge(int promoterId, PaymentToCreateDto cardDetails)
         {
-            var promoter = await _urepo.GetPromoter(promoterId);
-
             var payments = await _prepo.GetPayments();
 
-            decimal total = 0.00M;
-
             foreach (Payment payment in payments)
             {
-                var ev = await _erepo.GetEvent(payment.EventId);
-
-                if (ev.PromoterId == promoterId)
+                if (payment.PaymentRecieved == false)
                 {
-                    total += ev.TotalCost;
+                    var ev = await _erepo.GetEvent(payment.EventId);
+
+                    if (ev.PromoterId == promoterId)
+                    {
+                        Booking booking = new Booking();
+                        booking.DjId = payment.DjId;
+                        booking.EventId = payment.EventId;
+                        booking.BookingStatus = BookingStatus.Awaiting;
+
+                        payment.CardNumber = cardDetails.CardNumber;
+                        payment.ExpiryDate = cardDetails.ExpiryDate;
+                        payment.SecurityCode = cardDetails.SecurityCode;
+                        payment.PaymentRecieved = true;
+
+                        _erepo.Add(booking);
+
+                        await _erepo.SaveAll();
+
+                        _prepo.Update(payment);
+
+                        await _prepo.SaveAll();
+                    }
                 }
             }
-
-
-            foreach (Payment payment in payments)
-            {
-                var ev = await _erepo.GetEvent(payment.EventId);
-
-                if (ev.PromoterId == promoterId)
-                {
-                    Booking booking = new Booking();
-                    booking.DjId = payment.DjId;
-                    booking.EventId = payment.EventId;
-                    booking.BookingStatus = BookingStatus.Awaiting;
-
-                    _erepo.Add(booking);
-
-                    await _erepo.SaveAll();
-
-                    _prepo.Remove(payment);
-
-                    await _prepo.SaveAll();
-                }
-            }
-
-            return Ok("Payment was successful");
+            return Ok();
         }
-
     }
 }

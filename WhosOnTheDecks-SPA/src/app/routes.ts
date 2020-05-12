@@ -10,6 +10,7 @@ import { BookingResponseComponent } from "./view-bookings/booking-response/booki
 import { SelectADjComponent } from "./create-an-event/select-a-dj/select-a-dj.component";
 import { ConfirmEventsComponent } from "./create-an-event/confirm-events/confirm-events.component";
 import { PaymentComponent } from "./create-an-event/payment/payment.component";
+import { ConfirmationComponent } from "./create-an-event/confirmation/confirmation.component";
 
 export const appRoutes: Routes = [
   { path: "", component: HomeComponent },
@@ -22,6 +23,7 @@ export const appRoutes: Routes = [
       { path: "select-a-dj", component: SelectADjComponent },
       { path: "confirm-events", component: ConfirmEventsComponent },
       { path: "payment", component: PaymentComponent },
+      { path: "confirmation", component: ConfirmationComponent },
       { path: "view-all-djs", component: ViewAllDjsComponent },
       { path: "view-bookings/:id", component: BookingResponseComponent },
       { path: "view-bookings", component: ViewBookingsComponent },

@@ -36,6 +36,8 @@ import { DjService } from "./_service/dj.service";
 import { CreateEventService } from "./_service/create-event.service";
 import { PaymentComponent } from "./create-an-event/payment/payment.component";
 import { ConfirmEventsComponent } from "./create-an-event/confirm-events/confirm-events.component";
+import { PaymentService } from "./_service/payment.service";
+import { ConfirmationComponent } from "./create-an-event/confirmation/confirmation.component";
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -57,6 +59,7 @@ export function tokenGetter() {
     BookingResponseComponent,
     ConfirmEventsComponent,
     PaymentComponent,
+    ConfirmationComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,6 +89,7 @@ export function tokenGetter() {
     PromoterService,
     DjService,
     CreateEventService,
+    PaymentService,
   ],
   bootstrap: [AppComponent],
 })

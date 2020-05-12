@@ -12,7 +12,8 @@ import { AlertifyService } from "../_service/alertly.service";
 })
 export class CreateAnEventComponent implements OnInit {
   evNew: any = {};
-  minDate = new Date();
+  todaysDate = new Date();
+  minDate = new Date().setDate(this.todaysDate.getDate() + 1);
   maxDate = new Date(2025, 12, 31);
   minLength = 1;
   maxLength = 8;
@@ -32,15 +33,20 @@ export class CreateAnEventComponent implements OnInit {
   }
 
   cancel() {
-    this.createEventService.shoppingExists(this.authService.decodedToken.nameid).subscribe(answer => {
-      if (answer) {
-        this.router.navigate(["/confirm-events"]);
-        this.alertify.error("There's bookings in your basket");
-      } else {
-        this.router.navigate([""]);
-      }
-    }, (error) => {
-      this.alertify.error(error);
-    });
+    this.createEventService
+      .shoppingExists(this.authService.decodedToken.nameid)
+      .subscribe(
+        (answer) => {
+          if (answer) {
+            this.router.navigate(["/confirm-events"]);
+            this.alertify.error("There's bookings in your basket");
+          } else {
+            this.router.navigate([""]);
+          }
+        },
+        (error) => {
+          this.alertify.error(error);
+        }
+      );
   }
 }

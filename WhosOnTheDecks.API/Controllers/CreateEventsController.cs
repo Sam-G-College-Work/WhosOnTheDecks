@@ -68,17 +68,19 @@ namespace WhosOnTheDecks.API.Controllers
 
             foreach (Payment payment in payments)
             {
-                var evToRemove = await _erepo.GetEvent(payment.EventId);
-
-                eventsToCheck.Remove(evToRemove);
-
-                var djToRemove = await _urepo.GetDj(payment.DjId);
-
-                if (evToRemove.DateTimeOfEvent.Date == evNew.DateTimeOfEvent.Date)
+                if (payment.PaymentRecieved == false)
                 {
-                    AvaliableDjsToConvert.Remove(djToRemove);
-                }
+                    var evToRemove = await _erepo.GetEvent(payment.EventId);
 
+                    eventsToCheck.Remove(evToRemove);
+
+                    var djToRemove = await _urepo.GetDj(payment.DjId);
+
+                    if (evToRemove.DateTimeOfEvent.Date == evNew.DateTimeOfEvent.Date)
+                    {
+                        AvaliableDjsToConvert.Remove(djToRemove);
+                    }
+                }
             }
 
             //Loop is started to itterate through each event in allEvents List
@@ -160,6 +162,8 @@ namespace WhosOnTheDecks.API.Controllers
 
             paymentNew.DjId = djId;
 
+            paymentNew.PaymentRecieved = false;
+
             _prepo.Add(paymentNew);
 
             await _prepo.SaveAll();
@@ -168,32 +172,26 @@ namespace WhosOnTheDecks.API.Controllers
 
             var payments = await _prepo.GetPayments();
 
-            foreach (Payment payment in payments)
-            {
-                var eventToCheck = await _erepo.GetEvent(payment.EventId);
-
-                if (eventToCheck.PromoterId == promoterId)
-                {
-                    shoppingBasket.Add(eventToCheck);
-                }
-            }
-
             return Ok();
         }
 
         [HttpGet("getorders/{promoterId}")]
-        public async Task<IActionResult> getOrders(int promoterId) {
+        public async Task<IActionResult> getOrders(int promoterId)
+        {
             List<Event> promotersEvents = new List<Event>();
 
             var payments = await _prepo.GetPayments();
-             
+
             foreach (Payment payment in payments)
             {
-                var ev = await _erepo.GetEvent(payment.EventId);
-
-                if (ev.PromoterId == promoterId)
+                if (payment.PaymentRecieved == false)
                 {
-                    promotersEvents.Add(ev);
+                    var ev = await _erepo.GetEvent(payment.EventId);
+
+                    if (ev.PromoterId == promoterId)
+                    {
+                        promotersEvents.Add(ev);
+                    }
                 }
             }
 
@@ -207,14 +205,17 @@ namespace WhosOnTheDecks.API.Controllers
 
             foreach (Payment payment in payments)
             {
-                var eventToCheck = await _erepo.GetEvent(payment.EventId);
-
-                if (eventToCheck.PromoterId == promoterId)
+                if (payment.PaymentRecieved == false)
                 {
-                    _prepo.Remove(payment);
-                    await _prepo.SaveAll();
-                    _erepo.Remove(eventToCheck);
-                    await _erepo.SaveAll();
+                    var eventToCheck = await _erepo.GetEvent(payment.EventId);
+
+                    if (eventToCheck.PromoterId == promoterId)
+                    {
+                        _prepo.Remove(payment);
+                        await _prepo.SaveAll();
+                        _erepo.Remove(eventToCheck);
+                        await _erepo.SaveAll();
+                    }
                 }
             }
 
@@ -230,35 +231,20 @@ namespace WhosOnTheDecks.API.Controllers
 
             foreach (Payment payment in payments)
             {
-                var ev = await _erepo.GetEvent(payment.EventId);
-
-                if (ev.PromoterId == promoterId)
+                if (payment.PaymentRecieved == false)
                 {
-                    shoppingExists = true;
+                    var ev = await _erepo.GetEvent(payment.EventId);
+
+                    if (ev.PromoterId == promoterId)
+                    {
+                        shoppingExists = true;
+                    }
                 }
+
             }
 
             return shoppingExists;
         }
 
-        [HttpGet("gettotal/{id}")]
-        public async Task<decimal> getTotal(int id)
-        {
-            decimal total = 0;
-
-            var payments = await _prepo.GetPayments();
-
-            foreach (Payment payment in payments)
-            {
-                var ev = await _erepo.GetEvent(payment.EventId);
-
-                if (ev.PromoterId == id)
-                {
-                    total += ev.TotalCost;
-                }
-            }
-
-            return total;
-        }
     }
 }
