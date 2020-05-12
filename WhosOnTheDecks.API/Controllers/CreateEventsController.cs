@@ -144,7 +144,7 @@ namespace WhosOnTheDecks.API.Controllers
             var dj = await _urepo.GetDj(djId);
 
             eventToCreate.DateCreated = DateTime.Now;
-            eventToCreate.DateTimeOfEvent = ev.DateTimeOfEvent;
+            eventToCreate.DateTimeOfEvent = ev.DateTimeOfEvent.AddHours(1);
             eventToCreate.LengthOfEvent = ev.LengthOfEvent;
             eventToCreate.TotalCost = (ev.LengthOfEvent * dj.HourlyRate);
             eventToCreate.EventAddress = ev.EventAddress;

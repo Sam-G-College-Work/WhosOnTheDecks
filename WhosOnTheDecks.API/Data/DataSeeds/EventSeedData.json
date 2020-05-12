@@ -120,8 +120,8 @@
     "PromoterId": 9
   },
   {
-    "DateCreated": "2020-04-17",
-    "DateTimeOfEvent": "2020-06-17T21:00:00",
+    "DateCreated": "2020-01-17",
+    "DateTimeOfEvent": "2020-02-20T21:00:00",
     "LengthOfEvent": "3",
     "TotalCost": "300.00",
     "EventStatus": true,
@@ -131,7 +131,7 @@
   },
   {
     "DateCreated": "2020-01-04",
-    "DateTimeOfEvent": "2020-06-21T21:00:00",
+    "DateTimeOfEvent": "2020-02-21T21:00:00",
     "LengthOfEvent": "3",
     "TotalCost": "300.00",
     "EventStatus": true,
