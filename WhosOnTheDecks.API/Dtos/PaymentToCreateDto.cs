@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace WhosOnTheDecks.API.Dtos
@@ -9,18 +10,21 @@ namespace WhosOnTheDecks.API.Dtos
     {
         [Required]
         [Display(Name = "Card Number")]
-        [DataType(DataType.CreditCard)]
+        [RegularExpression(@"^[0-9]{16}$",
+         ErrorMessage = "Please enter a valid card number 16 digits long.")]
         public long CardNumber { get; set; }
 
-        //Decimal Hourly Rate used to store DJs hourly cost
         [Required]
         [Display(Name = "Expiry Date")]
-        [DataType(DataType.Date)]
-        public DateTime ExpiryDate { get; set; }
+        [RegularExpression(@"^(0[1-9]|1[0-2])\/?([2]{1}[0]{1}[2-3]{1}[0-9]{1}|[2-3]{1}[0-9]{1})$",
+         ErrorMessage = "Please enter a valid expiry in the format 01/21.")]
+        public string ExpiryDate { get; set; }
 
-        //string Equipment used to store the DJs required equipment
         [Required]
         [Display(Name = "Security Code")]
+        [RegularExpression(@"^[0-9]{3}$",
+         ErrorMessage = "Please enter a valid security code 3 digits on the back of the card.")]
         public int SecurityCode { get; set; }
+
     }
 }

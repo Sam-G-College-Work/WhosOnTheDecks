@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -29,7 +30,6 @@ namespace WhosOnTheDecks.API.Models
         //DateTime EventStartTime used to record the start time of the event
         [Required]
         [Display(Name = "Length of Event")]
-        [DataType(DataType.Duration)]
         public int LengthOfEvent { get; set; }
 
         //Decimal CostOfEvent used to store the entry cost of the event
@@ -44,13 +44,11 @@ namespace WhosOnTheDecks.API.Models
         //String EventAddress is used to store the address the event takes place
         [Required]
         [Display(Name = "Event Address")]
-        [DataType(DataType.MultilineText)]
         public string EventAddress { get; set; }
 
         //String Postcode is used to store the postcode of the event 
         [Required]
         [Display(Name = "Postcode")]
-        [DataType(DataType.PostalCode)]
         public string Postcode { get; set; }
 
         //Navigational Property
@@ -59,6 +57,7 @@ namespace WhosOnTheDecks.API.Models
         [ForeignKey("Promoter")]
         public int PromoterId { get; set; }
         public Promoter Promoter { get; set; }
+
 
     }
 }

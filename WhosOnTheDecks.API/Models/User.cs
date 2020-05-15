@@ -46,7 +46,7 @@ namespace WhosOnTheDecks.API.Models
         //Integer HouseNumber used to store the users house number
         [Required]
         [Display(Name = "House Number")]
-        public int HouseNumber { get; set; }
+        public string HouseNameOrNumber { get; set; }
 
         //String StreetName used to store the users street name
         [Required]

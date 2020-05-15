@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WhosOnTheDecks.API.Migrations
 {
-    public partial class LastCreate : Migration
+    public partial class thefinalmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -19,7 +19,7 @@ namespace WhosOnTheDecks.API.Migrations
                     LockAccount = table.Column<bool>(nullable: false),
                     FirstName = table.Column<string>(nullable: false),
                     LastName = table.Column<string>(nullable: false),
-                    HouseNumber = table.Column<int>(nullable: false),
+                    HouseNameOrNumber = table.Column<string>(nullable: false),
                     StreetName = table.Column<string>(nullable: false),
                     Postcode = table.Column<string>(nullable: false),
                     PhoneNumber = table.Column<string>(nullable: false),
@@ -98,7 +98,7 @@ namespace WhosOnTheDecks.API.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     DjId = table.Column<int>(nullable: false),
                     CardNumber = table.Column<long>(nullable: false),
-                    ExpiryDate = table.Column<DateTime>(nullable: false),
+                    ExpiryDate = table.Column<string>(nullable: true),
                     SecurityCode = table.Column<int>(nullable: false),
                     PaymentRecieved = table.Column<bool>(nullable: false),
                     EventId = table.Column<int>(nullable: false)

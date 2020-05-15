@@ -26,33 +26,42 @@ namespace WhosOnTheDecks.API.Dtos
         //String FirstName used to store the users first name
         [Required]
         [Display(Name = " First Name")]
+        [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$",
+         ErrorMessage = "Please enter a valid first name. Numbers and special characters are not allowed.")]
         public string FirstName { get; set; }
 
         //String LastName used to store the users last name
         [Required]
         [Display(Name = "Last Name")]
+        [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$",
+         ErrorMessage = "Please enter a valid last name. Numbers and special characters are not allowed.")]
         public string LastName { get; set; }
 
         //Integer HouseNumber used to store the users house number
         [Required]
-        [Display(Name = "House Number")]
-        public int HouseNumber { get; set; }
+        [Display(Name = "House Name or Number")]
+        public string HouseNameOrNumber { get; set; }
 
         //String StreetName used to store the users street name
         [Required]
         [Display(Name = "Street Name")]
+        [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$",
+         ErrorMessage = "Please enter a street name. Characters are not allowed.")]
         public string StreetName { get; set; }
 
         //String Postcode used to store the users postcode
         [Required]
         [Display(Name = "Postcode")]
+        [RegularExpression(@"^(([gG][iI][rR] {0,}0[aA]{2})|((([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y]?[0-9][0-9]?)|(([a-pr-uwyzA-PR-UWYZ][0-9][a-hjkstuwA-HJKSTUW])|([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y][0-9][abehmnprv-yABEHMNPRV-Y]))) {0,}[0-9][abd-hjlnp-uw-zABD-HJLNP-UW-Z]{2}))$",
+         ErrorMessage = "Please enter a Postcode eg. GA16 6TH.")]
         public string Postcode { get; set; }
 
         //Integer PhoneNumber used to store the users phone number 
         [Required]
-        [DataType(DataType.PhoneNumber,
-            ErrorMessage = "You must enter a valid phone number")]
+        [DataType(DataType.PhoneNumber)]
         [Display(Name = "Phone Number")]
+        [RegularExpression(@"^((\\+44-?)|0)?[0-9]{11}$",
+         ErrorMessage = "Please enter a valid phone number eg 07867879789")]
         public string PhoneNumber { get; set; }
 
         //Enum Role used to store the users role

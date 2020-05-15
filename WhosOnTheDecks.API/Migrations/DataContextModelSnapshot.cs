@@ -94,7 +94,7 @@ namespace WhosOnTheDecks.API.Migrations
                     b.Property<int>("EventId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("ExpiryDate")
+                    b.Property<string>("ExpiryDate")
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("PaymentRecieved")
@@ -128,8 +128,9 @@ namespace WhosOnTheDecks.API.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("HouseNumber")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("HouseNameOrNumber")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("LastName")
                         .IsRequired()

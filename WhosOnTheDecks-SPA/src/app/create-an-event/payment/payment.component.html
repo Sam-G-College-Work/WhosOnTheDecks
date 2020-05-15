@@ -9,7 +9,7 @@
 
     <div class="form-group">
       <input
-        type="text"
+        type="number"
         class="form-control"
         required
         name="cardNumber"
@@ -18,34 +18,20 @@
       />
     </div>
 
-    <div class="form-container">
-      <div class="form-group">
-        <mat-form-field>
-          <input
-            matInput
-            [matDatepicker]="dp2"
-            [min]="minDate"
-            [max]="maxDate"
-            class="form-control"
-            (click)="openDatePicker(dp2)"
-          />
-          <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
-          <mat-datepicker
-            #dp2
-            startView="multi-year"
-            required
-            name="expiryDate"
-            [(ngModel)]="cardDetails.expiryDate"
-            placeholder="Choose a date"
-            (monthSelected)="closeDatePicker($event, dp2)"
-          ></mat-datepicker>
-        </mat-form-field>
-      </div>
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        required
+        name="expiryDate"
+        [(ngModel)]="cardDetails.expiryDate"
+        placeholder="Expiry Date"
+      />
     </div>
 
     <div class="form-group">
       <input
-        type="text"
+        type="number"
         class="form-control"
         required
         name="securityCode"
@@ -57,16 +43,16 @@
     <div class="form-group button-container text-center">
       <button
         class="btn btn-danger"
+        type="button"
         [routerLink]="['/confirm-events']"
-        mat-button
       >
         Cancel
       </button>
       <button
         [disabled]="!makePaymentForm.valid"
         class="btn btn-success"
+        type="submit"
         (click)="makePayment()"
-        mat-button
       >
         Pay Now
       </button>

@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { CreateEventService } from "../_service/create-event.service";
 import { AuthService } from "../_service/auth.service";
 import { AlertifyService } from "../_service/alertly.service";
+import { NgForm } from "@angular/forms";
 
 @Component({
   selector: "app-create-an-event",
@@ -13,11 +14,18 @@ import { AlertifyService } from "../_service/alertly.service";
 export class CreateAnEventComponent implements OnInit {
   evNew: any = {};
   todaysDate = new Date();
-  minDate = new Date().setDate(this.todaysDate.getDate() + 1);
-  maxDate = new Date(2025, 12, 31);
   minLength = 1;
   maxLength = 8;
   shop: boolean;
+
+  lengthPattern = "^[1-9]d*$";
+
+  // PostcodePatter will format postcode patterns to a specific format
+  postcodePattern =
+    "^(([gG][iI][rR] {0,}0[aA]{2})|((([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y]?[0-9][0-9]?)|(([a-pr-uwyzA-PR-UWYZ][0-9][a-hjkstuwA-HJKSTUW])|([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y][0-9][abehmnprv-yABEHMNPRV-Y]))) {0,}[0-9][abd-hjlnp-uw-zABD-HJLNP-UW-Z]{2}))$";
+
+  // isFormValid is a boolean to check all formats are correct
+  isValidFormSubmitted = false;
 
   constructor(
     private router: Router,
@@ -27,6 +35,16 @@ export class CreateAnEventComponent implements OnInit {
   ) {}
 
   ngOnInit() {}
+
+  // onformSubmit will check all fields have been enetered correctly and if not will not set the form to isValid
+  onFormSubmit(form: NgForm) {
+    this.isValidFormSubmitted = false;
+    if (form.invalid) {
+      return;
+    }
+    this.isValidFormSubmitted = true;
+    this.selectADj();
+  }
 
   // Select dj takes the user to select dj page passing the event model through
   selectADj() {

@@ -7,6 +7,7 @@ import { PaymentService } from "src/app/_service/payment.service";
 import { EventDisplay } from "src/app/_models/event-display";
 import { sumBy } from "lodash";
 import { CardDetails } from "src/app/_models/card-details";
+import { NgForm } from "@angular/forms";
 
 @Component({
   selector: "app-payment",
@@ -16,9 +17,6 @@ import { CardDetails } from "src/app/_models/card-details";
 export class PaymentComponent implements OnInit {
   eventDisplays: EventDisplay[];
   cardDetails: CardDetails;
-  todaysDate = new Date();
-  minDate = new Date().setDate(this.todaysDate.getMonth());
-  maxDate = new Date().setDate(this.todaysDate.getMonth() + 6);
 
   constructor(
     private createEventService: CreateEventService,
@@ -71,15 +69,5 @@ export class PaymentComponent implements OnInit {
   // Get total works out the total from the events array to display on the payments page
   get totalPayment() {
     return sumBy(this.eventDisplays, (eventDisplay) => eventDisplay.totalCost);
-  }
-
-  // Method used to open date picker to month and year
-  openDatePicker(dp) {
-    dp.open();
-  }
-
-  closeDatePicker(eventData: any, dp?: any) {
-    // get month and year from eventData and close datepicker, thus not allowing user to select date
-    dp.close();
   }
 }

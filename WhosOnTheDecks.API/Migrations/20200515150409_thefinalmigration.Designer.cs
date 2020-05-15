@@ -9,8 +9,8 @@ using WhosOnTheDecks.API.Data;
 namespace WhosOnTheDecks.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200511174705_LastCreate")]
-    partial class LastCreate
+    [Migration("20200515150409_thefinalmigration")]
+    partial class thefinalmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -96,7 +96,7 @@ namespace WhosOnTheDecks.API.Migrations
                     b.Property<int>("EventId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("ExpiryDate")
+                    b.Property<string>("ExpiryDate")
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("PaymentRecieved")
@@ -130,8 +130,9 @@ namespace WhosOnTheDecks.API.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("HouseNumber")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("HouseNameOrNumber")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("LastName")
                         .IsRequired()

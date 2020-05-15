@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from "@angular/core";
 import { AuthService } from "../_service/auth.service";
 import { AlertifyService } from "../_service/alertly.service";
+import { NgForm } from "@angular/forms";
 
 @Component({
   selector: "app-register-promoter",

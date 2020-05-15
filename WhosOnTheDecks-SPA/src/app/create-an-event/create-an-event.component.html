@@ -7,8 +7,6 @@
       <mat-form-field>
         <input
           matInput
-          [min]="minDate"
-          [max]="maxDate"
           type="datetime-local"
           class="form-control"
           required
@@ -26,10 +24,17 @@
         required
         name="lengthOfEvent"
         [(ngModel)]="evNew.lengthOfEvent"
-        placeholder="Length Of Event"
+        placeholder="Length Of Event in Hours"
         [min]="minLength"
         [max]="maxLength"
+        #length="ngModel"
+        [pattern]="lengthPattern"
       />
+    </div>
+    <div *ngIf="length.errors && !isValidFormSubmitted" [ngClass]="'error'">
+      <div *ngIf="length.errors.pattern">
+        length is not valid. Please enter between 1 and 9 hours
+      </div>
     </div>
 
     <div class="form-group">
@@ -51,18 +56,24 @@
         name="postcode"
         [(ngModel)]="evNew.postcode"
         placeholder="Postcode"
+        #postcode="ngModel"
+        [pattern]="postcodePattern"
       />
     </div>
+    <div *ngIf="postcode.errors && !isValidFormSubmitted" [ngClass]="'error'">
+      <div *ngIf="postcode.errors.pattern">
+        Postcode is not valid.
+      </div>
+    </div>
 
-    <div class="form-group button-container text-center">
-      <button class="btn btn-danger" (click)="cancel()" mat-button>
+    <div class="form-group text-center">
+      <button class="btn btn-danger" type="button" (click)="cancel()">
         Cancel
       </button>
       <button
-        [disabled]="!createEventForm.valid"
         class="btn btn-success"
-        (click)="selectADj()"
-        mat-button
+        type="submit"
+        (click)="onFormSubmit(createEventForm)"
       >
         Select a DJ
       </button>

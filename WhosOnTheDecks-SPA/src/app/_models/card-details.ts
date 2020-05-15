@@ -1,5 +1,5 @@
 export class CardDetails {
   cardNumber: number;
-  expiryDate: Date;
+  expiryDate: string;
   securityCode: number;
 }

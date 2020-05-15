@@ -21,8 +21,8 @@ namespace WhosOnTheDecks.API.Models
         //A long of CardNumber is used to store the cusotmers card number
         public long CardNumber { get; set; }
 
-        //A DateTime Expiry date is used to store the cards expiry date
-        public DateTime ExpiryDate { get; set; }
+        //A string Expiry date is used to store the cards expiry date
+        public string ExpiryDate { get; set; }
 
         //An Integer Security code is used to store the security code
         public int SecurityCode { get; set; }
