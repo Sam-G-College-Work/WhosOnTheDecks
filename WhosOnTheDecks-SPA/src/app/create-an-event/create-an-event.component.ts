@@ -78,6 +78,6 @@ export class CreateAnEventComponent implements OnInit {
 
   handleDateChange(dateChanged: any) {
     const changedDate = new Date(dateChanged.target.value);
-    this.validDate = changedDate.valueOf() > Date.now();
+    this.validDate = changedDate.valueOf() > Date.now() + 1;
   }
 }
