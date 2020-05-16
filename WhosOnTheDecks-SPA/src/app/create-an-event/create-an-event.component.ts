@@ -5,6 +5,7 @@ import { CreateEventService } from "../_service/create-event.service";
 import { AuthService } from "../_service/auth.service";
 import { AlertifyService } from "../_service/alertly.service";
 import { NgForm } from "@angular/forms";
+import { MatDatepickerInputEvent } from "@angular/material";
 
 @Component({
   selector: "app-create-an-event",
@@ -26,6 +27,9 @@ export class CreateAnEventComponent implements OnInit {
 
   // isFormValid is a boolean to check all formats are correct
   isValidFormSubmitted = false;
+
+  // Valid Date boolean checks to see if the date entered is within the time frame set
+  validDate: boolean;
 
   constructor(
     private router: Router,
@@ -70,5 +74,10 @@ export class CreateAnEventComponent implements OnInit {
           this.alertify.error(error);
         }
       );
+  }
+
+  handleDateChange(dateChanged: any) {
+    const changedDate = new Date(dateChanged.target.value);
+    this.validDate = changedDate.valueOf() > Date.now();
   }
 }
